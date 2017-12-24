@@ -1,0 +1,218 @@
+@import './variables.scss';
+.el-checkbox__input.is-focus .el-checkbox__inner,
+.el-checkbox-button.is-focus .el-checkbox-button__inner {
+  border-color: #00D1B2;
+}
+
+.el-checkbox-button {
+  display: inline-block;
+  position: relative;
+}
+
+.el-checkbox__input.is-disabled .el-checkbox__inner+.el-checkbox__label {
+  cursor: not-allowed;
+}
+
+.el-checkbox-button__inner:hover {
+  color: #00D1B2;
+}
+
+.el-checkbox__inner:hover {
+  border-color: #00D1B2;
+}
+
+.el-checkbox {
+  display: inline-block;
+  position: relative;
+  color: #333;
+  white-space: nowrap;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.el-checkbox+.el-checkbox {
+  margin-left: 15px;
+}
+
+.el-checkbox__input {
+  display: inline-block;
+  position: relative;
+  line-height: 1;
+  vertical-align: middle;
+  white-space: nowrap;
+  cursor: pointer;
+  outline: 0;
+}
+
+.el-checkbox__input.is-disabled .el-checkbox__inner {
+  border-color: #ddd;
+  background-color: #EEF6F6;
+  cursor: not-allowed;
+}
+
+.el-checkbox__input.is-disabled {
+  &.is-checked .el-checkbox__inner,
+  &.is-indeterminate .el-checkbox__inner {
+    border-color: #ddd;
+    background-color: #ddd;
+  }
+}
+
+.el-checkbox__input.is-disabled+.el-checkbox__label {
+  color: #BBB;
+  cursor: not-allowed;
+}
+
+.el-checkbox__label {
+  padding-left: 5px;
+  font-size: 14px;
+}
+
+.el-checkbox-button:first-child .el-checkbox-button__inner {
+  border-left: 1px solid #999;
+  border-radius: 0;
+  box-shadow: none !important;
+}
+
+.el-checkbox-button:last-child .el-checkbox-button__inner {
+  border-radius: 0;
+}
+
+.el-checkbox-button--large .el-checkbox-button__inner {
+  padding: 11px 19px;
+  font-size: 16px;
+  border-radius: 0;
+}
+
+.el-checkbox-button--small .el-checkbox-button__inner,
+
+{
+  padding: 7px 9px;
+  font-size: 12px;
+  border-radius: 0;
+}
+
+.el-checkbox-button--mini .el-checkbox-button__inner,
+
+{
+  padding: 4px;
+  font-size: 12px;
+  border-radius: 0;
+}
+
+
+.el-checkbox__input {
+  &.is-indeterminate .el-checkbox__inner,
+  &.is-checked .el-checkbox__inner {
+    border-color: #01BCA0;
+    background-color: #00D1B2;
+  }
+  &.is-indeterminate .el-checkbox__inner {
+    &::before {
+      display: block;
+      position: absolute;
+      left: 3px;
+      top: 50%;
+      right: 3px;
+      margin-top: -1px;
+      border: 1px solid #FFF;
+      content: '';
+    }
+    &::after {
+      display: none;
+    }
+  }
+}
+
+
+.el-checkbox__inner {
+  display: inline-block;
+  position: relative;
+  width: 18px;
+  height: 18px;
+  border: 1px solid #999;
+  background-color: #FFF;
+  z-index: 1;
+  border-radius: 0;
+  box-sizing: border-box;
+  transition: border-color 0.25s cubic-bezier(0.71, -0.46, 0.29, 1.46), background-color 0.25s cubic-bezier(0.71, -0.46, 0.29, 1.46);
+  &::after {
+    position: absolute;
+    left: 5px;
+    top: 1px;
+    width: 4px;
+    height: 8px;
+    border: 2px solid #FFF;
+    border-left: 0;
+    border-top: 0;
+    content: '';
+    box-sizing: content-box;
+    transform: rotate(45deg) scaleY(1);
+    transform-origin: center;
+    transition: transform 0.2s cubic-bezier(0.71, -0.46, 0.88, 0.6) 0.05s;
+
+  }
+}
+
+.el-checkbox__original {
+  position: absolute;
+  left: -999px;
+  width: 0;
+  height: 0;
+  margin: 0;
+  opacity: 0;
+  outline: 0;
+}
+
+.el-checkbox-button {
+  &.is-checked .el-checkbox-button__inner {
+    border-color: #00D1B2;
+    background-color: #00D1B2;
+    color: #FFF;
+    box-shadow: -1px 0 0 0 #00D1B2;
+  }
+  &.is-disabled .el-checkbox-button__inner {
+    border-color: #ddd;
+    background-image: none;
+    background-color: #EEF6F6;
+    color: #999;
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+}
+
+.el-checkbox-button__inner {
+  display: inline-block;
+  position: relative;
+  margin: 0;
+  padding: 10px 15px;
+  border: 1px solid #999;
+  border-left: 0;
+  background: #FFF;
+  line-height: 1;
+  color: #333;
+  font-size: 14px;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+  cursor: pointer;
+  -webkit-appearance: none;
+  border-radius: 0;
+  box-sizing: border-box;
+  transition: all 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  outline: 0;
+}
+
+.el-checkbox-button__original {
+  position: absolute;
+  left: -999px;
+  margin: 0;
+  opacity: 0;
+  outline: 0;
+  visibility: hidden;
+}

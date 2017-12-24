@@ -1,0 +1,34 @@
+@import 'variables.scss';
+@mixin background() {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+
+.background {
+  position: relative;
+  background:$lighter;
+  .spin {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 32px;
+    color: #fff;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.background-cover,
+.background-image {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  transition: all 1s;
+}
+
+.background-image {
+  @include background();
+}

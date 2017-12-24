@@ -1,0 +1,22 @@
+@import 'variables.scss';
+
+
+.collapse .collapse-header {
+  padding: 10px 15px;
+  position: relative;
+  overflow:hidden;
+  cursor: pointer;
+}
+
+.collapse .collapse-header i:before {
+
+  transition: all .2s;
+  transform: rotate(0);
+}
+.collapse.is-active .collapse-header i:before {
+
+  transform: rotate(90deg);
+}
+.collapse .collapse-content-box {
+  transition: all .2s;
+}

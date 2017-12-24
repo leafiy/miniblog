@@ -1,0 +1,68 @@
+@import 'variables.scss';
+
+.player-wrapper {
+  width: 100%;
+  .player-player {
+    display: flex;
+    height: 40px;
+    background: #fff;
+    border: 1px solid $lighter;
+    user-select: none;
+    overflow:hidden;
+
+  }
+}
+
+.player-button {
+  text-align:center;
+  cursor: pointer;
+  height: 40px;
+  width: 40px;
+  line-height: 40px;
+  &:hover{
+    background:$lighter;
+    color:$primary-color;
+  }
+}
+
+.player-time {
+  position: relative;
+  flex: 1 1 auto;
+  margin:0 10px;
+}
+
+.player-time-wrapper {
+  width:100%;
+  display: inline-block;
+  background: $lighter;
+  height: 3px;
+  cursor: pointer;
+  position: absolute;
+  top:42%;
+  transform:translate3d(0,-50%,0);
+
+  .player-time-indicator {
+    background: $primary-color;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    transition: all .2s;
+  }
+}
+.player-time-current,
+.player-time-total{
+  position: absolute;
+  font-size:10px;
+  bottom:0;
+}
+.player-time-current{
+  left:0;
+}
+.player-time-total{
+  right:0;
+}
+.player-name{
+  padding-top:6px;
+  text-align:center;
+}

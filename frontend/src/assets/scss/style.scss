@@ -1,0 +1,237 @@
+@import './var.scss';
+@import './flex.scss';
+@font-face {
+  font-family: 'exo';
+  src: url('~/static/font/Exo2-ExtraLight.eot');
+  src: url('~/static/font/Exo2-ExtraLight.woff2') format('woff2'),
+  url('~/static/font/Exo2-ExtraLight.woff') format('woff'),
+  url('~/static/font/Exo2-ExtraLight.ttf') format('truetype'),
+  url('~/static/font/Exo2-ExtraLight.svg#Exo2-ExtraLight') format('svg'),
+  url('~/static/font/Exo2-ExtraLight.eot?#iefix') format('embedded-opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+::selection {
+  color: #fff;
+  background-color: $pink;
+  text-shadow: none;
+}
+
+ul,
+li {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  >li {
+    display: inline-block;
+  }
+}
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: lighter;
+  margin: 0;
+}
+
+
+
+html,
+body,
+#app {
+  height: 100%;
+}
+
+* {
+  box-sizing: border-box;
+  word-break: break-word;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+}
+
+#wrap {
+  padding-top: 40px;
+  flex: 1 0 auto;
+  @include small {
+    padding-top: 20px;
+  }
+}
+
+.mb20 {
+  margin-bottom: 20px;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+body {
+  font-family: 'San Francisco', -apple-system, BlinkMacSystemFont, '.SFNSText-Regular', Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: lighter;
+  line-height: 1.5;
+  font-size: 14px;
+  color: $primary-color;
+  background: #fff;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  padding: 40px 0 0 80px;
+  @include small {
+    padding: 20px 0 0 30px;
+  }
+}
+
+a {
+  color: $primary-color;
+  text-decoration: none;
+  &:hover {}
+}
+
+.color-text {
+  color: $pink;
+}
+
+.font-exo {
+  font-family: exo;
+}
+.right{
+  float:right;
+}
+.carousel {
+  margin-bottom: 40px;
+}
+
+.site-header {
+  padding-right: 40px;
+  line-height: 34px;
+  .logo {
+    float: left;
+  }
+  .navbar {
+    float: right;
+    li {
+      margin-left: 32px;
+    }
+  }
+}
+
+footer {
+  font-size: 12px;
+  border-top: 1px solid $lighter;
+}
+
+.muted {
+  color: $light;
+  font-size: 12px;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity .2s
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0
+}
+
+.page-container {
+  padding-left: 3em;
+  padding-bottom: 4em;
+  @include small {
+    padding-left: 1em;
+    padding-bottom: 1em;
+  }
+}
+
+section {
+  padding-bottom: 40px;
+  @include small {
+    padding-bottom: 20px;
+  }
+  &:hover {
+    .section-title {
+      span {
+        color: $pink;
+      }
+    }
+  }
+}
+
+.section-title {
+  margin-bottom: 30px;
+  position: relative;
+  letter-spacing: .1em;
+  span {
+    color: $light;
+    transition: color .6s;
+    will-change: color;
+  }
+  .loading-spinner {
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+  }
+}
+
+.section-desp {
+  padding-right: 40%;
+  color: $light;
+  letter-spacing: .08em;
+  padding-bottom: 2em;
+  white-space: pre-wrap;
+}
+
+.carousel {
+  position: relative;
+}
+
+.carousel-indicator {
+  position: absolute;
+  bottom: 16px;
+  right: 30px;
+  user-select: none;
+  span {
+    margin: 0 14px;
+    color: #fff;
+    font-weight: 400;
+  }
+}
+
+.publication-list {
+  .publication {
+    margin-bottom: 30px;
+  }
+}
+
+.hover-line {
+  position: relative;
+  &::before {
+    content: ' ';
+    position: absolute;
+    height: 1px;
+    width: 8px;
+    background: $pink;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    opacity: 0;
+    transition: all .3s;
+  }
+  &:hover {
+    &::before {
+      opacity: 1;
+      transform: translateX(-14px);
+    }
+  }
+}

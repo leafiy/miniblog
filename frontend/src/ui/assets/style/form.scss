@@ -1,0 +1,109 @@
+@import './variables.scss';
+.el-form-item__content {
+  &:before,
+  &:after {
+    display: table;
+    content: '';
+  }
+}
+
+.el-form-item {
+  &:before,
+  &:after {
+    display: table;
+    content: '';
+  }
+}
+
+.el-form-item__content:after,
+.el-form-item:after {
+  clear: both;
+}
+
+
+.el-form-item.is-error {
+  .el-input__inner,
+  .el-textarea__inner {
+    border-color: $error-color;
+  }
+}
+
+.el-form--inline.el-form--label-top .el-form-item__content{
+  display: block;
+}
+
+
+.el-form--label-left .el-form-item__label {
+  text-align: left;
+}
+
+.el-form--label-top .el-form-item__label {
+  display: inline-block;
+  float: none;
+  padding: 0 0 10px;
+  text-align: left;
+}
+
+.el-form--inline {
+  .el-form-item {
+    display: inline-block;
+    margin-right: 10px;
+    vertical-align: top;
+  }
+  .el-form-item__label {
+    display: inline-block;
+    float: none;
+  }
+  .el-form-item__content {
+    display: inline-block;
+    vertical-align: top;
+  }
+}
+
+.el-form-item {
+  margin-bottom: 26px;
+  .el-form-item {
+    margin-bottom: 0;
+    .el-form-item__content {
+      margin-left: 0 !important;
+    }
+  } // &.is-error {
+  //   .el-input-group__append .el-input__inner,
+  //   .el-input-group__prepend .el-input__inner,
+  //   .el-input__inner {
+  //     border-color: transparent;
+  //   }
+  // }
+  &.is-required .el-form-item__label:before {
+    margin-right: 4px;
+    color: $error-color;
+    content: '*';
+  }
+}
+
+.el-form-item__label {
+  float: left;
+  padding: 11px 12px 11px 0;
+  line-height: 1;
+  color: #486A6A;
+  font-size: 14px;
+  text-align: right;
+  vertical-align: middle;
+  box-sizing: border-box;
+}
+
+.el-form-item__content {
+  position: relative;
+  line-height: 36px;
+  font-size: 14px;
+}
+
+.el-form-item__error {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  padding-top: 4px;
+  line-height: 1;
+  color: $error-color;
+  font-size: 12px;
+}
