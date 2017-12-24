@@ -9,6 +9,8 @@ const ResearchPage = () =>
   import ( /* webpackChunkName: "index" */ '../pages/research.vue')
 const ProjectPage = () =>
   import ( /* webpackChunkName: "index" */ '../pages/project.vue')
+const ArticlePage = () =>
+  import ( /* webpackChunkName: "index" */ '../pages/article.vue')
 
 const Login = () =>
   import ( /* webpackChunkName: "user" */ '../pages/login.vue')
@@ -35,6 +37,11 @@ const routes = [{
     path: '/project',
     name: 'ProjectPage',
     component: ProjectPage,
+    meta: { auth: false }
+  }, {
+    path: '/article/:name',
+    name: 'ArticlePage',
+    component: ArticlePage,
     meta: { auth: false }
   }, {
     path: '/login',

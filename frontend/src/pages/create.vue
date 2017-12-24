@@ -2,8 +2,8 @@
   <div class="create-container">
     <places v-if="showPlace" v-model="article.location.label" placeholder="Where ?" @change="val => { article.location.data = val }">
     </places>
-    <el-input type="text" placeholder="title" v-model="article.title" class="mb20"></el-input>
-    <el-input type="textarea" placeholder="文章摘要" v-model="article.intro" :autosize="{ minRows: 4}" class="mb20"></el-input>
+    <el-input type="text" :maxlength="80" placeholder="title" v-model="article.title" class="mb20"></el-input>
+    <el-input type="textarea" :maxlength="600" placeholder="文章摘要" v-model="article.intro" :autosize="{ minRows: 4}" class="mb20"></el-input>
     <uploader ref="uploader" :file-list="article.fileList" :format="['gif', 'jpg', 'jpeg', 'png', 'bmp', 'webp']" accept="image/*" :multiple="false" :max-number="1" tip="upload article cover photo" fileType="cover" :show-upload-list-after-success="false"></uploader>
     <div id="editor" class="mb20"></div>
     <UIButton type="primary" @click="save(false)">save</UIButton>

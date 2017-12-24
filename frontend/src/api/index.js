@@ -72,6 +72,9 @@ export default {
   getContentById(id) {
     return instance.get('/article/getContentById/' + id, config())
   },
+  getContentByName(name) {
+    return instance.get('/article/getContentByName/' + name, config())
+  },
   getList(name) {
     return instance.get('/article/getList/' + name, config())
   },

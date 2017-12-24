@@ -9,9 +9,17 @@ const config = require('../config/index.js')
 const path = require('path')
 
 
+const toCamelCase = str =>
+  str.replace(/^([A-Z])|[\s-_]+(\w)/g, (match, p1, p2, offset) => p2 ? '_' + p2.toLowerCase() : p1.toLowerCase());
+exports.toCamelCase = toCamelCase;
 
 
-
+const removeSpecialChars = str => {
+  return str.replace(/(?!\w|\s)./g, '')
+    .replace(/\s+/g, ' ')
+    .replace(/^(\s*)([\W\w]*)(\b\s*$)/g, '$2');
+}
+exports.removeSpecialChars = removeSpecialChars;
 
 var covertFilename = function(originUrl, size) {
   if (!originUrl) {
@@ -36,4 +44,3 @@ var covertFilename = function(originUrl, size) {
   }
 };
 exports.covertFilename = covertFilename;
-

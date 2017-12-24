@@ -13,6 +13,10 @@ var articleSchema = new Schema({
     type: String,
     default: 'article'
   },
+  shortName: {
+    type: String,
+    default: ''
+  },
   category: {
     type: String,
     default: ''

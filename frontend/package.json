@@ -1,7 +1,7 @@
 {
-  "name": "dr.qian-studio",
+  "name": "miniblog",
   "version": "1.0.0",
-  "description": "blog for dr.qian",
+  "description": "a mini blog based on vue2 for Dr.piggy",
   "author": "leafiy <t@leafiy.com>",
   "private": true,
   "scripts": {

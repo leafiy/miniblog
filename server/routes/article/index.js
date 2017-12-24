@@ -8,6 +8,7 @@ router.delete('/deleteContent/:id', expressJwt({ secret: config.session.secrets,
 router.post('/updateOrder', expressJwt({ secret: config.session.secrets, credentialsRequired: true }), controller.updateOrder);
 router.post('/createContent', expressJwt({ secret: config.session.secrets, credentialsRequired: true }), controller.createContent);
 router.get('/getContent/:name', expressJwt({ secret: config.session.secrets, credentialsRequired: false }), controller.getContent);
+router.get('/getContentByName/:name', expressJwt({ secret: config.session.secrets, credentialsRequired: false }), controller.getContentByName);
 router.get('/getContentById/:id', expressJwt({ secret: config.session.secrets, credentialsRequired: false }), controller.getContentById);
 router.get('/getList/:type', expressJwt({ secret: config.session.secrets, credentialsRequired: false }), controller.getList);
 router.put('/updateContent', expressJwt({ secret: config.session.secrets, credentialsRequired: true }), controller.updateContent);

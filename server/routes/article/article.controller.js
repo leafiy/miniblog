@@ -64,6 +64,15 @@ exports.deleteContent = async function(req, res) {
 }
 exports.createContent = async function(req, res) {
   let content = req.body;
+  if (content.title) {
+    content.title = content.title.trim();
+    let title = content.title;
+    title = utils.removeSpecialChars(title);
+    let shortName = utils.toCamelCase(title);
+    let article = await Article.find({ category: content.category });
+    let index = article.length;
+    content.shortName = `${shortName}_${index + 1}`
+  }
   Article.createAsync(content).then(response => {
 
     res.status(200).send({
@@ -78,7 +87,20 @@ exports.createContent = async function(req, res) {
   })
 
 }
-
+exports.getContentByName = async function(req, res) {
+  let name = req.params.name;
+  try {
+    let content = await Article.findOne({ shortName: name });
+    res.status(200).send({
+      content: content
+    })
+  } catch (error) {
+    console.log(error)
+    res.status(401).send({
+      error: error
+    })
+  }
+}
 exports.getContentById = async function(req, res) {
   let id = req.params.id;
   try {
