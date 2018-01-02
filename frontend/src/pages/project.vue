@@ -19,7 +19,7 @@ import PageSection from '../components/section.vue';
 import ProjectList from '../components/projectList.vue';
 import config from '../config.js';
 import Vue from 'vue'
-import * as VueGoogleMaps from '../../../../vue-google-maps/src/main.js'
+import * as VueGoogleMaps from 'vue2-google-maps2'
 import mapStyle from '../utils/mapStyle.json';
 Vue.use(VueGoogleMaps, {
   load: {
