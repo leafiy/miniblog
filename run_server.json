@@ -1,0 +1,18 @@
+{
+  "apps": [
+  {
+    "name": "miniblog api",
+    "script": "dist/app.js",
+    "args": [],
+    "watch": false,
+    "merge_logs": true,
+    "cwd": "/root/miniblog/server",
+    "error_file": "/root/miniblog/server/logs/server-error.log",
+    "out_file": "/root/miniblog/server/logs/server.log",
+    "pid_file": "/root/miniblog/server/logs/server.pid",
+    "env":
+    {
+      "NODE_ENV": "production"
+    }
+  }]
+}
