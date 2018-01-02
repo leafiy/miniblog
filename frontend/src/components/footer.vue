@@ -1,7 +1,7 @@
 <template>
   <footer>
     <p>UK | CHINA</p>
-    <p><a href="mailto:smile@drqianstudio.com">smile@drqianstudio.com</a></p>
+    <p><a href="mailto:smile@qiansmile.com">smile@qiansmile.com</a></p>
   </footer>
 </template>
 <script>

@@ -1,17 +1,17 @@
 server {
   listen       80;
-  server_name drqianstudio.local;
+  server_name qiansmile.local;
   index  index.html;
   client_max_body_size 100M;
 
 
   location /uploads/ {
-    alias /root/drqianstudio/server/uploads;
+    alias /root/qiansmile/server/uploads;
     autoindex off;
   }
 
   location /piblic/ {
-    alias /root/drqianstudio/server/public/;
+    alias /root/qiansmile/server/public/;
     autoindex on;
   }
   location /api {
@@ -20,7 +20,7 @@ server {
   }
 
   location  / {
-    alias /root/drqianstudio/frontend/dist;
+    alias /root/qiansmile/frontend/dist;
     autoindex off;
     try_files $uri $uri/ /index.html;
     #proxy_pass http://localhost:8020;

@@ -1,7 +1,7 @@
 <template>
   <header class="site-header">
     <h1 class="logo">
-    <router-link to="/">Dr<span class="color-text">.</span>Qian Studio</router-link>
+    <router-link to="/">Qian<span class="color-text">.</span>Smile</router-link>
   </h1>
     <ul class="navbar">
         <li><router-link to="/">About</router-link></li>

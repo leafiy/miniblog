@@ -1,13 +1,13 @@
 export default {
   development: {
-    host: 'drqianstudio.local',
+    host: 'qiansmile.local',
     sitePort: 80,
-    apiPort: 'http://drqianstudio.local/api/v1',
+    apiPort: 'http://qiansmile.local/api/v1',
     devPort: 8040,
   },
   production: {
-    host: 'drqianstudio.com',
+    host: 'qiansmile.com',
     sitePort: 80,
-    apiPort: 'https://drqianstudio.com/api/v1',
+    apiPort: 'https://qiansmile.com/api/v1',
   }
 };
