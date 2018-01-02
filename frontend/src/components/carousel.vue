@@ -13,8 +13,8 @@
       </slide>
     </carousel>
     <div class="carousel-indicator">
-      <span @mouseover="change(0)">Place Marketing</span>
-      <span @mouseover="change(1)">Urban Design</span>
+      <span @mouseover="change(0)">Urban Design</span>
+      <span @mouseover="change(1)">Place Marketing</span>
       <span @mouseover="change(2)">Urban Image Analysis</span>
     </div>
   </div>

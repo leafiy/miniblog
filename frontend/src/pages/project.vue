@@ -76,8 +76,11 @@ export default {
       this.mapRendered = true
     },
     dataLoaded(arr) {
-      this.locationList = arr;
-      this.setMap()
+      if (arr.length) {
+        this.locationList = arr;
+        this.setMap()
+      }
+
     },
     setMap() {
       this.center = {
