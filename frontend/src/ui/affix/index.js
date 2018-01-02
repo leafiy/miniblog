@@ -1,10 +1,16 @@
-import Affix from './affix.vue';
-
-
-Affix.install = function(Vue) {
-  Vue.component(Affix.name, Affix);
-};
+import affix from './affix.vue';
 
 
 
-export default Affix;
+let Affix = {
+  install(Vue, params = {}) {
+    if (this.installed) {
+      return
+    }
+
+    this.installed = true
+    Vue.component('affix', affix)
+  }
+}
+
+export default Affix

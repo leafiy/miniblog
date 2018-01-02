@@ -1,10 +1,10 @@
 <template>
   <div class="create-container">
-    <places v-if="showPlace" v-model="article.location.label" placeholder="Where ?" @change="val => { article.location.data = val }">
+    <places v-if="showPlace" :location="article.location" @changeLocation="changeLocation" ref="placeInput"></places>
     </places>
-    <el-input type="text" :maxlength="80" placeholder="title" v-model="article.title" class="mb20"></el-input>
+    <el-input type="text" :maxlength="80" :placeholder="showPlace? 'project location name' : 'research title'" v-model="article.title" class="mb20"></el-input>
     <el-input type="textarea" :maxlength="600" placeholder="文章摘要" v-model="article.intro" :autosize="{ minRows: 4}" class="mb20"></el-input>
-    <uploader ref="uploader" :file-list="article.fileList" :format="['gif', 'jpg', 'jpeg', 'png', 'bmp', 'webp']" accept="image/*" :multiple="false" :max-number="1" tip="upload article cover photo" fileType="cover" :show-upload-list-after-success="false"></uploader>
+    <uploader v-if="!showPlace" ref="uploader" :file-list="article.fileList" :format="['gif', 'jpg', 'jpeg', 'png', 'bmp', 'webp']" accept="image/*" :multiple="false" :max-number="1" tip="upload article cover photo" fileType="cover" :show-upload-list-after-success="false"></uploader>
     <div id="editor" class="mb20"></div>
     <UIButton type="primary" @click="save(false)">save</UIButton>
     <UIButton type="border" @click="save(true)">save as draft</UIButton>
@@ -18,11 +18,12 @@ import config from '../config'
 import handleFileList from '../utils/fileList.js'
 const headers = api.getHeader().headers
 const uploadApi = config[process.env.NODE_ENV].apiPort + '/uploader/upload'
-import Places from 'vue-places'
-// import { mapGetters } from 'vuex'
+import Places from '../components/admin/places.vue';
+
 export default {
   data() {
     return {
+
       article: {
         fileList: [],
         title: '',
@@ -37,13 +38,16 @@ export default {
     Uploader,
     Places
   },
-  computed: {
-    // ...mapGetters(['currentArticle'])
-  },
   methods: {
+    changeLocation(data) {
+      this.article.location = data
+    },
     save(isDraft) {
       let title = this.article.title;
-      let fileList = handleFileList(this.$refs.uploader.fileList);
+      let fileList;
+      if (this.$refs.uploader) {
+        fileList = handleFileList(this.$refs.uploader.fileList);
+      }
       let content = this.$editor.txt.html();
       let intro = this.article.intro;
 
@@ -54,6 +58,15 @@ export default {
           type: 'warning'
         });
       }
+
+      if (this.showPlace && !this.article.location.lat) {
+        return this.$Toast({
+          group: 'top-center',
+          text: '创建project必须设置一个位置',
+          type: 'warning'
+        });
+      }
+
       if (this.$route.params.id) {
         api.updateContent({
           _id: this.$route.params.id,
@@ -119,7 +132,7 @@ export default {
     if (this.$route.params.id) {
       api.getContentById(this.$route.params.id).then(response => {
         this.article = response.data.content
-        if(this.article.category == 'project'){
+        if (this.article.category == 'project') {
           this.showPlace = true
         }
         editor.txt.html(this.article.content)

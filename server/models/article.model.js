@@ -23,7 +23,7 @@ var articleSchema = new Schema({
   },
   location: {
     type: Object,
-    default: ''
+    default: {}
   },
   link: {
     type: String,

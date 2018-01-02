@@ -1,10 +1,11 @@
 <template>
-  <div class="popover-menu" :style="elStyles" @click.stop="close" v-click-outside="close">
+  <div class="popover-menu" :style="elStyles" @click.stop="close" @mouseover="mouseover" @mouseleave="mouseleave" v-click-outside="close">
     <slot></slot>
   </div>
 </template>
 <script>
-import ClickOutside from '../directive/clickOutSide.js'
+import Vue from 'vue';
+import ClickOutside from '../directive/clickOutSide.js';
 export default {
 
   data() {
@@ -15,41 +16,65 @@ export default {
       right: ''
     }
   },
-  props: ['rect', 'offset', 'align'],
+  props: ['rect', 'offset', 'align', 'maxWidth', 'type'],
   methods: {
     close() {
-      this.$emit('closeMenu')
+      if (this.type !== 'tooltip') {
+        this.$emit('close-menu')
+      }
+    },
+    mouseover() {
+      if (this.type !== 'dropdown') {
+        this.$emit('mouse-over')
+
+      }
+    },
+    mouseleave() {
+      if (this.type !== 'dropdown') {
+        this.$emit('mouse-leave')
+
+      }
     }
   },
   mounted() {
-    let { x: offsetX, y: offsetY, width: parentWidth, height: parentHeight } = this.rect;
+    let { left: offsetX, top: offsetY, width: parentWidth, height: parentHeight } = this.rect;
     let windowWidth = window.innerWidth;
     let windowHeight = window.innerHeight;
     let elHeight = this.$el.offsetHeight;
     let elWidth = this.$el.offsetWidth;
 
 
-    if ((parentHeight + elHeight + this.offset + offsetY) >= windowHeight) {
-      this.bottom = `${parentHeight + this.offset/2}px`;
-    } else {
-      this.top = `${parentHeight + this.offset/2}px`;
+
+
+    let top = this.type === 'tooltip' ? offsetY - this.offset - elHeight + window.scrollY : offsetY + parentHeight + window.scrollY;
+    let left = this.type === 'tooltip' ? offsetX - elWidth / 2 + parentWidth / 2 + window.scrollX : window.scrollX + offsetX;
+    this.top = `${top}px`
+    this.left = `${left}px`
+
+
+    // auto定位时位置修正
+    if (this.align === 'auto') {
+      this.$nextTick(() => {
+        let { top: newTop, left: newLeft, bottom: newBottom, right: newRight } = this.$el.getBoundingClientRect();
+        if (this.type === 'tooltip') {
+          if (newTop <= this.offset) {
+            this.top = `${parentHeight + this.offset + window.scrollY}px`
+          }
+          if (newLeft <= 0) {
+            this.left = `${this.offset}px`
+          }
+        } else {
+          if (newBottom + this.offset > windowHeight) {
+            this.top = `${ offsetY +  window.scrollY -elHeight - this.offset}px`
+          }
+        }
+
+      })
     }
 
-    if (!this.align) {
-      if ((parentWidth + elWidth + this.offset + offsetX) >= windowWidth) {
-        this.right = `0px`;
-        this.left = `auto`;
-      } else if ((offsetX + parentWidth / 2) <= elWidth / 2) {
-        this.left = `0px`;
-      } else {
-        this.left = `${-(elWidth/2) + parentWidth/2}px`
-      }
 
 
-    }else{
-      this[this.align] = `0px`
 
-    }
 
 
 
@@ -64,7 +89,9 @@ export default {
         top: this.top,
         bottom: this.bottom,
         left: this.left,
-        right: this.right
+        marginRight: `${this.offset}px`,
+        maxWidth: `${this.maxWidth}%`
+
       }
     }
   },

@@ -14,7 +14,7 @@ import Input from './input/index.js';
 // import Switch from './switch/index.js';
 // import Collapse from './collapse/index.js';
 import LoadingBar from './loading/index.js';
-// import Affix from './affix/index.js'
+import Affix from './affix/index.js'
 import Avatar from './avatar/index.js'
 import Alert from './alert/index.js'
 // import Timeline from './timeline/index.js'
@@ -46,7 +46,7 @@ export {
   // Switch,
   // Collapse,
   LoadingBar,
-  // Affix,
+  Affix,
   Avatar,
   Alert,
   // Timeline,

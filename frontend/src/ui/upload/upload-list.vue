@@ -96,9 +96,6 @@ export default {
       return type;
     }
   },
-  mounted() {
-    console.log(this.fileList)
-  },
   // watch: {
   //   file: () => {
   //     console.log(this.file)

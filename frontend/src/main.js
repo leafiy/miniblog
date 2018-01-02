@@ -10,12 +10,14 @@ import {
   Upload,
   UIProgress,
   Form,
-  FormItem,  Input,
+  FormItem,
+  Input,
   Toasts,
   Background,
   Carousel,
-  // PopoverMenu,
-  Modal
+  PopoverMenu,
+  Modal,
+  Affix
 } from './ui/index'
 import ScrollTo from './utils/scrollto.js'
 import 'normalize.css'
@@ -23,7 +25,7 @@ import authInfo from './utils/authInfo.js'
 
 authInfo()
 
-
+Vue.use(Affix)
 Vue.use(UIButton)
 Vue.use(Icon)
 Vue.use(Upload)
@@ -34,7 +36,7 @@ Vue.use(Input)
 Vue.use(Toasts)
 Vue.use(Background)
 Vue.use(Carousel)
-// Vue.use(PopoverMenu)
+Vue.use(PopoverMenu)
 Vue.use(Modal)
 Vue.config.productionTip = false
 

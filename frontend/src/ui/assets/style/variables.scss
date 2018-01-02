@@ -6,7 +6,7 @@ $pink:#FF6B91;
 
 
 $warning-color:#F7BA2A;
-$error-color:darken($pink,6%);
+$error-color:darken($pink, 6%);
 
 $red:$error-color;
 $text-color:$primary-color;
@@ -84,6 +84,17 @@ $xlarge-width:1366px;
 .fade-enter,
 .fade-leave-to {
   opacity: 0
+}
+
+.fadeInUp-enter-active,
+.fadeInUp-leave-active {
+  transition: opacity .2s, transform .2s
+}
+
+.fadeInUp-enter,
+.fadeInUp-leave-to {
+  opacity: 0;
+  transform: translateY(5px);
 }
 
 .scale-enter-active,

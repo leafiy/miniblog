@@ -1,10 +1,11 @@
 @import './variables.scss';
-@import './animate.scss';
+.popover {
+  display: inline-block;
+}
 
 .popover-trigger {
-  display: inline-block;
-  position: relative;
   cursor: pointer;
+  line-height:1;
 }
 
 .tooltip-trigger {
@@ -34,7 +35,8 @@
   box-shadow: $shadow;
   min-width: 100px;
   text-align: center;
-  >li {
+  ul >li {
+    display:block;
     padding: 10px 16px;
     background: #fff;
     border-bottom: 1px solid $lighter;
@@ -61,4 +63,6 @@
   background: #fff;
   border-left: 3px solid $primary-color;
   line-height: 1.2;
+  top:0;
+  left:0;
 }

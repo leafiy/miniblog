@@ -1,6 +1,5 @@
 <template>
   <div>
-
     <UIButton type="primary" @click="$router.push('/admin/create/article/'+$route.params.panel)">新建Project</UIButton>
     <div class="hr"></div>
     <div v-if="projectList" v-for="item of projectList">
@@ -11,7 +10,8 @@
           <span class="pointer" @click="edit(item._id)"><icon name="pencil"></icon>edit</span>
           <span class="pointer" @click="del(item._id)"><icon name="cancel-circled"></icon>delete</span>
         </p>
-        <p class="muted" v-if="item.location"><icon name="map"></icon><b>{{item.location.label}}</b></p>
+        <p class="muted" v-if="item.location">
+          <icon name="map"></icon><b>{{item.location.formatted_address}}</b></p>
         <p class="muted">{{item.intro}}</p>
       </div>
       <div class="hr"></div>
@@ -86,6 +86,7 @@ export default {
       }).catch(error => {})
       api.getList(param).then(response => {
         this.projectList = response.data.articleList
+
       }).catch(error => {
         console.log(error)
       })

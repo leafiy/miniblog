@@ -15,9 +15,7 @@ exports.toCamelCase = toCamelCase;
 
 
 const removeSpecialChars = str => {
-  return str.replace(/(?!\w|\s)./g, '')
-    .replace(/\s+/g, ' ')
-    .replace(/^(\s*)([\W\w]*)(\b\s*$)/g, '$2');
+  return str.replace(/[.,\/#!$%\^&\*;:{}=\-_`~( )'"\[\]\+\>\<|\\?@]/g, '')
 }
 exports.removeSpecialChars = removeSpecialChars;
 

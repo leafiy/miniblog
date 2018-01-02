@@ -1,7 +1,7 @@
 <template>
   <div class="page-container">
-    <page-section :title="title" :desp="desp">
-      <UIButton type="primary" @click="$router.go('/')">back
+    <page-section :name="name" :desp="desp">
+      <UIButton type="primary" @click="$router.push('/')">back to homepage
       </UIButton>
     </page-section>
   </div>
@@ -12,7 +12,7 @@ import PageSection from '../components/section.vue';
 export default {
   data() {
     return {
-      title: 'Page Not Found',
+      name: 'Page Not Found',
       desp: 'Nothing here',
     }
   },

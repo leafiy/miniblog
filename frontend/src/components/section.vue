@@ -8,6 +8,12 @@
     <transition name="fade">
       <div class="section-desp" v-if="content">{{content}}</div>
     </transition>
+    <transition name="fade">
+      <div class="section-desp" v-if="desp">{{desp}}</div>
+    </transition>
+    <transition name="fade">
+      <slot></slot>
+    </transition>
     <publication-list v-if="name === 'publication'"></publication-list>
   </section>
 </template>
@@ -50,7 +56,8 @@ export default {
     name: {
       type: String,
       default: 'please assign a name'
-    }
+    },
+    desp: String
   }
 
 }
