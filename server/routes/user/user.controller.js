@@ -23,7 +23,7 @@ exports.addUser = async function(req, res) {
     errorType = "emailEmpty";
   } else if (!emailRegex.test(email)) {
     errorType = "invalidEmail";
-  } else if (md5.update(invitation).digest('hex') !== invitationCode) {
+  } else if (invitation !== invitationCode) {
     errorType = "invalidinvitationCode";
   }
   if (errorType) {
