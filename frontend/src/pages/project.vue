@@ -23,7 +23,7 @@ import * as VueGoogleMaps from 'vue2-google-maps2'
 import mapStyle from '../utils/mapStyle.json';
 Vue.use(VueGoogleMaps, {
   load: {
-    key: config.googleMapKey,
+    key: config[process.env.NODE_ENV].googleMapKey,
     libraries: 'places,drawing',
     language: 'en',
     draggable: false

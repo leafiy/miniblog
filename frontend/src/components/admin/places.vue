@@ -11,7 +11,7 @@ import * as VueGoogleMaps from 'vue2-google-maps2'
 import config from '../../config.js';
 Vue.use(VueGoogleMaps, {
   load: {
-    key: config.googleMapKey,
+    key: config[process.env.NODE_ENV].googleMapKey,
     libraries: 'places',
     language: 'en'
   }
@@ -26,7 +26,6 @@ export default {
     location: Object
   },
   mounted() {
-    console.log(this.location)
     if (this.location) {
       this._location = this.location
     }
