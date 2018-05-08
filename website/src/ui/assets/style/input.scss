@@ -1,0 +1,234 @@
+@import './variables.scss';
+.el-input {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  font-size: 14px;
+  &.is-disabled .el-input__inner {
+    border-color: $light;
+    background-color: $lighter;
+    color: $light;
+    cursor: not-allowed;
+  }
+}
+
+.el-input.is-disabled .el-input__inner::-webkit-input-placeholder,
+.el-input__inner::-webkit-input-placeholder,
+.el-textarea.is-disabled .el-textarea__inner::-webkit-input-placeholder,
+.el-textarea__inner::-webkit-input-placeholder,
+.el-input.is-disabled .el-input__inner:-ms-input-placeholder,
+.el-input__inner:-ms-input-placeholder,
+.el-textarea.is-disabled .el-textarea__inner:-ms-input-placeholder,
+.el-textarea__inner:-ms-input-placeholder,
+.el-input.is-disabled .el-input__inner::placeholder,
+.el-textarea.is-disabled .el-textarea__inner::placeholder,
+.el-select .el-input .el-input__icon.is-show-close:hover {
+  color: #999;
+}
+
+.el-input.is-active .el-input__inner {
+  border-color: $light;
+  outline: 0;
+}
+
+.el-input__inner {
+  display: inline-block;
+  width: 100%;
+  height: 42px;
+  padding: 3px 10px 3px 2px;
+  border: none;
+  border-bottom: 2px solid #999;
+  background-color: #FFF;
+  background-image: none;
+  line-height: 1;
+  color: #333;
+  font-size: inherit;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  box-sizing: border-box;
+  transition: border 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+  outline: 0;
+  &::placeholder {
+    color: #999;
+  }
+}
+
+.el-input__inner:hover,
+.el-textarea__inner:hover,
+.el-select:hover .el-input__inner {
+  border-color: $light;
+}
+
+.el-input__inner:focus,
+.el-textarea__inner:focus,
+.el-pagination__editor:focus {
+  border-color: $light;
+  outline: 0;
+}
+
+.el-input__icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 35px;
+  height: 100%;
+  color: $light;
+  text-align: center;
+  transition: all .2s;
+  &:after {
+    display: inline-block;
+    width: 0;
+    height: 100%;
+    vertical-align: middle;
+    content: '';
+  }
+}
+
+.el-slider.is-vertical.el-slider--with-input .el-slider__input:hover {
+  .el-input-number__decrease,
+  .el-input-number__increase {
+    border-color: $light;
+  }
+}
+
+.el-input--large,
+.el-cascader--large {
+  font-size: 16px;
+}
+
+.el-input--large .el-input__inner {
+  height: 42px;
+}
+
+.el-input--small,
+.el-cascader--small {
+  font-size: 13px;
+}
+
+.el-input--small .el-input__inner {
+  height: 30px;
+}
+
+.el-input--mini,
+.el-select__tag .el-icon-close {
+  font-size: 12px;
+}
+
+.el-input--mini .el-input__inner {
+  height: 22px;
+}
+
+.el-input-group {
+  display: inline-table;
+  width: 100%;
+  border-collapse: separate;
+  line-height: normal;
+  >.el-input__inner {
+    display: table-cell;
+    vertical-align: middle;
+  }
+}
+
+.el-input-group__append,
+.el-input-group__prepend {
+  position: absolute;
+  top:50%;
+  transform: translateY(-50%);
+  color:$light;
+
+}
+
+.el-input-group__append {
+  right: 0
+}
+
+.el-input-group__prepend {
+  left:0
+}
+
+.el-input-group__append {
+  .btn {
+    border-color: transparent;
+    border-top: 0;
+    border-bottom: 0;
+    background-color: transparent;
+    color: inherit;
+  }
+  div.el-select {
+    .el-input__inner,
+    &:hover .el-input__inner {
+      border-color: transparent;
+      border-top: 0;
+      border-bottom: 0;
+      background-color: transparent;
+      color: inherit;
+    }
+  }
+}
+
+.el-input-group__prepend {
+  button.btn {
+    border-color: transparent;
+    border-top: 0;
+    border-bottom: 0;
+    background-color: transparent;
+    color: inherit;
+  }
+  div.el-select {
+    .el-input__inner,
+    &:hover .el-input__inner {
+      border-color: transparent;
+      border-top: 0;
+      border-bottom: 0;
+      background-color: transparent;
+      color: inherit;
+    }
+  }
+}
+
+.el-input-group__append {
+  .btn,
+  .el-input {
+    font-size: inherit;
+  }
+}
+
+.el-input-group__prepend {
+  .btn,
+  .el-input {
+    font-size: inherit;
+  }
+  border-right: 0;
+}
+
+.el-input-group__append {
+  border-left: 0;
+}
+
+.el-textarea {
+  display: inline-block;
+  width: 100%;
+  vertical-align: bottom;
+}
+
+.el-textarea__inner {
+  display: block;
+  width: 100%;
+  padding: 5px 7px;
+  border: 1px solid $light;
+  background-image: none;
+  background-color: #FFF;
+  line-height: 1.5;
+  color: $light;
+  font-size: 14px;
+  box-sizing: border-box;
+  transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+  resize: vertical;
+}
+
+.el-input-number .el-input,
+.el-upload-list--picture-card .el-upload-list__item:hover .el-progress__text,
+.el-upload-list--picture .el-upload-list__item:hover .el-progress__text {
+  display: block;
+}

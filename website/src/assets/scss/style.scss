@@ -1,0 +1,348 @@
+@import './var.scss';
+@import './flex.scss';
+@import url('https://fonts.googleapis.com/css?family=Futura|Crimson+Text|Lato');
+
+
+::selection {
+  color: #fff;
+  background-color: $pink;
+  text-shadow: none;
+}
+
+ul,
+li {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  >li {
+    display: inline-block;
+  }
+}
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Futura', serif;
+  margin: 0;
+}
+
+
+
+html,
+body,
+#app {
+  height: 100%;
+}
+
+* {
+  box-sizing: border-box;
+  word-break: break-word;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+}
+
+#wrap {
+  padding-top: 40px;
+  flex: 1 0 auto;
+  @include small {
+    padding-top: 20px;
+  }
+}
+
+.mb20 {
+  margin-bottom: 20px;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+body {
+  font-family: 'Lato', -apple-system, BlinkMacSystemFont, '.SFNSText-Regular', Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.44444;
+  color: $primary-color;
+  background: #fff;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  padding: 4em;
+  @include small {
+    padding:1em;
+  }
+}
+
+a {
+  color: $primary-color;
+  text-decoration: none;
+  &:hover {}
+}
+
+.color-text {
+  color: $pink;
+}
+
+.font-exo {
+  font-family: exo;
+}
+
+.right {
+  float: right;
+}
+
+.carousel {
+  margin-bottom: 40px;
+}
+
+.logo {
+  margin-top: 1em;
+  font-size: 2.8em;
+  line-height: 1;
+  font-weight: bolder;
+  @include small {
+    font-size: 1.8em;
+  }
+}
+
+.site-header {
+  .navbar {
+    font-size: 1.2em;
+    @include small {
+      font-size: .8em;
+    }
+    li {
+      margin-right: 2em;
+    }
+  }
+}
+
+footer {
+  font-size: 12px;
+  border-top: 1px solid $lighter;
+}
+
+.muted {
+  color: $light;
+  font-size: 12px;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity .2s
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0
+}
+
+.page-container {}
+
+section {
+  padding-bottom: 40px;
+  @include small {
+    padding-bottom: 20px;
+  }
+  &:hover {
+    .section-title {
+      span {
+        color: $pink;
+      }
+    }
+  }
+}
+
+.section-title {
+  margin-bottom: 30px;
+  position: relative;
+  span {
+    color: $light;
+    transition: color .6s;
+    will-change: color;
+  }
+  .loading-spinner {
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+  }
+}
+
+.section-desp {
+  padding-right: 40%;
+  padding-bottom: 2em;
+  white-space: pre-wrap;
+}
+
+.carousel {
+  position: relative;
+}
+
+.carousel-indicator {
+  position: absolute;
+  bottom: 16px;
+  right: 30px;
+  user-select: none;
+  span {
+    margin: 0 14px;
+    color: #fff;
+    font-weight: 400;
+  }
+}
+
+.publication-list {
+  .publication {
+    margin-bottom: 30px;
+  }
+}
+
+.hover-line {
+  position: relative;
+  &::before {
+    content: ' ';
+    position: absolute;
+    height: 1px;
+    width: 8px;
+    background: $pink;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    opacity: 0;
+    transition: all .3s;
+  }
+  &:hover {
+    &::before {
+      opacity: 1;
+      transform: translateX(-14px);
+    }
+  }
+}
+
+.background {
+  border: 1px solid $lighter;
+}
+
+.hr {
+  margin: 30px 0;
+  height: 1px;
+  width: 100%;
+  background: $lighter;
+}
+
+.article {
+  padding-right: 40px;
+}
+
+.research-list {}
+
+.research-article {
+  display: flex;
+  margin-bottom: 40px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid $lighter;
+  .date {
+    padding-top: 4px;
+    min-width: 50px;
+    text-align: right;
+    p {
+      margin-top: 0;
+    }
+  }
+  .content {
+    flex: 1 1 auto;
+    max-width: 100%;
+    padding-left: 30px;
+  }
+}
+
+.map {
+  position: relative;
+}
+
+.gm-style>div:first-child>div+div>div:last-child>div>div:first-child>div,
+.gm-style>div:first-child>div+div>div:last-child>div>div:last-child,
+.gm-style>div:first-child>div+div>div:last-child>div>div:first-child>div>div>div,
+.gm-style>div:first-child>div+div>div:last-child>div>div:last-child>img,
+.gmnoprint {
+  /* we have to use !important because we are overwritng inline styles */
+  background-color: transparent !important;
+  box-shadow: none !important;
+  width: auto !important;
+  height: auto !important;
+  display: none !important;
+}
+
+
+.gm-style-iw {
+  width: 320px !important;
+  height: auto !important;
+  overflow: unset !important;
+  >div:first-child {
+    >div:first-child {
+      overflow: unset !important;
+    }
+    overflow: unset !important;
+    max-height: none !important;
+    max-width: none !important;
+    height: auto !important;
+  }
+}
+
+.infoWindow {
+
+  background: rgba(255, 255, 255, .96);
+  border-left: 3px solid $pink;
+  padding: 10px;
+  box-shadow: $shadow;
+  width: 320px;
+  margin: 4px;
+  position: absolute;
+  left: 0;
+  transform: translate3d(-50%, -50%, 0);
+  top: 0;
+  &::before {
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    bottom: -10px;
+    border-top: 10px solid rgba(255, 255, 255, .96);
+    content: ' ';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .infoWindow-title {
+    font-size: 16px;
+    margin-bottom: 8px;
+    &:hover {
+      a {
+        color: $pink
+      }
+    }
+  }
+}
+
+.project-list {
+  li {
+    border-right: 1px solid $light;
+    padding-right: 12px;
+    margin-right: 12px;
+    line-height: 1;
+    &:last-child {
+      border: none;
+      margin-right: 0;
+      padding-right: 0;
+    }
+  }
+}

@@ -1,0 +1,38 @@
+@import './var.scss';
+@import './flex.scss';
+
+.admin-nav {
+  a {
+    display: block;
+    transition: all .2s;
+    margin: 0 10px;
+    padding: 10px 20px;
+    border: 1px solid $lighter;
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: $shadow;
+    }
+  }
+  .router-link-active {
+    color: $pink;
+    border-color: $pink;
+  }
+}
+
+.admin-panel {
+  border: 1px solid $lighter;
+  padding: 1em;
+  margin: 10px;
+  position: relative;
+  .publication {}
+}
+
+.sortable-chosen {
+  background: $lighter;
+}
+
+
+
+.create-container{
+  padding-right:40px;
+}

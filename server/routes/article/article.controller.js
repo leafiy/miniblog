@@ -152,14 +152,21 @@ exports.getList = async function(req, res) {
   }
 }
 exports.updateContent = async function(req, res) {
-  let id = req.body._id;
-  let query = { _id: id }
-  Article.findOneAndUpdate(query, req.body, { upsert: true, new: true }, (err, doc) => {
-    if (err) {
-      console.log(err)
-      return res.status(500).send({ error: err })
-    }
-    return res.status(200).send({ content: doc })
-  })
+  let name = req.body.articleType
+  let article = await Article.findOne({ articleType: name })
+  if (article) {
+    let query = { _id: article.id }
+    Article.findOneAndUpdate(query, req.body, { upsert: true, new: true }, (err, doc) => {
+      if (err) {
+        console.log(err)
+        return res.status(500).send({ error: err })
+      }
+      return res.status(200).send({ content: doc })
+    })
+  } else {
+    Article.createAsync(req.body)
+    return res.status(200).send({ ok: true })
+  }
+
 
 }

@@ -6,12 +6,12 @@ server {
 
 
   location /uploads/ {
-    alias /root/qiansmile/server/uploads;
+    alias /root/miniblog/server/uploads;
     autoindex off;
   }
 
   location /piblic/ {
-    alias /root/qiansmile/server/public/;
+    alias /root/miniblog/server/public/;
     autoindex on;
   }
   location /api {
@@ -20,11 +20,9 @@ server {
   }
 
   location  / {
-    alias /root/qiansmile/frontend/dist;
-    autoindex off;
-    try_files $uri $uri/ /index.html;
-    #proxy_pass http://localhost:8020;
-    #proxy_redirect off;
+
+    proxy_pass http://localhost:8040;
+    proxy_redirect off;
     #proxy_set_header HOST $host;
     #proxy_set_header X-Real-IP $remote_addr;
     #proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;

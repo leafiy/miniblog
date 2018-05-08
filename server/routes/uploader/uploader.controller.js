@@ -9,47 +9,34 @@ const utils = require('../../utils/utils');
 const crypto = require('crypto');
 const mkdirp = require('mkdirp');
 const readChunk = require('read-chunk');
+const sharp = require('sharp')
+const host = config.domain[process.env.NODE_ENV]
 //const fileType = require('file-type');
-
 exports.upload = function(req, res, err) {
-
   let file = req.files[0];
   let author = req.user.id;
-  let fileType = req.body.fileType || '';
-  try {
-    let newUpload = new Upload(file);
-    newUpload.author = author;
-    newUpload.fileType = fileType;
-    newUpload.saveAsync();
-    let fileObj = {
-      errno: 0,
-      data: ['/' + newUpload.path]
-    }
-    renderThumbnail(newUpload, () => {
-      res.status(200).send(fileObj);
-    })
+  let newUpload = new Upload(file);
+  newUpload.author = author;
+  newUpload.saveAsync();
+  renderThumbnail(newUpload).then(url => {
+    res.status(200).send(url)
+  })
 
-    return
-  } catch (err) {
-    console.log(err)
-    return res.status(501).send({
-      err: err
-    })
-  }
 }
 
 const renderThumbnail = (upload, cb) => {
-  let filePath = upload.path;
-  let type = upload.originalname.split('.').pop().toLocaleLowerCase() || '';
+  return new Promise((resolve, reject) => {
+    let filePath = upload.path;
+    let type = upload.originalname.split('.').pop().toLocaleLowerCase() || '';
+    if (['gif', 'jpg', 'jpeg', 'png', 'bmp', 'webp'].indexOf(type) > -1) {
+      var thumb = utils.covertFilename(filePath, 'sm');
+      sharp(filePath).resize(500).toFile(thumb).then(_ => {
+        resolve(`${host}/${upload.path}`)
+      }).catch(err => {
+        console.log('renderThumbnail err:' + err)
+        reject(err)
+      })
+    }
+  })
 
-  if (['gif', 'jpg', 'jpeg', 'png', 'bmp', 'webp'].indexOf(type) > -1) {
-    var thumb = utils.covertFilename(filePath, 'sm');
-    gm(filePath).resize(420, null).noProfile().write(thumb, function(err) {
-      if (err) {
-        console.log(err)
-      } else {
-        cb()
-      }
-    })
-  }
 }

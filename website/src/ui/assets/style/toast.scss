@@ -1,0 +1,107 @@
+@import 'variables.scss';
+@import 'animate.scss';
+.toasts {
+  display: block;
+  position: fixed;
+  z-index: 5000;
+  min-width: 300px;
+  max-width: 600px;
+  &.toast-top {
+    top: 10px;
+  }
+  &.toast-bottom {
+    bottom: 10px;
+  }
+  &.toast-left {
+    left: 10px;
+  }
+  &.toast-right {
+    right: 10px;
+  }
+  &.toast-center {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+.toast-wrapper {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  @include animate(Jelly);
+  transition: all .2s;
+  margin-top:10px;
+  // position: absolute;
+}
+
+
+
+
+.toast-title {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.toast {
+  padding: 16px 12px;
+  box-shadow: $shadow;
+  color: #fff;
+  background: rgba($primary-color, .8);
+  position: relative;
+  &.warning {
+    background: $warning-color;
+  }
+  &.error {
+    background: $error-color;
+  }
+}
+.toast-with-icon{
+  padding: 16px 12px 16px 44px;
+}
+.toast-with-footer {
+  padding-bottom: 42px;
+}
+
+.toast-actions {
+  position: absolute;
+  padding: 12px;
+  text-align: right;
+  box-sizing: border-box;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  .toast-action {
+    cursor: pointer;
+    font-weight: 400;
+    margin-left: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, .5);
+  }
+}
+
+.toast-icon {
+  position: absolute;
+  font-size: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 8px;
+}
+
+
+
+.toast-fade-enter-active,
+.toast-fade-leave-active {}
+
+.toast-fade-enter,
+.toast-fade-leave-to {
+  transition: all .5s;
+  opacity: 0;
+}
+
+.toast-fade-enter {
+  transform: translateY(-100%);
+}
+
+.toast-fade-leave-to {
+  transform: translateY(30%);
+}

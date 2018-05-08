@@ -41,6 +41,7 @@ var articleSchema = new Schema({
     type: String,
     default: ''
   },
+  contentSecond: String,
   fileList: {
     type: Array,
     default: []
@@ -67,8 +68,34 @@ var articleSchema = new Schema({
   }
 });
 
-
+articleSchema
+  .virtual('articleInfo')
+  .get(function() {
+    return {
+      'id': this._id,
+      authorId: this.authorId,
+      articleType: this.articleType,
+      shortName: this.shortName,
+      category: this.category,
+      location: this.location,
+      link: this.link,
+      title: this.title,
+      intro: this.intro,
+      content: this.content,
+      contentSecond: this.contentSecond,
+      fileList: this.fileList,
+      tags: this.tags,
+      isDeleted: this.isDeleted,
+      date: this.date,
+      index: this.index,
+      created: this.created,
+      updated: this.updated,
+      pv: this.pv,
+      isDraft: this.isDraft,
+    };
+  });
 var Article = mongoose.model('Article', articleSchema);
+articleSchema.set('toObject', { virtuals: false })
 
 var Promise = require('bluebird');
 Promise.promisifyAll(Article);
