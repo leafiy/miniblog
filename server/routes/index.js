@@ -1,7 +1,7 @@
 const path = require('path');
 const siteConfig = require('../config/index')
 const apiPerfix = '/api/v1'
-const domain = siteConfig.domain[process.env.NODE_ENV]
+const domain = process.env.NODE_ENV == 'development' ? '*' : siteConfig.domain[process.env.NODE_ENV]
 
 module.exports = function(app) {
   app.all('*', function(req, res, next) {

@@ -62,16 +62,21 @@ exports.deleteContent = async function(req, res) {
     res.status(401).send({ error: error })
   }
 }
-exports.createContent = async function(req, res) {
+exports.createArticle = async function(req, res) {
   let content = req.body;
   if (content.title) {
     content.title = content.title.trim();
-    let title = content.title;
-    title = utils.removeSpecialChars(title);
-    let shortName = utils.toCamelCase(title);
-    let article = await Article.find({ category: content.category });
-    let index = article.length;
-    content.shortName = `${shortName}_${index + 1}`
+    let article = await Article.find({ title: content.title, category: content.category });
+    if (article.length) {
+      return res.status(400).send({
+        err: 'titleExist'
+      })
+    }
+
+  } else {
+    return res.status(400).send({
+      err: 'titleEmpty'
+    })
   }
   Article.createAsync(content).then(response => {
 
@@ -116,13 +121,17 @@ exports.getContentById = async function(req, res) {
   }
 }
 exports.getContent = async function(req, res) {
-  let name = req.params.name;
-  name = name.toLowerCase();
+  let name = req.params.name && req.params.name.toLowerCase();
+  let query = {}
+  if (name) {
+    query.articleType = name
+  } else {
+    query.articleType = { $ne: 'article' }
+  }
+
   try {
-    let content = await Article.findOne({ articleType: name });
-    res.status(200).send({
-      content: content
-    })
+    let content = await Article.find(query);
+    res.status(200).send(content)
   } catch (error) {
     console.log(error)
     res.status(401).send({
@@ -130,11 +139,11 @@ exports.getContent = async function(req, res) {
     })
   }
 }
-exports.getList = async function(req, res) {
-  let type = req.params.type;
-  type = type.toLowerCase();
+exports.getArticleList = async function(req, res) {
+  let category = req.params.category;
+  category = category.toLowerCase();
   try {
-    let articleList = await Article.find({ articleType: 'article', category: type });
+    let articleList = await Article.find({ articleType: 'article', category: category }).sort('-created');
 
     articleList.sort(function(a, b) {
       var x = a['index'];
@@ -161,7 +170,7 @@ exports.updateContent = async function(req, res) {
         console.log(err)
         return res.status(500).send({ error: err })
       }
-      return res.status(200).send({ content: doc })
+      return res.status(200).send(doc)
     })
   } else {
     Article.createAsync(req.body)

@@ -81,8 +81,8 @@ export default {
   updateContent(data) {
     return instance.put('/article/updateContent/', data, config())
   },
-  createContent(data) {
-    return instance.post('/article/createContent/', data, config())
+  createArticle(data) {
+    return instance.post('/article/createArticle/', data, config())
   },
   deleteContent(id) {
     return instance.delete('/article/deleteContent/' + id, config())

@@ -9,53 +9,29 @@
           <router-link to="about">管理About内容</router-link>
         </li>
         <li>
-          <router-link to="publication">管理Publication</router-link>
+          <router-link to="concept">管理concept</router-link>
         </li>
         <li>
-          <router-link to="research">管理research</router-link>
+          <router-link to="method">管理method</router-link>
         </li>
         <li>
-          <router-link to="project">管理projects</router-link>
+          <router-link to="case">管理Case</router-link>
         </li>
       </ul>
     </div>
     <div class="admin-panel">
-      <component :is="currentPanel"></component>
+      <router-view></router-view>
     </div>
   </div>
 </template>
 <script>
-import Home from '../components/admin/home.vue';
-import About from '../components/admin/about.vue';
-import Publication from '../components/admin/publication.vue';
-import Research from '../components/admin/research.vue';
-import Project from '../components/admin/project.vue';
+
 export default {
   data() {
     return {
-      title: 'Page Not Found',
-      desp: 'Nothing here',
-      defaultPanel: 'home',
-      currentPanel: ''
-    }
-  },
-  components: {
-    home: Home,
-    about: About,
-    publication: Publication,
-    research: Research,
-    project: Project
-  },
-  mounted() {
 
-    if (!this.$route.params.panel) {
-      this.currentPanel = this.defaultPanel;
-      this.$router.push(`/admin/${this.defaultPanel}`)
-    } else {
-      this.currentPanel = this.$route.params.panel;
     }
   }
-
 }
 </script>
 <style lang="scss">

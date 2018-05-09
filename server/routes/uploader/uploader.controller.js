@@ -36,6 +36,8 @@ const renderThumbnail = (upload, cb) => {
         console.log('renderThumbnail err:' + err)
         reject(err)
       })
+    } else {
+      resolve(`${host}/${upload.path}`)
     }
   })
 

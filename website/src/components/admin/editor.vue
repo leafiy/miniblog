@@ -1,5 +1,5 @@
 <template>
-  <mavon-editor v-model="content" @change="change" ref="md" @imgAdd="$imgAdd"></mavon-editor>
+  <mavon-editor v-model="content" @change="change" ref="md" @imgAdd="$imgAdd" language="en"></mavon-editor>
 </template>
 <script>
 import api from '../../api/index.js'

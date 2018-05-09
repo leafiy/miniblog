@@ -66,6 +66,9 @@ export default {
   doLogin(data) {
     return instance.post('/auth/local', data, config())
   },
+  getAllContent() {
+    return instance.get('/article/getAllContent/', config())
+  },
   getContent(name) {
     return instance.get('/article/getContent/' + name, config())
   },
@@ -75,14 +78,14 @@ export default {
   getContentByName(name) {
     return instance.get('/article/getContentByName/' + name, config())
   },
-  getList(name) {
-    return instance.get('/article/getList/' + name, config())
+  getArticleList(name) {
+    return instance.get('/article/getArticleList/' + name, config())
   },
   updateContent(data) {
     return instance.put('/article/updateContent/', data, config())
   },
-  createContent(data) {
-    return instance.post('/article/createContent/', data, config())
+  createArticle(data) {
+    return instance.post('/article/createArticle/', data, config())
   },
   deleteContent(id) {
     return instance.delete('/article/deleteContent/' + id, config())

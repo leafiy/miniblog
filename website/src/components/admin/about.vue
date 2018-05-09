@@ -1,6 +1,7 @@
 <template>
-  <div v-if="about">
-    <editor v-model="about.content"></editor>
+  <div>
+    <uploader ref="uploader" @uploadSuccess="uploadSuccess" accept="application/pdf" :format="format" :tip="tip" :multiple="false"></uploader>
+    <editor v-model="about"></editor>
     <UIButton type="primary" @click="save('about')" :loading="saveSpin">save
     </UIButton>
   </div>
@@ -8,27 +9,56 @@
 <script>
 import api from '../../api/index.js';
 import editor from './editor.vue'
+import { mapGetters } from 'vuex'
+import uploader from '../uploader.vue'
 export default {
   data() {
     return {
-      about: null,
+      about: '',
       saveSpin: false,
-      id: ''
+      format: ['pdf'],
+      cv_link: ''
     }
   },
   components: {
-    editor
+    editor,
+    uploader
+  },
+  computed: {
+    ...mapGetters(['siteContent']),
+    tip() {
+      return this.siteContent.about.link ? '更新简历pdf' : '上传简历pdf'
+    }
+  },
+  watch: {
+    siteContent: function(val) {
+      this.setModel(val)
+    }
+  },
+  mounted() {
+    this.setModel(this.siteContent)
   },
   methods: {
-    save(name, type) {
+    uploadSuccess(data) {
+      this.cv_link = data.data
+    },
+    setModel(val) {
+      this.about = val.about.content
+    },
+    save(name) {
       this.saveSpin = true;
+      let article = {}
+      article.articleType = name
+      article.content = this.about
+      article.link = this['cv_link']
 
-      api.updateContent(this.about).then(response => {
+      api.updateContent(article).then(res => {
         this.saveSpin = false;
         this.$Toast({
           group: 'top-center',
           text: 'about update succsee'
         });
+        this.$store.dispatch('updateContent', res.data)
       }).catch(error => {
         this.$Toast({
           group: 'top-center',
@@ -38,15 +68,6 @@ export default {
         this.saveSpin = false;
       })
     }
-  },
-  mounted() {
-    const param = this.$route.params.panel;
-    api.getContent(param).then(response => {
-      this.about = response.data.content;
-      this.id = response.data.content._id;
-    }).catch(error => {
-      console.log(error)
-    })
   }
 }
 </script>

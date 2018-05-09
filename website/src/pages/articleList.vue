@@ -6,7 +6,7 @@
 </template>
 <script>
 import PageSection from '../components/section.vue';
-import ResearchList from '../components/researchList.vue';
+
 export default {
   data() {
     return {
@@ -15,7 +15,6 @@ export default {
   },
   components: {
     PageSection,
-    ResearchList
   }
 }
 

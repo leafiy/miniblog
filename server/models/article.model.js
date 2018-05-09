@@ -65,7 +65,8 @@ var articleSchema = new Schema({
   isDraft: {
     type: Boolean,
     default: false
-  }
+  },
+  thumb: String
 });
 
 articleSchema
@@ -92,6 +93,7 @@ articleSchema
       updated: this.updated,
       pv: this.pv,
       isDraft: this.isDraft,
+      thumb: this.thumb
     };
   });
 var Article = mongoose.model('Article', articleSchema);

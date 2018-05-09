@@ -3,13 +3,16 @@ import Router from 'vue-router'
 
 import Index from './pages/index.vue'
 import DefaultPage from './pages/defaultPage.vue'
-import ResearchPage from './pages/research.vue'
-import ProjectPage from './pages/project.vue'
+import ArticleList from './pages/articleList.vue'
 import ArticlePage from './pages/article.vue'
 import Login from './pages/login.vue'
 import Reg from './pages/reg.vue'
+import AboutPage from './pages/about.vue'
 import Admin from './pages/admin.vue'
-import Create from './pages/create.vue'
+import Create from './components/admin/create.vue'
+import AdminHome from './components/admin/home.vue'
+import AdminAbout from './components/admin/about.vue'
+import ArticleManage from './components/admin/articleManage.vue'
 
 Vue.use(Router)
 
@@ -17,22 +20,32 @@ const routes = [{
     path: '/',
     name: 'Index',
     component: Index,
-    meta: { auth: false }
+    meta: { auth: false, keepAlive: true }
   }, {
-    path: '/research',
-    name: 'ResearchPage',
-    component: ResearchPage,
-    meta: { auth: false }
+    path: '/about',
+    name: 'About',
+    component: AboutPage,
+    meta: { auth: false, keepAlive: true }
   }, {
-    path: '/project',
-    name: 'ProjectPage',
-    component: ProjectPage,
-    meta: { auth: false }
+    path: '/concept',
+    name: 'ConceptPage',
+    component: ArticleList,
+    meta: { auth: false, keepAlive: true }
+  }, {
+    path: '/method',
+    name: 'Method',
+    component: ArticleList,
+    meta: { auth: false, keepAlive: true }
+  }, {
+    path: '/case',
+    name: 'Case',
+    component: ArticleList,
+    meta: { auth: false, keepAlive: true }
   }, {
     path: '/article/:name',
-    name: 'ArticlePage',
+    name: 'Article',
     component: ArticlePage,
-    meta: { auth: false }
+    meta: { auth: false, keepAlive: true }
   }, {
     path: '/login',
     name: 'Login',
@@ -44,24 +57,56 @@ const routes = [{
     component: Reg,
     meta: { auth: false }
   }, {
-    path: '/admin/:panel',
+    path: '/admin',
     name: 'Admin',
     component: Admin,
+    meta: { auth: true },
+    children: [{
+        path: '',
+        name: 'AdminHome',
+        component: AdminHome,
+        meta: { auth: true }
+      },
+      {
+        path: 'home',
+        name: 'AdminHome',
+        component: AdminHome,
+        meta: { auth: true }
+      },
+      {
+        path: 'about',
+        name: 'AdminAbout',
+        component: AdminAbout,
+        meta: { auth: true }
+      },
+      {
+        path: 'concept',
+        name: 'AdminConcept',
+        component: ArticleManage,
+        meta: { auth: true }
+      },
+      {
+        path: 'method',
+        name: 'AdminMethod',
+        component: ArticleManage,
+        meta: { auth: true }
+      },
+      {
+        path: 'case',
+        name: 'AdminCase',
+        component: ArticleManage,
+        meta: { auth: true }
+      }
+    ]
+  }, {
+    path: '/admin/create/:category',
+    name: 'Create',
+    component: Create,
     meta: { auth: true }
   }, {
     path: '/admin',
     name: 'Admin',
     component: Admin,
-    meta: { auth: true }
-  }, {
-    path: '/admin/create/article/:type',
-    name: 'Create',
-    component: Create,
-    meta: { auth: true }
-  }, {
-    path: '/admin/create/article/edit/:id',
-    name: 'Create',
-    component: Create,
     meta: { auth: true }
   },
   {
