@@ -18,6 +18,8 @@ Vue.use(VueGoogleMaps, {
 })
 import {
   UIButton,
+  Form,
+  FormItem,
   Icon,
   Input,
   Toasts,
@@ -35,6 +37,8 @@ Vue.use(Toasts)
 Vue.use(Background)
 Vue.use(Carousel)
 Vue.use(mavonEditor)
+Vue.use(Form)
+Vue.use(FormItem)
 new Vue({
   router,
   store,
