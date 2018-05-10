@@ -57,8 +57,8 @@ body,
   flex: 1;
 }
 
-.mb20 {
-  margin-bottom: 20px;
+.mb {
+  margin-bottom: 1em;
 }
 
 .pointer {
@@ -197,8 +197,13 @@ footer {
 }
 
 .muted {
+  color: $lighter;
+  font-size: 1em;
+  padding: 0 1em;
+}
+
+.light {
   color: $light;
-  font-size: 12px;
 }
 
 .fade-enter-active,
@@ -213,46 +218,13 @@ footer {
 
 .page-container {}
 
-section {
-  padding-bottom: 40px;
-  @include small {
-    padding-bottom: 20px;
-  }
-  &:hover {
-    .section-title {
-      span {
-        color: $pink;
-      }
-    }
-  }
-}
 
-.section-title {
-  margin-bottom: 30px;
-  position: relative;
-  span {
-    color: $light;
-    transition: color .6s;
-    will-change: color;
-  }
-  .loading-spinner {
-    position: absolute;
-    bottom: -4px;
-    left: 0;
-  }
-}
 
 .loading-center {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-}
-
-.section-desp {
-  padding-right: 40%;
-  padding-bottom: 2em;
-  white-space: pre-wrap;
 }
 
 .carousel {
@@ -271,70 +243,16 @@ section {
   }
 }
 
-.publication-list {
-  .publication {
-    margin-bottom: 30px;
-  }
-}
-
-.hover-line {
-  position: relative;
-  &::before {
-    content: ' ';
-    position: absolute;
-    height: 1px;
-    width: 8px;
-    background: $pink;
-    top: 50%;
-    transform: translateY(-50%);
-    left: 0;
-    opacity: 0;
-    transition: all .3s;
-  }
-  &:hover {
-    &::before {
-      opacity: 1;
-      transform: translateX(-14px);
-    }
-  }
-}
 
 .background {
   border: 1px solid $lighter;
 }
 
-.hr {
-  margin: 30px 0;
-  height: 1px;
-  width: 100%;
-  background: $lighter;
-}
 
 .article {
   padding-right: 40px;
 }
 
-.research-list {}
-
-.research-article {
-  display: flex;
-  margin-bottom: 40px;
-  padding-bottom: 30px;
-  border-bottom: 1px solid $lighter;
-  .date {
-    padding-top: 4px;
-    min-width: 50px;
-    text-align: right;
-    p {
-      margin-top: 0;
-    }
-  }
-  .content {
-    flex: 1 1 auto;
-    max-width: 100%;
-    padding-left: 30px;
-  }
-}
 
 .map {
   position: relative;
@@ -441,5 +359,59 @@ section {
 .icon-close {
   &:before {
     content: '\e80a' !important;
+  }
+}
+
+.page-container{
+  >.article-list{
+    padding-top:3em;
+  }
+}
+.article-card {
+  margin-bottom: 3em;
+  border-bottom: 1px solid $lighter;
+  padding-bottom: 1em;
+  .tags {
+    span {
+      color: $light;
+      margin-right: .4em;
+    }
+  }
+  .title {
+    font-size: 1.6em;
+    margin-bottom: 1em;
+  }
+  .intro {
+    font-size: .9em;
+    white-space: pre-wrap;
+    padding: 0;
+    text-indent: 0;
+    color: $light;
+    display: flex;
+    margin-bottom: 1em;
+    p {
+      padding-left: 1em;
+      margin: 0;
+    }
+    .background {
+      flex: 0 0 auto;
+      margin-right: .6em;
+    }
+  }
+  .location {}
+  .action-bar {
+    margin: 20px 0;
+    font-size: .6em;
+  }
+}
+
+.vue-map-container{
+  margin-bottom:2em;
+}
+
+.article{
+  margin-top:3em;
+  .content{
+    line-height:1.76;
   }
 }

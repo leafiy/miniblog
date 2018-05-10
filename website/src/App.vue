@@ -13,7 +13,6 @@
     <site-footer></site-footer>
     <toast group="top-center" position="top center" />
     <toast group="top-right" position="top right" />
-    <modal></modal>
   </div>
 </template>
 <script>
@@ -37,11 +36,13 @@ export default {
   computed: {
     ...mapGetters(['siteContent'])
   },
-  watch: {
-    siteContent: function(oldVal, newVal) {
-      if (Object.keys(newVal).length) {
+  mounted() {
+    if (!this.siteContent) {
+      this.$store.dispatch('getAllContent').then(_ => {
         this.showLoader = false
-      }
+      }).catch(err => {
+        this.showLoader = false
+      })
     }
   }
 }

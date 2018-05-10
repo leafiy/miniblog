@@ -2,7 +2,7 @@
   <div class="page-container">
     <div v-html="html"></div>
     <hr>
-    <p v-if="siteContent.about.link"><a :href="siteContent.about.link">Download my CV</a></p>
+    <p v-if="link"><a :href="link">Download my CV</a></p>
   </div>
 </template>
 <script>
@@ -17,9 +17,12 @@ export default {
   },
   computed: {
     ...mapGetters(['siteContent']),
+    link() {
+      return this.siteContent && this.siteContent.about && this.siteContent.about.link
+    }
   },
   activated() {
-    this.html = mavonEditor.getMarkdownIt().render(this.siteContent.about.content)
+    this.html = this.siteContent && this.siteContent.about && mavonEditor.getMarkdownIt().render(this.siteContent.about.content)
   }
 
 }

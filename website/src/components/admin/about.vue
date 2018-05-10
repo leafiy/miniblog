@@ -27,7 +27,7 @@ export default {
   computed: {
     ...mapGetters(['siteContent']),
     tip() {
-      return this.siteContent.about.link ? '更新简历pdf' : '上传简历pdf'
+      return this.siteContent && this.siteContent.about && this.siteContent.about.link ? '更新简历pdf' : '上传简历pdf'
     }
   },
   watch: {
@@ -43,7 +43,10 @@ export default {
       this.cv_link = data.data
     },
     setModel(val) {
-      this.about = val.about.content
+      if (val && val.about) {
+        this.about = val.about.content
+
+      }
     },
     save(name) {
       this.saveSpin = true;

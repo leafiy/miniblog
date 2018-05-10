@@ -35,6 +35,19 @@ _.forEach(initialArticle, async content => {
     console.log(`${content.name} add success`)
   }
 })
+exports.getArticle = async function(req, res) {
+  let title = req.params.title
+  Article.findOne({ title: title }).then(article => {
+    res.status(200).send({
+      article: article
+    })
+  }).catch(err => {
+    console.log(err)
+    res.status(400).send({
+      err: 'NotFound'
+    })
+  })
+}
 exports.updateOrder = async function(req, res) {
   let idList = req.body;
   try {
@@ -62,6 +75,35 @@ exports.deleteContent = async function(req, res) {
     res.status(401).send({ error: error })
   }
 }
+exports.updateArticle = async function(req, res) {
+  let newArticle = req.body
+  let id = newArticle._id
+  let article = await Article.findById(id)
+  article.updated = new Date()
+  article = Object.assign(article, newArticle)
+  let title = article.title
+  Article.find({ title: title, _id: { $ne: id } }).then(data => {
+    if (data.length > 0) {
+      res.status(400).send({
+        err: 'titleExist'
+      })
+    } else {
+      article.saveAsync()
+      res.status(200).send({
+        content: article
+      })
+    }
+  })
+
+}
+exports.getArticleByTag = async function(req, res) {
+  let tag = req.params.tag
+  let articleList = await Article.find({ tags: tag })
+  res.status(200).send({
+    articleList: articleList
+  })
+}
+
 exports.createArticle = async function(req, res) {
   let content = req.body;
   if (content.title) {
@@ -178,4 +220,31 @@ exports.updateContent = async function(req, res) {
   }
 
 
+}
+
+
+exports.setAsDraft = async function(req, res) {
+  let id = req.body.id
+  let article = await Article.findById(id)
+  if (!article) {
+    return res.status(400).send('article not found')
+  }
+  article.isDraft = true
+  article.saveAsync()
+  res.status(200).send({
+    article: article
+  })
+}
+
+exports.cancleDraft = async function(req, res) {
+  let id = req.body.id
+  let article = await Article.findById(id)
+  if (!article) {
+    return res.status(400).send('article not found')
+  }
+  article.isDraft = false
+  article.saveAsync()
+  res.status(200).send({
+    article: article
+  })
 }

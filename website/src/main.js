@@ -5,39 +5,35 @@ import store from './store'
 import mavonEditor from 'mavon-editor'
 import './registerServiceWorker'
 import 'normalize.css'
+import config from './config.js'
 Vue.config.productionTip = false
 import 'mavon-editor/dist/css/index.css'
+import * as VueGoogleMaps from 'vue2-google-maps2'
+Vue.use(VueGoogleMaps, {
+  load: {
+    key: config[process.env.NODE_ENV].googleMapKey,
+    libraries: 'places',
+    language: 'en'
+  }
+})
 import {
   UIButton,
   Icon,
-  UIProgress,
-  Form,
-  FormItem,
   Input,
   Toasts,
   Background,
   Carousel,
-  PopoverMenu,
-  Modal,
-  Affix
 } from './ui/index'
 import ScrollTo from './utils/scrollto.js'
 import authInfo from './utils/authInfo.js'
 authInfo()
-store.dispatch('getAllContent')
 Vue.use(mavonEditor)
-Vue.use(Affix)
 Vue.use(UIButton)
 Vue.use(Icon)
-Vue.use(UIProgress)
-Vue.use(Form)
-Vue.use(FormItem)
 Vue.use(Input)
 Vue.use(Toasts)
 Vue.use(Background)
 Vue.use(Carousel)
-Vue.use(PopoverMenu)
-Vue.use(Modal)
 Vue.use(mavonEditor)
 new Vue({
   router,

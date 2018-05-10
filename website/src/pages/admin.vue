@@ -3,19 +3,19 @@
     <div class="admin-nav">
       <ul>
         <li>
-          <router-link to="home">管理Home内容</router-link>
+          <router-link to="/admin/home">管理Home内容</router-link>
         </li>
         <li>
-          <router-link to="about">管理About内容</router-link>
+          <router-link to="/admin/about">管理About内容</router-link>
         </li>
         <li>
-          <router-link to="concept">管理concept</router-link>
+          <router-link to="/admin/concept">管理concept</router-link>
         </li>
         <li>
-          <router-link to="method">管理method</router-link>
+          <router-link to="/admin/method">管理method</router-link>
         </li>
         <li>
-          <router-link to="case">管理Case</router-link>
+          <router-link to="/admin/case">管理Case</router-link>
         </li>
       </ul>
     </div>

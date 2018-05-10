@@ -87,6 +87,9 @@ export default {
   createArticle(data) {
     return instance.post('/article/createArticle/', data, config())
   },
+  updateArticle(data) {
+    return instance.put('/article/updateArticle/', data, config())
+  },
   deleteContent(id) {
     return instance.delete('/article/deleteContent/' + id, config())
   },
@@ -96,4 +99,17 @@ export default {
   upload(data) {
     return instance.post('/uploader/upload', data, config())
   },
+  setAsDraft(id) {
+    return instance.put('/article/setAsDraft/', { id: id }, config())
+  },
+  cancleDraft(id) {
+    return instance.put('/article/cancleDraft/', { id: id }, config())
+  },
+  getArticleByTag(tag) {
+    return instance.get('/article/getArticleByTag/' + tag, config())
+  },
+  getArticle(title) {
+    return instance.get('/article/getArticle/' + title, config())
+
+  }
 }

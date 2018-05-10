@@ -9,7 +9,7 @@
     <el-input type="textarea" :maxlength="600" placeholder="文章摘要" v-model="article.intro" :autosize="{ minRows: 4}" class="mb20"></el-input>
     <vue-tags-input v-model="tag" :tags="tags" @tags-changed="newTags => tags = newTags" />
     <editor v-model="article.content" class="mb20"></editor>
-    <UIButton type="primary" @click="save(false)">save</UIButton>
+    <UIButton type="primary" @click="save(false)" :loading="loading">save</UIButton>
     <UIButton type="border" @click="save(true)">save as draft</UIButton>
   </div>
 </template>
@@ -38,6 +38,7 @@ export default {
       showPlace: false,
       tag: '',
       tags: [],
+      loading: false
 
     }
   },
@@ -68,37 +69,54 @@ export default {
       }
 
 
-      if (this.showPlace && !this.article.location.lat) {
-        return this.$Toast({
-          group: 'top-center',
-          text: '创建case必须设置一个位置',
-          type: 'warning'
-        });
+      if (this.showPlace) {
+        if (!this.article.location.lat) {
+          return this.$Toast({
+            group: 'top-center',
+            text: '创建case必须设置一个位置',
+            type: 'warning'
+          });
+        }
+        if (!this.article.thumb) {
+          return this.$Toast({
+            group: 'top-center',
+            text: '创建case必须有一个缩略图',
+            type: 'warning'
+          });
+        }
+
       }
+      this.loading = true
       this.article.category = this.category
       this.article.isDraft = isDraft ? true : false
       this.articleType = 'article'
-      this.article.tags = this.tags.map(tag=>tag['text'])
+      this.article.tags = this.tags.map(tag => tag['text'])
       if (this.$route.params.id) {
-        api.updateContent({
-          _id: this.$route.params.id,
-          content: content,
-          fileList: fileList,
-          title: title,
-          intro: intro,
-          isDraft: isDraft ? true : false,
-          location: this.article.location
-        }).then(response => {
-
+        api.updateArticle(this.article).then(response => {
+          let newArticle = response.data.content
+          this.loading = false
           this.$router.go(-1);
+          this.$store.commit('newArticle', newArticle)
         }).catch(error => {
           console.log(error)
+          this.loading = false
+          if (error.response.data.err) {
+            this.$Toast({
+              group: 'top-center',
+              text: error.response.data.err,
+              type: 'error'
+            });
+          }
         })
       } else {
         api.createArticle(this.article).then(response => {
-
+          let newArticle = response.data.content
+          this.$store.commit('newArticle', newArticle)
           this.$router.go(-1);
+          this.loading = false
         }).catch(error => {
+          console.log(error)
+          this.loading = false
           if (error.response.data.err) {
             this.$Toast({
               group: 'top-center',
@@ -121,6 +139,12 @@ export default {
     if (this.$route.params.id) {
       api.getContentById(this.$route.params.id).then(response => {
         this.article = response.data.content
+        this.article.tags.forEach(text => {
+          this.tags.push({
+            text: text,
+            tiClasses: ['valid']
+          })
+        })
         if (this.article.category == 'project') {
           this.showPlace = true
         }

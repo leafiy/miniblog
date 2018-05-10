@@ -41,9 +41,16 @@ export default {
   },
   methods: {
     setModel(val) {
-      this.home = val.home && val.home.content || ''
-      this.date = val.home && val.home.date || ''
-      this['cv_intro'] = val['cv_intro'] && val['cv_intro'].content || ''
+      if (val && val.home) {
+        this.home = val.home.content || ''
+        this.date = val.home.date || ''
+      }
+
+      if (val && val['cv_intro']) {
+        this['cv_intro'] = val['cv_intro'] && val['cv_intro'].content || ''
+
+      }
+
     },
     save(name) {
       this.saveSpin = true;

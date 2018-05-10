@@ -1,12 +1,8 @@
 <template>
   <div class="article-list">
-    <loader :show="showLoader" v-if="articles && !articles.length"></loader>
-    <div class="research-article" v-else v-for="item of articles">
-      <div class="content">
-        <h3 class="title hover-line mb20"><router-link :to="category+'/'+ item.title">{{item.title}}</router-link></h3>
-        <p v-if="item.intro">{{item.intro}}</p>
-        <background width="100%" height="260px" v-if="item.thumb" :src="item.thumb"></background>
-      </div>
+    <loader :show="showLoader"></loader>
+    <div class="research-article" v-if="!showLoader" v-for="item of list">
+      <article-card :article="item"></article-card>
     </div>
   </div>
 </template>
@@ -14,52 +10,36 @@
 import Loader from '../loader.vue';
 import api from '../../api/index.js';
 import { mapGetters } from 'vuex'
-
+import ArticleCard from '../articleCard.vue'
 export default {
   data() {
     return {
-      showLoader: true
+      showLoader: true,
+      category: ''
     }
   },
-  props: ['category'],
   computed: {
     ...mapGetters(['articleList']),
-    articles() {
-      return this.articleList[this.category]
+    list() {
+      return this.articleList && this.articleList[this.category]
     }
 
   },
   components: {
-    Loader
+    Loader,
+    ArticleCard
   },
   mounted() {
-    this.$nextTick(() => {
-      if (this.articleList[this.category]) {
-
-      } else {
-        this.$store.dispatch('getArticleList', this.category)
-
-      }
-    })
-
-    // api.getList('research').then(response => {
-
-    //   this.showLoader = false;
-    //   let articles = response.data.articleList;
-    //   for (let item of articles) {
-    //     let date = new Date(item.created)
-    //     item.dateObj = {
-    //       year: date.getFullYear(),
-    //       month: date.toLocaleString('en', { month: "short" }),
-    //       day: date.getDate()
-    //     }
-    //   }
-    //   this.articles = articles
-
-    // }).catch(error => {
-    //   this.showLoader = false;
-    //   console.log(error)
-    // })
+    this.category = this.$route.path.split('/')[2]
+    if (!this.list || !this.list.length) {
+      this.$store.dispatch('getArticleList', this.category).then(_ => {
+        this.showLoader = false
+      }).catch(err => {
+        this.showLoader = false
+      })
+    } else {
+      this.showLoader = false
+    }
   }
 
 

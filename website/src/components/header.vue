@@ -11,10 +11,10 @@
         <router-link to="/concepts">Concepts</router-link>
       </li>
       <li>
-        <router-link to="/research">Methods</router-link>
+        <router-link to="/methods">Methods</router-link>
       </li>
       <li>
-        <router-link to="/project">Projects</router-link>
+        <router-link to="/cases">Case</router-link>
       </li>
       <li v-if="authInfo">
         <router-link to="/admin">Admin</router-link>

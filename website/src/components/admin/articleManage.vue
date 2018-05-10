@@ -1,8 +1,8 @@
 <template>
   <div>
-    <UIButton type="primary" @click="$router.push('/admin/create/'+$route.params.panel)">创建新文章</UIButton>
+    <UIButton type="primary" @click="$router.push('/admin/create/'+category)">创建新文章</UIButton>
     <hr>
-    <article-list :category="category" v-if="category" :key="key"></article-list>
+    <article-list :key="key"></article-list>
   </div>
 </template>
 <script>
@@ -11,18 +11,19 @@ export default {
   data() {
     return {
       category: '',
-      key:Date.now()
+      key: Date.now()
     }
   },
   components: {
     articleList
   },
-
+  mounted(){
+   this.category = this.$route.path.split('/')[2]
+  },
   watch: {
     $route: function() {
-     this.category = this.$route.path.split('/')[2]
-     console.log(this.category)
-     this.key = Date.now()
+      this.category = this.$route.path.split('/')[2]
+      this.key = Date.now()
     }
   }
 }

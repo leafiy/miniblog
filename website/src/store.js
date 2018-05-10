@@ -9,23 +9,45 @@ export default new Vuex.Store({
     authInfo: null,
     token: '',
     fileUploading: false,
-    currentArticle: {},
-    siteContent: {},
-    articleList: {}
+    currentArticle: null,
+    siteContent: null,
+    articleList: null
   },
   actions: {
+    getArticleByTag({ commit, state }, tag) {
+      return new Promise((resolve, reject) => {
+        api.getArticleByTag(tag).then(res => {
+          resolve(res.data.articleList)
+        }).catch(err => {
+          console.log(err)
+          reject(err)
+        })
+      })
+    },
     getArticleList({ commit, state }, categroy) {
-      api.getArticleList(categroy).then(res => {
-        commit('articleList', { data: res.data, categroy: categroy })
-      }).catch(err => {
-        console.log(err)
+      return new Promise((resolve, reject) => {
+        api.getArticleList(categroy).then(res => {
+          if (res.data.articleList && res.data.articleList.length) {
+            commit('articleList', { data: res.data, categroy: categroy })
+          }
+          resolve(res.data)
+        }).catch(err => {
+          reject(err)
+          console.log(err)
+        })
       })
     },
     getAllContent({ commit, state }) {
-      api.getAllContent().then(res => {
-        commit('allContent', res.data)
-      }).catch(err => {
-        console.log(err)
+      return new Promise((resolve, reject) => {
+        api.getAllContent().then(res => {
+          if (res.data.length) {
+            commit('allContent', res.data)
+          }
+          resolve(res.data)
+        }).catch(err => {
+          reject(err)
+          console.log(err)
+        })
       })
     },
     updateContent({ commit, state }, data) {
@@ -35,6 +57,9 @@ export default new Vuex.Store({
   mutations: {
     allContent(state, data) {
       data.forEach(content => {
+        if (!state.siteContent) {
+          state.siteContent = {}
+        }
         state.siteContent[content.articleType] = content
       })
       state.siteContent = Object.assign({}, state.siteContent)
@@ -58,8 +83,36 @@ export default new Vuex.Store({
     },
     articleList(state, data) {
       let articleList = data.data.articleList
+      if (!state.articleList) {
+        state.articleList = {}
+      }
       state.articleList[data.categroy] = articleList
       state.articleList = Object.assign({}, state.articleList)
+    },
+    newArticle(state, data) {
+      let category = data.category
+      let id = data._id
+      if (!state.articleList) {
+        state.articleList = {}
+      }
+      if (!state.articleList[category]) {
+        state.articleList[category] = [data]
+      } else {
+        let list = state.articleList[category].map(o => o['_id'])
+        if (list.includes(id)) {
+          for (let [index, article] of state.articleList[category].entries()) {
+            if (article._id == id) {
+              state.articleList[category].splice(index, 1, data)
+            }
+          }
+
+        } else {
+          state.articleList[category].unshift(data)
+        }
+
+      }
+
+
     }
   },
   getters: {
