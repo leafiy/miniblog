@@ -14,6 +14,7 @@ module.exports = {
       // app is an express instance
     }
   },
+  productionSourceMap:false
   // configureWebpack: config => {
   //   if (process.env.NODE_ENV === 'development') {
   //     return {

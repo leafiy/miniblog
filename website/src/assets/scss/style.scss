@@ -5,7 +5,7 @@
 
 ::selection {
   color: #fff;
-  background-color: $pink;
+  background-color: $green;
   text-shadow: none;
 }
 
@@ -87,7 +87,7 @@ a {
 }
 
 .color-text {
-  color: $pink;
+  color: $green;
 }
 
 .font-exo {
@@ -119,7 +119,7 @@ a {
       margin-right: 1.4em;
     }
 
-    border-bottom: 0 solid $pink;
+    border-bottom: 0 solid $green;
   }
 }
 
@@ -132,7 +132,7 @@ a {
     right: 0;
     width: 0;
     height: 100%;
-    border-bottom: 1px solid $pink;
+    border-bottom: 1px solid $green;
     transition: width .2s ease-in;
   }
   &:hover {
@@ -193,7 +193,7 @@ footer {
 }
 
 .router-link-exact-active {
-  color: $pink;
+  color: $green;
 }
 
 .muted {
@@ -290,7 +290,7 @@ footer {
 .infoWindow {
 
   background: rgba(255, 255, 255, .96);
-  border-left: 3px solid $pink;
+  border-left: 3px solid $green;
   padding: 10px;
   box-shadow: $shadow;
   width: 320px;
@@ -316,7 +316,7 @@ footer {
     margin-bottom: 8px;
     &:hover {
       a {
-        color: $pink
+        color: $green
       }
     }
   }
@@ -343,7 +343,7 @@ footer {
   border-radius: 10px;
   text-align: center;
   line-height: 40px;
-  background: $pink;
+  background: $green;
   cursor: pointer;
   color: #fff;
   overflow: hidden;

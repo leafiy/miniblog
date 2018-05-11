@@ -5,7 +5,7 @@
     </div>
     <div class="title">
       <small v-if="content.isDraft" class="light">【草稿】</small>
-      <router-link :to="'/'+ content.category + '/' + content.title">{{content.title}}</router-link>
+      <router-link :to="'/'+ content.category + '/' + content.shortName">{{content.title}}</router-link>
     </div>
     <div class="intro" v-if="content.intro">
       <background :width="200" :height="140" v-if="content.thumb" :src="content.thumb"></background>

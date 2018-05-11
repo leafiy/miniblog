@@ -10,7 +10,7 @@ const _ = require('lodash');
 const config = require('../../config');
 const utils = require('../../utils/utils')
 const sanitizeHtml = require('sanitize-html');
-
+import shortName from '../../utils/shortName.js'
 
 import { getImgsFromHtml } from '../../utils/utils.js';
 const xss = require('xss');
@@ -37,7 +37,7 @@ _.forEach(initialArticle, async content => {
 })
 exports.getArticle = async function(req, res) {
   let title = req.params.title
-  Article.findOne({ title: title }).then(article => {
+  Article.findOne({ shortName: new RegExp(title, 'i') }).then(article => {
     res.status(200).send({
       article: article
     })
@@ -80,9 +80,9 @@ exports.updateArticle = async function(req, res) {
   let id = newArticle._id
   let article = await Article.findById(id)
   article.updated = new Date()
+  newArticle.shortName = shortName(article.title)
   article = Object.assign(article, newArticle)
-  let title = article.title
-  Article.find({ title: title, _id: { $ne: id } }).then(data => {
+  Article.find({ shortName: article.shortName, _id: { $ne: id } }).then(data => {
     if (data.length > 0) {
       res.status(400).send({
         err: 'titleExist'
@@ -108,7 +108,8 @@ exports.createArticle = async function(req, res) {
   let content = req.body;
   if (content.title) {
     content.title = content.title.trim();
-    let article = await Article.find({ title: content.title, category: content.category });
+    content.shortName = shortName(content.title)
+    let article = await Article.find({ shortName: content.shortName, category: content.category });
     if (article.length) {
       return res.status(400).send({
         err: 'titleExist'

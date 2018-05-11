@@ -13,7 +13,7 @@ import Create from './components/admin/create.vue'
 import AdminHome from './components/admin/home.vue'
 import AdminAbout from './components/admin/about.vue'
 import ArticleManage from './components/admin/articleManage.vue'
-
+import addCopyText from './utils/addCopyText.js'
 Vue.use(Router)
 
 const routes = [{
@@ -141,7 +141,7 @@ const router = new Router({
 })
 
 
-
+let copyListened = false
 router.beforeEach(({ meta, path }, from, next) => {
   let { auth = true } = meta;
   let isLogin = !!localStorage.getItem('user');
@@ -150,6 +150,18 @@ router.beforeEach(({ meta, path }, from, next) => {
   }
   if (auth && !isLogin) {
     return next({ path: '/' })
+  }
+  if (path.indexOf('admin') == -1) {
+    if (!copyListened) {
+      document.addEventListener('copy', addCopyText);
+      copyListened = true
+      console.log(addCopyText)
+    }
+  } else {
+    if (copyListened) {
+      document.removeEventListener('copy', addCopyText);
+      copyListened = false
+    }
   }
   next()
 })
