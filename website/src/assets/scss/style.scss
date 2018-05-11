@@ -413,5 +413,8 @@ footer {
   margin-top:3em;
   .content{
     line-height:1.76;
+    @include large{
+      width:80%;
+    }
   }
 }

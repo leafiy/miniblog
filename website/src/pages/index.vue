@@ -20,7 +20,7 @@
         <loader :show="!list"></loader>
         <carousel v-if="list" ref="carousel" :autoSlideWidth="true" :perPage="2" :scrollPerPage="false" :navigationEnabled="false" :showPagination="false" :extendWrapper="false" :autoplay="true" :autoplayTimeout="5000" :autoplayHoverPause="true" :loop="true">
           <slide v-for="article of list" :key="article._id">
-            <background :height="260" :src="article.thumb"></background>
+            <background :height="260" :src="article.thumb" @click="$router.push('/case/'+article.shortName)"></background>
           </slide>
         </carousel>
       </div>

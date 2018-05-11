@@ -14,7 +14,7 @@
         <router-link to="/methods">Methods</router-link>
       </li>
       <li>
-        <router-link to="/cases">Case</router-link>
+        <router-link to="/cases">Cases</router-link>
       </li>
       <li v-if="authInfo">
         <router-link to="/admin">Admin</router-link>
