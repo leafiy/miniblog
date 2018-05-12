@@ -2,7 +2,7 @@
   <div class="page-container">
     <div class="hero hero-index">
       <h3>What I am doing</h3>
-      <h2>The <b>Visual Analysis</b> of <b>Urban Experience</b> <br> using
+      <h2>The <b>Visual Analysis</b> of<br><b>Urban Experience</b> <br> using
          <b>Social Media Data</b></h2>
       <span class="date">2013 - 2017</span>
     </div>

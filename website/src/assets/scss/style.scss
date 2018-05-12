@@ -223,13 +223,13 @@ footer {
 
   margin: .5em 0;
   h2 {
-    font-size: 32px;
+    font-size: 38px;
     letter-spacing: 0px;
     margin-bottom: 1em;
   }
   b {
-    color: #fff;
-    background: $primary-color;
+    color: #000;
+    background: lighten($green,65%);
     padding-top: 5px;
     padding-left: 3px;
     padding-right: 3px;
