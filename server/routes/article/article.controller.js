@@ -88,16 +88,10 @@ exports.updateArticle = async function(req, res) {
   newArticle.shortName = shortName(article.title)
   article = Object.assign(article, newArticle)
   Article.find({ shortName: article.shortName, _id: { $ne: id } }).then(data => {
-    if (data.length > 1) {
-      res.status(400).send({
-        err: 'titleExist'
-      })
-    } else {
-      article.saveAsync()
+    article.saveAsync()
       res.status(200).send({
         content: article
       })
-    }
   })
 
 }
