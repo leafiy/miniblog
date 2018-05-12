@@ -1,7 +1,8 @@
 <template>
   <div class="page-container">
     <div v-html="html"></div>
-    <p v-if="link"><a :href="link">Download my CV</a></p>
+    <p v-if="link"><a :href="link">My CV</a></p>
+    <p v-if="link2"><a :href="link2">简历</a></p>
   </div>
 </template>
 <script>
@@ -18,6 +19,9 @@ export default {
     ...mapGetters(['siteContent']),
     link() {
       return this.siteContent && this.siteContent.about && this.siteContent.about.link
+    },
+    link2() {
+      return this.siteContent && this.siteContent.about && this.siteContent.about.link2
     }
   },
   activated() {

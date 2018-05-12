@@ -29,6 +29,10 @@ var articleSchema = new Schema({
     type: String,
     default: ''
   },
+  link2: {
+    type: String,
+    default: ''
+  },
   title: {
     type: String,
     default: ''
@@ -80,6 +84,7 @@ articleSchema
       category: this.category,
       location: this.location,
       link: this.link,
+      link2: this.link2,
       title: this.title,
       intro: this.intro,
       content: this.content,

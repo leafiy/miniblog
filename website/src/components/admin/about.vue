@@ -1,6 +1,7 @@
 <template>
   <div>
     <uploader ref="uploader" @uploadSuccess="uploadSuccess" accept="application/pdf" :format="format" :tip="tip" :multiple="false"></uploader>
+    <uploader ref="uploader" @uploadSuccess="uploadSuccess2" accept="application/pdf" :format="format" :tip="tip2" :multiple="false"></uploader>
     <editor v-model="about"></editor>
     <UIButton type="primary" @click="save('about')" :loading="saveSpin">save
     </UIButton>
@@ -17,7 +18,9 @@ export default {
       about: '',
       saveSpin: false,
       format: ['pdf'],
-      cv_link: ''
+      cv_link: '',
+      cv_link2: '',
+      tip2:'上传中文简历'
     }
   },
   components: {
@@ -44,6 +47,9 @@ export default {
     uploadSuccess(data) {
       this.cv_link = data.data
     },
+    uploadSuccess2(data) {
+      this.cv_link2 = data.data
+    },
     setModel(val) {
       if (val && val.about) {
         this.about = val.about.content
@@ -56,6 +62,7 @@ export default {
       article.articleType = 'about'
       article.content = this.about
       article.link = this['cv_link']
+      article.link2 = this['cv_link2']
 
       api.updateContent(article).then(res => {
         this.saveSpin = false;
