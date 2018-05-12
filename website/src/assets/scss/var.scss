@@ -1,13 +1,12 @@
-$primary-color:#333;
-$primary-color-dark:darken($primary-color, 5%);
-$light:lighten($primary-color, 30%);
-$lighter:lighten($primary-color, 76%);
-$green:#25af7b;
+$primary-color:#000;
+$light:#4B4B4B;
+$lighter:lighten($light, 35%);
+$green:#0D4B15;
 $shadow:0 1px 6px rgba(0, 0, 0, 0.08);
 $shadow-hover:0 4px 20px rgba(0, 0, 0, .16);
-$middle-width: 768px;
-$large-width: 1024px;
-$xlarge-width:1366px;
+$middle-width: 720px;
+$large-width: 1060px;
+$xlarge-width:1400px;
 
 @mixin middle {
   @media (min-width: #{$middle-width}) and (max-width: #{$large-width - 1px}) {

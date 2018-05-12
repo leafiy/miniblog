@@ -13,6 +13,7 @@ router.get('/getArticleByTag/:tag', expressJwt({ secret: config.session.secrets,
 router.get('/getContentByName/:name', expressJwt({ secret: config.session.secrets, credentialsRequired: false }), controller.getContentByName);
 router.get('/getArticle/:title', expressJwt({ secret: config.session.secrets, credentialsRequired: false }), controller.getArticle);
 router.get('/getContentById/:id', expressJwt({ secret: config.session.secrets, credentialsRequired: false }), controller.getContentById);
+router.get('/getArticleList/:category/:isDraft', expressJwt({ secret: config.session.secrets, credentialsRequired: false }), controller.getArticleList);
 router.get('/getArticleList/:category', expressJwt({ secret: config.session.secrets, credentialsRequired: false }), controller.getArticleList);
 router.put('/updateContent', expressJwt({ secret: config.session.secrets, credentialsRequired: true }), controller.updateContent);
 router.put('/setAsDraft', expressJwt({ secret: config.session.secrets, credentialsRequired: true }), controller.setAsDraft);

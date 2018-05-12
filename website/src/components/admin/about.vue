@@ -8,9 +8,9 @@
 </template>
 <script>
 import api from '../../api/index.js';
-import editor from './editor.vue'
 import { mapGetters } from 'vuex'
-import uploader from '../uploader.vue'
+
+
 export default {
   data() {
     return {
@@ -21,8 +21,10 @@ export default {
     }
   },
   components: {
-    editor,
-    uploader
+    editor: () =>
+      import ( /* webpackChunkName: "Admin" */ './editor.vue'),
+    uploader: () =>
+      import ( /* webpackChunkName: "Admin" */ '../uploader.vue')
   },
   computed: {
     ...mapGetters(['siteContent']),
@@ -48,10 +50,10 @@ export default {
 
       }
     },
-    save(name) {
+    save() {
       this.saveSpin = true;
       let article = {}
-      article.articleType = name
+      article.articleType = 'about'
       article.content = this.about
       article.link = this['cv_link']
 
@@ -63,6 +65,7 @@ export default {
         });
         this.$store.dispatch('updateContent', res.data)
       }).catch(error => {
+        console.log(error)
         this.$Toast({
           group: 'top-center',
           type: 'error',

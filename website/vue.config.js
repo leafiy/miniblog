@@ -1,4 +1,7 @@
 const path = require('path')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+const HTMLWebpackPlugin = require('html-webpack-plugin')
+const webpack = require('webpack')
 module.exports = {
   devServer: {
     open: false,
@@ -14,19 +17,13 @@ module.exports = {
       // app is an express instance
     }
   },
-  productionSourceMap:false
-  // configureWebpack: config => {
-  //   if (process.env.NODE_ENV === 'development') {
-  //     return {
-  //       resolve: {
-  //         alias: {
-  //           'myvueui': path.resolve(__dirname, './myvueui'),
-  //           'wangeditor': path.resolve(__dirname, './wangEditor')
-  //         }
-  //       }
-  //     }
-  //   } else {
+  productionSourceMap: false,
+  configureWebpack: config => {
 
-  //   }
-  // }
+    return {
+      entry: {
+        'mavon-editor': ['mavon-editor']
+      }
+    }
+  }
 }

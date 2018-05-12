@@ -1,7 +1,6 @@
 <template>
   <div class="page-container">
     <div v-html="html"></div>
-    <hr>
     <p v-if="link"><a :href="link">Download my CV</a></p>
   </div>
 </template>

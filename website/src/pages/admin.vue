@@ -3,9 +3,6 @@
     <div class="admin-nav">
       <ul>
         <li>
-          <router-link to="/admin/home">管理Home内容</router-link>
-        </li>
-        <li>
           <router-link to="/admin/about">管理About内容</router-link>
         </li>
         <li>

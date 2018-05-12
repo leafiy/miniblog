@@ -17,24 +17,21 @@ export default new Vuex.Store({
     getArticleByTag({ commit, state }, tag) {
       return new Promise((resolve, reject) => {
         api.getArticleByTag(tag).then(res => {
-          resolve(res.data.articleList)
+          let list = res.data.articleList.filter(a => !a.isDraft)
+          resolve(list)
         }).catch(err => {
           console.log(err)
           reject(err)
         })
       })
     },
-    getArticleList({ commit, state }, categroy) {
-      return new Promise((resolve, reject) => {
-        api.getArticleList(categroy).then(res => {
-          if (res.data.articleList && res.data.articleList.length) {
-            commit('articleList', { data: res.data, categroy: categroy })
-          }
-          resolve(res.data)
-        }).catch(err => {
-          reject(err)
-          console.log(err)
-        })
+    getArticleList({ commit, state }, data) {
+      api.getArticleList(data.category, data.isDraft).then(res => {
+        if (res.data.articleList && res.data.articleList.length) {
+          commit('articleList', { data: res.data, category: data.category })
+        }
+      }).catch(err => {
+        console.log(err)
       })
     },
     getAllContent({ commit, state }) {
@@ -66,6 +63,9 @@ export default new Vuex.Store({
     },
     updateContent(state, data) {
       let type = data.articleType
+      if (!state.siteContent) {
+        state.siteContent = {}
+      }
       state.siteContent[type] = data
       state.siteContent = Object.assign({}, state.siteContent)
     },
@@ -86,7 +86,7 @@ export default new Vuex.Store({
       if (!state.articleList) {
         state.articleList = {}
       }
-      state.articleList[data.categroy] = articleList
+      state.articleList[data.category] = articleList
       state.articleList = Object.assign({}, state.articleList)
     },
     newArticle(state, data) {

@@ -3,26 +3,33 @@
     <loader :show="!article"></loader>
     <div class="article" v-if="article">
       <h2>{{article.title}}</h2>
-      <p><small>Published at: {{article.dateObj.day}} {{article.dateObj.month}} {{article.dateObj.year}}</small></p>
-      <hr>
-      <div class="content" v-html="content"></div>
+      <p><small class="light">Published at: {{article.dateObj.day}} {{article.dateObj.month}} {{article.dateObj.year}}</small></p>
+      <div class="content" id="content" v-html="article.content"></div>
+      <div class="toc" v-if="article.showMenu && article.toc">
+        <affix relative-element-selector="#content" style="width: 200px">
+          <scrollactive ref="scrollactive" v-html="article.toc" active-class="active"></scrollactive>
+        </affix>
+      </div>
     </div>
   </div>
 </template>
 <script>
-import api from '../api/index.js';
-import Loader from '../components/loader.vue';
-import { mavonEditor } from 'mavon-editor'
+import Vue from 'vue'
+import api from '../api/index.js'
+import Loader from '../components/loader.vue'
+import VueAffix from 'vue-affix'
+import Scrollactive from 'vue-scrollactive';
+Vue.use(Scrollactive);
+Vue.use(VueAffix)
 export default {
   data() {
     return {
       showLoader: true,
-      article: null,
-      content:'',
+      article: null
     }
   },
   components: {
-
+    VueAffix,
     Loader
   },
   activated() {
@@ -50,7 +57,7 @@ export default {
         minute: date.getMinutes()
       }
       this.article = article;
-      this.content = mavonEditor.getMarkdownIt().render(this.article.content)
+
       this.showLoader = false;
     }).catch(error => {
       console.log(error)

@@ -11,6 +11,7 @@ const config = require('../../config');
 const utils = require('../../utils/utils')
 const sanitizeHtml = require('sanitize-html');
 import shortName from '../../utils/shortName.js'
+import mdHandler from '../../utils/md.js'
 
 import { getImgsFromHtml } from '../../utils/utils.js';
 const xss = require('xss');
@@ -38,9 +39,13 @@ _.forEach(initialArticle, async content => {
 exports.getArticle = async function(req, res) {
   let title = req.params.title
   Article.findOne({ shortName: new RegExp(title, 'i') }).then(article => {
+    article = article.articleInfo
+    article = mdHandler(article)
     res.status(200).send({
       article: article
     })
+    Article.findByIdAndUpdate(article._id, { $inc: { pv: 1 } }).exec()
+
   }).catch(err => {
     console.log(err)
     res.status(400).send({
@@ -184,9 +189,17 @@ exports.getContent = async function(req, res) {
 }
 exports.getArticleList = async function(req, res) {
   let category = req.params.category;
+  let isDraft = req.params.isDraft
   category = category.toLowerCase();
+  let query = {
+    articleType: 'article',
+    category: category
+  }
+  if (!isDraft) {
+    query.isDraft = false
+  }
   try {
-    let articleList = await Article.find({ articleType: 'article', category: category }).sort('-created');
+    let articleList = await Article.find(query).sort('-created');
 
     articleList.sort(function(a, b) {
       var x = a['index'];

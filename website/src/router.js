@@ -1,18 +1,30 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import Index from './pages/index.vue'
-import DefaultPage from './pages/defaultPage.vue'
-import ArticleList from './pages/articleList.vue'
-import ArticlePage from './pages/article.vue'
-import Login from './pages/login.vue'
-import Reg from './pages/reg.vue'
-import AboutPage from './pages/about.vue'
-import Admin from './pages/admin.vue'
-import Create from './components/admin/create.vue'
-import AdminHome from './components/admin/home.vue'
-import AdminAbout from './components/admin/about.vue'
-import ArticleManage from './components/admin/articleManage.vue'
+const Index = () =>
+  import ( /* webpackChunkName: "Web" */ './pages/index.vue')
+const DefaultPage = () =>
+  import ( /* webpackChunkName: "Web" */ './pages/defaultPage.vue')
+const ArticleList = () =>
+  import ( /* webpackChunkName: "Web" */ './pages/articleList.vue')
+const ArticlePage = () =>
+  import ( /* webpackChunkName: "Web" */ './pages/article.vue')
+const AboutPage = () =>
+  import ( /* webpackChunkName: "Web" */ './pages/about.vue')
+const Admin = () =>
+  import ( /* webpackChunkName: "Admin" */ './pages/admin.vue')
+const Login = () =>
+  import ( /* webpackChunkName: "Admin" */ './pages/login.vue')
+const Reg = () =>
+  import ( /* webpackChunkName: "Admin" */ './pages/reg.vue')
+const Create = () =>
+  import ( /* webpackChunkName: "Admin" */ './components/admin/create.vue')
+const AdminHome = () =>
+  import ( /* webpackChunkName: "Admin" */ './components/admin/home.vue')
+const AdminAbout = () =>
+  import ( /* webpackChunkName: "Admin" */ './components/admin/about.vue')
+const ArticleManage = () =>
+  import ( /* webpackChunkName: "Admin" */ './components/admin/articleManage.vue')
 import addCopyText from './utils/addCopyText.js'
 Vue.use(Router)
 
@@ -146,7 +158,7 @@ router.beforeEach(({ meta, path }, from, next) => {
   let { auth = true } = meta;
   let isLogin = !!localStorage.getItem('user');
   if (isLogin && (path == '/login' || path == '/reg')) {
-    return next({ path: '/*' })
+    return next({ path: '/' })
   }
   if (auth && !isLogin) {
     return next({ path: '/' })
@@ -155,7 +167,6 @@ router.beforeEach(({ meta, path }, from, next) => {
     if (!copyListened) {
       document.addEventListener('copy', addCopyText);
       copyListened = true
-      console.log(addCopyText)
     }
   } else {
     if (copyListened) {

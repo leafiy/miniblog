@@ -1,16 +1,13 @@
 <template>
   <div id="app">
-    <site-header></site-header>
-    <loader :show="showLoader" center></loader>
-    <div id="wrap" :class="'page-'+$route.name.toLowerCase()">
-      <template v-if="!showLoader">
-        <keep-alive>
-          <router-view v-if="$route.meta.keepAlive" :key="$route.fullPath"></router-view>
-        </keep-alive>
-        <router-view v-if="!$route.meta.keepAlive"></router-view>
-      </template>
+    <div id="wrap" :class="$route.name ? 'page-'+$route.name.toLowerCase() : 'blank'">
+      <site-header></site-header>
+      <keep-alive>
+        <router-view v-if="$route.meta.keepAlive" :key="$route.fullPath"></router-view>
+      </keep-alive>
+      <router-view v-if="!$route.meta.keepAlive"></router-view>
+      <site-footer></site-footer>
     </div>
-    <site-footer></site-footer>
     <toast group="top-center" position="top center" />
     <toast group="top-right" position="top right" />
   </div>
@@ -25,7 +22,7 @@ export default {
   name: 'app',
   data() {
     return {
-      showLoader: true
+
     }
   },
   components: {
@@ -33,18 +30,18 @@ export default {
     SiteFooter,
     Loader
   },
-  computed: {
-    ...mapGetters(['siteContent'])
-  },
-  mounted() {
-    if (!this.siteContent) {
-      this.$store.dispatch('getAllContent').then(_ => {
-        this.showLoader = false
-      }).catch(err => {
-        this.showLoader = false
-      })
-    }
-  }
+  // computed: {
+  //   ...mapGetters(['siteContent'])
+  // },
+  // mounted() {
+  //   if (!this.siteContent) {
+  //     this.$store.dispatch('getAllContent').then(_ => {
+  //       this.showLoader = false
+  //     }).catch(err => {
+  //       this.showLoader = false
+  //     })
+  //   }
+  // }
 }
 </script>
 <style lang="scss">

@@ -6,6 +6,7 @@
     <places v-if="showPlace" :location="article.location" @changeLocation="changeLocation" ref="placeInput"></places>
     </places>
     <el-input type="text" :maxlength="80" placeholder="文章标题" v-model="article.title" class="mb20"></el-input>
+    <el-checkbox v-model="article.showMenu">是否显示文章目录？</el-checkbox>
     <el-input type="textarea" :maxlength="600" placeholder="文章摘要" v-model="article.intro" :autosize="{ minRows: 4}" class="mb20"></el-input>
     <vue-tags-input v-model="tag" :tags="tags" @tags-changed="newTags => tags = newTags" />
     <editor v-model="article.content" class="mb20"></editor>
@@ -15,15 +16,14 @@
 </template>
 <script>
 import api from '../../api/index.js'
-import Uploader from '../../components/uploader.vue';
 import config from '../../config'
-import handleFileList from '../../utils/fileList.js'
+// import handleFileList from '../../utils/fileList.js'
 const headers = api.getHeader().headers
 const uploadApi = config[process.env.NODE_ENV].apiPort + '/uploader/upload'
-import Places from '../../components/admin/places.vue';
-import editor from './editor.vue'
-import uploader from '../../components/uploader.vue'
-import VueTagsInput from '@johmun/vue-tags-input';
+// import Places from '../../components/admin/places.vue';
+// import editor from './editor.vue'
+// import uploader from '../../components/uploader.vue'
+// import VueTagsInput from '@johmun/vue-tags-input';
 export default {
   data() {
     return {
@@ -34,6 +34,7 @@ export default {
         intro: '',
         location: {},
         thumb: '',
+        showMenu: false
       },
       showPlace: false,
       tag: '',
@@ -43,11 +44,14 @@ export default {
     }
   },
   components: {
-    Uploader,
-    Places,
-    editor,
-    uploader,
-    VueTagsInput
+    Places: () =>
+      import (/* webpackChunkName: "Admin" */'./places.vue'),
+    editor: () =>
+      import (/* webpackChunkName: "Admin" */'./editor.vue'),
+    uploader: () =>
+      import (/* webpackChunkName: "Admin" */'../uploader.vue'),
+    VueTagsInput: () =>
+      import (/* webpackChunkName: "Admin" */'@johmun/vue-tags-input')
   },
   methods: {
     delThumb() {

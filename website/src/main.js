@@ -2,7 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import mavonEditor from 'mavon-editor'
+// import mavonEditor from 'mavon-editor'
 import './registerServiceWorker'
 import 'normalize.css'
 import config from './config.js'
@@ -25,20 +25,20 @@ import {
   Toasts,
   Background,
   Carousel,
+  Checkbox
 } from './ui/index'
 import ScrollTo from './utils/scrollto.js'
 import authInfo from './utils/authInfo.js'
 authInfo()
-Vue.use(mavonEditor)
 Vue.use(UIButton)
 Vue.use(Icon)
 Vue.use(Input)
 Vue.use(Toasts)
 Vue.use(Background)
 Vue.use(Carousel)
-Vue.use(mavonEditor)
 Vue.use(Form)
 Vue.use(FormItem)
+Vue.use(Checkbox)
 new Vue({
   router,
   store,

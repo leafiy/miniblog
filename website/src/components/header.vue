@@ -1,9 +1,9 @@
 <template>
   <header class="site-header">
+    <h1 class="logo">
+    <router-link to="/">Qian<span class="color-text">.</span>Smile</router-link>
+  </h1>
     <ul class="navbar">
-      <li>
-        <router-link to="/">Home</router-link>
-      </li>
       <li>
         <router-link to="/about">About</router-link>
       </li>
@@ -21,7 +21,6 @@
       </li>
       <li v-if="authInfo"><span @click="logout">Logout</span></li>
     </ul>
-
   </header>
 </template>
 <script>

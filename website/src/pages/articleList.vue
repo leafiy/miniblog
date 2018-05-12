@@ -1,7 +1,7 @@
 <template>
   <div class="page-container">
-    <div class="article-list">
-      <loader :show="showLoader"></loader>
+    <loader :show="!list.length"></loader>
+    <div class="article-list" v-if="list.length">
       <gmap-map v-if="category=='case' && loadMap" @dragover.prevent :center="center" :zoom="zoom" style="width: 100%; height: 320px" :options="{scrollwheel: scrollwheel,draggable: draggable,zoomControl: zoomControl,styles: styles}">
         <gmap-marker :key="index" v-for="(m, index) in markers" :position="m.position" :clickable="true" :draggable="true" @click="center=m.position" :icon="markerIcon"></gmap-marker>
         <!-- <div>
@@ -9,7 +9,7 @@
         </div> -->
       </gmap-map>
       <h4 class="mb light" v-if="category=='tag'">Articles tagged by: <i>{{$route.params.tag}}</i></h4>
-      <article-card @mouseover.native="mouseOver(item)" @mouseleave.native="mouseLeave(item)" :article="item" v-if="list" v-for="item of list" :key="item._id"></article-card>
+      <article-card @mouseover.native="mouseOver(item)" @mouseleave.native="mouseLeave(item)" :article="item" v-for="item of list" :key="item._id"></article-card>
     </div>
   </div>
 </template>
@@ -25,7 +25,6 @@ export default {
     return {
       category: '',
       showLoader: true,
-      list: null,
       loadMap: false,
       locationList: [],
       styles: mapStyle,
@@ -34,7 +33,8 @@ export default {
       markers: [],
       scrollwheel: false,
       draggable: false,
-      zoomControl: false
+      zoomControl: false,
+      list: []
     }
   },
   components: {
@@ -42,12 +42,19 @@ export default {
     Loader
   },
   activated() {
-    this.category = this.$route.name.toLowerCase()
-    this.fetchData()
+    this.$nextTick(() => {
+      this.category = this.$route.name.toLowerCase()
+      if (this.category == 'tag') {
+        this.fetchDataByTag()
+
+      } else {
+        this.fetchData()
+
+      }
+    })
   },
   computed: {
-    ...mapGetters(['articleList']),
-
+    ...mapGetters(['articleList'])
   },
   methods: {
     mouseOver(article) {
@@ -95,31 +102,21 @@ export default {
       this.mapRendered = true
     },
     fetchData() {
+      this.$store.dispatch('getArticleList', { category: this.category, isDraft: false })
+    },
+    fetchDataByTag() {
+      this.$store.dispatch('getArticleByTag', this.$route.params.tag).then(articleList => {
+        this.list = articleList
+      })
+    }
+  },
+  watch: {
+    articleList: function(list) {
       if (this.category !== 'tag') {
-        if (this.articleList && this.articleList[this.category] && this.articleList[this.category].length) {
-          this.list = this.articleList[this.category].filter(a => !a.isDraft)
-          this.showLoader = false
-          if (this.category == 'case') {
-            this.setMap()
-          }
-        } else {
-          this.$store.dispatch('getArticleList', this.category).then(_ => {
-            this.showLoader = false
-            this.list = this.articleList[this.category].filter(a => !a.isDraft)
-            if (this.category == 'case') {
-              this.setMap()
-            }
-          }).catch(err => {
-            this.showLoader = false
-          })
+        this.list = list[this.category]
+        if (this.category == 'case') {
+          this.setMap()
         }
-      } else {
-        this.$store.dispatch('getArticleByTag', this.$route.params.tag).then(articleList => {
-          this.list = articleList
-          this.showLoader = false
-        }).catch(err => {
-          this.showLoader = false
-        })
       }
 
     }

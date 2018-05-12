@@ -1,6 +1,6 @@
 {
   "name": "miniblog",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "private": true,
   "scripts": {
     "dev": "vue-cli-service serve",
@@ -12,6 +12,8 @@
     "axios": "^0.18.0",
     "less": "^3.0.4",
     "less-loader": "^4.1.0",
+    "lodash.throttle": "^4.1.1",
+    "markdown-it-table-of-contents": "^0.3.3",
     "marker-clusterer-plus": "^2.1.4",
     "mavon-editor": "^2.6.2",
     "normalize.css": "^8.0.0",
@@ -19,18 +21,21 @@
     "vue": "^2.5.16",
     "vue-affix": "^0.2.4",
     "vue-router": "^3.0.1",
+    "vue-scrollactive": "git+https://github.com/leafiy/vue-scrollactive.git",
     "vue2-google-maps": "^0.9.7",
-    "vuedraggable": "^2.16.0",
-    "vuex": "^3.0.1",
-    "wangeditor": "^3.1.1"
+    "vuex": "^3.0.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.0.0-beta.10",
     "@vue/cli-plugin-pwa": "^3.0.0-beta.10",
     "@vue/cli-service": "^3.0.0-beta.10",
+    "babel-plugin-syntax-dynamic-import": "^6.18.0",
+    "html-webpack-plugin": "^3.2.0",
     "node-sass": "^4.7.2",
     "sass-loader": "^6.0.6",
-    "vue-template-compiler": "^2.5.13"
+    "vue-scrollactive": "^0.6.1",
+    "vue-template-compiler": "^2.5.13",
+    "webpack-bundle-analyzer": "^2.11.2"
   },
   "browserslist": [
     "> 1%",

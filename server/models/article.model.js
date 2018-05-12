@@ -66,7 +66,8 @@ var articleSchema = new Schema({
     type: Boolean,
     default: false
   },
-  thumb: String
+  thumb: String,
+  showMenu: Boolean
 });
 
 articleSchema
@@ -74,7 +75,6 @@ articleSchema
   .get(function() {
     return {
       'id': this._id,
-      authorId: this.authorId,
       articleType: this.articleType,
       shortName: this.shortName,
       category: this.category,
@@ -83,17 +83,15 @@ articleSchema
       title: this.title,
       intro: this.intro,
       content: this.content,
-      contentSecond: this.contentSecond,
-      fileList: this.fileList,
       tags: this.tags,
-      isDeleted: this.isDeleted,
       date: this.date,
       index: this.index,
       created: this.created,
       updated: this.updated,
       pv: this.pv,
       isDraft: this.isDraft,
-      thumb: this.thumb
+      thumb: this.thumb,
+      showMenu: this.showMenu
     };
   });
 var Article = mongoose.model('Article', articleSchema);
