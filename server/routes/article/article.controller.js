@@ -137,9 +137,11 @@ exports.createArticle = async function(req, res) {
 exports.getContentByName = async function(req, res) {
   let name = req.params.name;
   try {
-    let content = await Article.findOne({ shortName: name });
+    let article = await Article.findOne({ articleType: name });
+    article = article.articleInfo
+    article = mdHandler(article)
     res.status(200).send({
-      content: content
+      content: article
     })
   } catch (error) {
     console.log(error)

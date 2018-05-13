@@ -92,14 +92,8 @@ const routes = [{
     meta: { auth: true },
     children: [{
         path: '',
-        name: 'AdminHome',
-        component: AdminHome,
-        meta: { auth: true }
-      },
-      {
-        path: 'home',
-        name: 'AdminHome',
-        component: AdminHome,
+        name: 'AdminAbout',
+        component: AdminAbout,
         meta: { auth: true }
       },
       {

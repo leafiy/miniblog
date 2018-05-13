@@ -25,7 +25,7 @@ const mdHandler = (article) => {
     article.toc = t
   }
 
-  article.content = html
+  article.html = html
   return article
 }
 

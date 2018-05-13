@@ -4,7 +4,7 @@
     <div class="article" v-if="article">
       <h2>{{article.title}}</h2>
       <p><small class="light">Published at: {{article.dateObj.day}} {{article.dateObj.month}} {{article.dateObj.year}}</small></p>
-      <div class="content" id="content" v-html="article.content"></div>
+      <div class="content" id="content" v-html="article.html"></div>
       <div class="toc" v-if="article.showMenu && article.toc">
         <affix relative-element-selector="#content" style="width: 200px">
           <scrollactive ref="scrollactive" v-html="article.toc" active-class="active"></scrollactive>

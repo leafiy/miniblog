@@ -2,7 +2,7 @@
   <div>
     <uploader ref="uploader" @uploadSuccess="uploadSuccess" accept="application/pdf" :format="format" :tip="tip" :multiple="false"></uploader>
     <uploader ref="uploader" @uploadSuccess="uploadSuccess2" accept="application/pdf" :format="format" :tip="tip2" :multiple="false"></uploader>
-    <editor v-model="about"></editor>
+    <editor v-model="content"></editor>
     <UIButton type="primary" @click="save('about')" :loading="saveSpin">save
     </UIButton>
   </div>
@@ -15,12 +15,13 @@ import { mapGetters } from 'vuex'
 export default {
   data() {
     return {
-      about: '',
+      about: null,
+      content: '',
       saveSpin: false,
       format: ['pdf'],
       cv_link: '',
       cv_link2: '',
-      tip2:'上传中文简历'
+      tip2: '上传中文简历'
     }
   },
   components: {
@@ -30,18 +31,15 @@ export default {
       import ( /* webpackChunkName: "Admin" */ '../uploader.vue')
   },
   computed: {
-    ...mapGetters(['siteContent']),
     tip() {
       return this.siteContent && this.siteContent.about && this.siteContent.about.link ? '更新简历pdf' : '上传简历pdf'
     }
   },
-  watch: {
-    siteContent: function(val) {
-      this.setModel(val)
-    }
-  },
   mounted() {
-    this.setModel(this.siteContent)
+    api.getContentByName('about').then(res => {
+      this.about = res.data.content
+      this.content = this.about.content
+    })
   },
   methods: {
     uploadSuccess(data) {
@@ -50,17 +48,11 @@ export default {
     uploadSuccess2(data) {
       this.cv_link2 = data.data
     },
-    setModel(val) {
-      if (val && val.about) {
-        this.about = val.about.content
-
-      }
-    },
     save() {
       this.saveSpin = true;
       let article = {}
       article.articleType = 'about'
-      article.content = this.about
+      article.content = this.content
       article.link = this['cv_link']
       article.link2 = this['cv_link2']
 

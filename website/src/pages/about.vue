@@ -1,32 +1,36 @@
 <template>
   <div class="page-container">
-    <div v-html="html"></div>
-    <p v-if="link"><a :href="link">My CV</a></p>
-    <p v-if="link2"><a :href="link2">简历</a></p>
+    <loader :show="!about"></loader>
+    <div v-if="about">
+      <div v-html="about.html" class="content"></div>
+      <p v-if="about.link"><a :href="about.link">My CV</a></p>
+      <p v-if="about.link2"><a :href="about.link2">简历</a></p>
+      <hr>
+    </div>
   </div>
 </template>
 <script>
-import { mapGetters } from 'vuex'
-import { mavonEditor } from 'mavon-editor'
-
+import Loader from '../components/loader.vue'
+import api from '../api/index.js'
 export default {
   data() {
     return {
-      html: ''
+      about: null
     }
   },
-  computed: {
-    ...mapGetters(['siteContent']),
-    link() {
-      return this.siteContent && this.siteContent.about && this.siteContent.about.link
-    },
-    link2() {
-      return this.siteContent && this.siteContent.about && this.siteContent.about.link2
-    }
+  components: {
+    Loader
   },
   activated() {
-    this.html = this.siteContent && this.siteContent.about && mavonEditor.getMarkdownIt().render(this.siteContent.about.content)
+    api.getContentByName('about').then(res => {
+      this.about = res.data.content
+    })
   }
 
 }
 </script>
+<style scoped>
+.content {
+  white-space: pre-wrap;
+}
+</style>
