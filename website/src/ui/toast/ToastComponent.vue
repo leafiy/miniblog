@@ -4,7 +4,7 @@
       <div v-for="item of list" v-if="item.state != 2" class="toast-wrapper" :key="item.id" :data-id="item.id">
         <div :class="notifyClass(item)" @click="closeOnClick ? destroy(item) : ()=>{}">
           <div v-if="item.icon" class="toast-icon">
-            <icon :name="item.icon"></icon>
+           <!--  <icon :name="item.icon"></icon> -->
           </div>
           <div v-if="item.title" class="toast-title" v-html="item.title"></div>
           <div class="toast-content" v-html="item.text"></div>

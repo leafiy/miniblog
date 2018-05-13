@@ -36,8 +36,8 @@
         @focus="handleFocus"
         @blur="handleBlur"
       >
-      <icon name="spinner" class="spin el-input__icon" v-if="validating"></icon>
-      <!-- 后置元素 -->
+<!--       <icon name="spinner" class="spin el-input__icon" v-if="validating"></icon>
+ -->      <!-- 后置元素 -->
       <div class="el-input-group__append" v-if="$slots.append">
         <slot name="append"></slot>
       </div>

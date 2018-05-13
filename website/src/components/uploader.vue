@@ -1,7 +1,8 @@
 <template>
   <div class="uploader" @click="handleClick">
     <input ref="input" type="file" class="uploader-input" @change="handleChange" :accept="accept" :multiple="multiple">
-    <span>{{tip}}<icon name="spinner" class="spin" v-if="loading"></icon></span>
+    <span>{{tip}}
+      <loader v-if="loading"></loader></span>
   </div>
 </template>
 <script>

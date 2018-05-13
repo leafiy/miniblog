@@ -20,18 +20,18 @@ import {
   UIButton,
   Form,
   FormItem,
-  Icon,
   Input,
   Toasts,
   Background,
   Carousel,
-  Checkbox
+  Checkbox,
+  Loader
 } from './ui/index'
 import ScrollTo from './utils/scrollto.js'
 import authInfo from './utils/authInfo.js'
 authInfo()
 Vue.use(UIButton)
-Vue.use(Icon)
+Vue.use(Loader)
 Vue.use(Input)
 Vue.use(Toasts)
 Vue.use(Background)

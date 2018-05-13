@@ -2,7 +2,7 @@
   <button :type="htmlType" :class="classes" :disabled="disabled" :loading="loading" @click="handleClick">
     <span v-if="showSlot" ref="slot"><slot></slot></span>
     <transition name="fade">
-      <icon name="spinner" class="spin" v-if="loading"></icon>
+      <loader :show="loading"></loader>
     </transition>
   </button>
 </template>

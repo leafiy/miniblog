@@ -24,6 +24,7 @@ import Toasts from './toast/index.js'
 import Background from './background/index.js'
 // import Card from './card/index.js'
 import Carousel from './carousel/index.js'
+import Loader from './loader/index.js'
 // import SocialSharing from './share/index.js'
 // import DrippingArrow from './dripping-arrow/index.js'
 // import PopoverMenu from './popover-menu/index.js'
@@ -40,5 +41,6 @@ export {
   Input,
   Toasts,
   Background,
-  Carousel
+  Carousel,
+  Loader
 }

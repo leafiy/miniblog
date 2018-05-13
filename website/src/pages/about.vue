@@ -10,16 +10,12 @@
   </div>
 </template>
 <script>
-import Loader from '../components/loader.vue'
 import api from '../api/index.js'
 export default {
   data() {
     return {
       about: null
     }
-  },
-  components: {
-    Loader
   },
   activated() {
     api.getContentByName('about').then(res => {

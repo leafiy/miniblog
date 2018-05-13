@@ -16,7 +16,6 @@
 <script>
 import Vue from 'vue'
 import api from '../api/index.js'
-import Loader from '../components/loader.vue'
 import VueAffix from 'vue-affix'
 import Scrollactive from 'vue-scrollactive';
 Vue.use(Scrollactive);
@@ -29,8 +28,7 @@ export default {
     }
   },
   components: {
-    VueAffix,
-    Loader
+    VueAffix
   },
   activated() {
     let title = this.$route.params.title;

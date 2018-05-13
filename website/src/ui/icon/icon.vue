@@ -34,5 +34,5 @@ i.spin {
     @extend .animate-spin;
   }
 }
-
+@import '../assets/style/icon.css';
 </style>

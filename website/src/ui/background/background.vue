@@ -5,7 +5,7 @@
     </transition>
     <div class="background-cover" v-if="cover" :style="coverStyles"></div>
     <transition name="fade">
-      <icon name="spinner" class="spin" v-if="loading"></icon>
+      <loader :show="loading"></loader>
     </transition>
   </div>
 </template>

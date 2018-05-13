@@ -16,7 +16,6 @@
 <script>
 import { mapGetters } from 'vuex'
 import ArticleCard from '../components/articleCard.vue'
-import Loader from '../components/loader.vue'
 import config from '../config.js';
 import mapStyle from '../utils/mapStyle.json';
 import markerIcon from '../assets/marker.svg'
@@ -38,8 +37,7 @@ export default {
     }
   },
   components: {
-    ArticleCard,
-    Loader
+    ArticleCard
   },
   activated() {
     this.$nextTick(() => {
