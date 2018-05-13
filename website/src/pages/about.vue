@@ -1,10 +1,11 @@
 <template>
   <div class="page-container">
     <loader :show="!about"></loader>
-    <div v-if="about">
-      <div v-html="about.html" class="content"></div>
+    <div v-if="about" class="article">
+      <div v-html="about.html" class="content markdown-body"></div>
       <p v-if="about.link"><a :href="about.link">My CV</a></p>
       <p v-if="about.link2"><a :href="about.link2">简历</a></p>
+      <div class="clearfix"></div>
       <hr>
     </div>
   </div>
@@ -25,8 +26,3 @@ export default {
 
 }
 </script>
-<style scoped>
-.content {
-  white-space: pre-wrap;
-}
-</style>

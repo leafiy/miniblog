@@ -1,6 +1,6 @@
 @import './var.scss';
 @import url('https://fonts.googleapis.com/css?family=Helvetica');
-
+@import './markdown.scss';
 
 ::selection {
   color: #fff;
@@ -229,7 +229,7 @@ footer {
   }
   b {
     color: #000;
-    background: lighten($green,65%);
+    background: lighten($green, 65%);
     padding-top: 5px;
     padding-left: 3px;
     padding-right: 3px;
@@ -518,3 +518,16 @@ footer {
     }
   }
 }
+
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+.clearfix { display: inline-block; }
+/* start commented backslash hack \*/
+* html .clearfix { height: 1%; }
+.clearfix { display: block; }

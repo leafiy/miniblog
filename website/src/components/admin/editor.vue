@@ -4,7 +4,7 @@
 <script>
 import api from '../../api/index.js'
 import { mavonEditor } from 'mavon-editor'
-import 'mavon-editor/dist/css/index.css'
+// import 'mavon-editor/dist/css/index.css'
 export default {
   data() {
     return {}
