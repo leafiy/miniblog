@@ -1,9 +1,12 @@
 <template>
   <header class="site-header">
-    <h1 class="logo">
-    <router-link to="/">Qian<span class="color-text">.</span>Smile</router-link>
-  </h1>
-    <ul class="navbar">
+    <router-link to="/">Now</router-link>
+    <router-link to="/about">About</router-link>
+    <router-link to="/concepts">Concepts</router-link>
+    <router-link to="/methods">Methods</router-link>
+    <router-link to="/cases">Cases</router-link>
+    <router-link to="/admin" v-if="authInfo">Admin</router-link>
+    <!--     <ul class="navbar">
       <li>
         <router-link to="/about">About</router-link>
       </li>
@@ -20,7 +23,7 @@
         <router-link to="/admin">Admin</router-link>
       </li>
       <li v-if="authInfo"><span @click="logout">Logout</span></li>
-    </ul>
+    </ul> -->
   </header>
 </template>
 <script>

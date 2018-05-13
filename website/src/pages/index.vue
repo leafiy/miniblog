@@ -1,24 +1,29 @@
 <template>
-  <div class="page-container">
-    <div class="hero hero-index">
+  <div>
+    <div class="hero">
       <h3>What I am doing</h3>
-      <h2>The <b>Visual Analysis</b> of<br><b>Urban Experience</b> <br> using
+      <div class="clearfix"></div>
+            <span class="date">2013 - 2017</span>
+
+      <h2>The <b>Visual Analysis</b> of<br><b>Urban Experience</b> <br> Using
          <b>Social Media Data</b></h2>
-      <span class="date">2013 - 2017</span>
+
     </div>
-    <div class="index-case-list">
-      <carousel v-if="articleList && articleList['case']" ref="carousel" :autoSlideWidth="true" :perPage="perPage" :scrollPerPage="false" :navigationEnabled="false" :showPagination="false" :extendWrapper="false" :autoplay="true" :autoplayTimeout="5000" :autoplayHoverPause="true" :loop="true">
-        <slide v-for="article of articleList['case']" :key="article._id">
-          <background :height="260" :src="article.thumb" @click.native="$router.push('/case/'+article.shortName)"></background>
-          <p>{{article.title}}</p>
-        </slide>
-      </carousel>
-    </div>
-    <!-- <div class="flex-container">
+    <div class="page-container">
+      <div class="index-case-list">
+        <carousel v-if="articleList && articleList['case']" ref="carousel" :autoSlideWidth="true" :perPage="perPage" :scrollPerPage="false" :navigationEnabled="false" :showPagination="false" :extendWrapper="false" :autoplay="true" :autoplayTimeout="5000" :autoplayHoverPause="true" :loop="true">
+          <slide v-for="article of articleList['case']" :key="article._id">
+            <background :height="260" :src="article.thumb" @click.native="$router.push('/case/'+article.shortName)"></background>
+            <p>{{article.title}}</p>
+          </slide>
+        </carousel>
+      </div>
+      <!-- <div class="flex-container">
       <div class="grid-8  grid-4-offset">
 
       </div>
     </div> -->
+    </div>
   </div>
 </template>
 <script>

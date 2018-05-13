@@ -6,7 +6,8 @@
         <router-view v-if="$route.meta.keepAlive" :key="$route.fullPath"></router-view>
       </keep-alive>
       <router-view v-if="!$route.meta.keepAlive"></router-view>
-      <site-footer></site-footer>
+      <!-- <site-footer></site-footer> -->
+      <side-bar></side-bar>
     </div>
     <toast group="top-center" position="top center" />
     <toast group="top-right" position="top right" />
@@ -15,8 +16,8 @@
 <script>
 import SiteHeader from './components/header.vue';
 import SiteFooter from './components/footer.vue';
+import SideBar from './components/sidebar.vue'
 import { mapGetters } from 'vuex'
-import Loader from './components/loader.vue';
 
 export default {
   name: 'app',
@@ -28,7 +29,7 @@ export default {
   components: {
     SiteHeader,
     SiteFooter,
-    Loader
+    SideBar
   },
   // computed: {
   //   ...mapGetters(['siteContent'])

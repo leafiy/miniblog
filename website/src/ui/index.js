@@ -2,7 +2,7 @@ import './assets/style/icon.css'
 // import Modal from './modal/index.js'
 import UIButton from './button/index.js'
 import Icon from './icon/index.js'
-import Heading from './heading/index.js'
+// import Heading from './heading/index.js'
 // import Upload from './upload/index.js'
 // import UIProgress from './progress/index.js'
 import Form from './form/index.js'
@@ -34,7 +34,7 @@ import Loader from './loader/index.js'
 export {
   UIButton,
   Icon,
-  Heading,
+  // Heading,
   Form,
   FormItem,
   Checkbox,

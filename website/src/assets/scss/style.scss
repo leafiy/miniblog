@@ -4,7 +4,7 @@
 
 ::selection {
   color: #fff;
-  background-color: $green;
+  background-color: $blue;
   text-shadow: none;
 }
 
@@ -53,24 +53,32 @@ body {
   flex-direction: column;
   @include xlarge {
     width: 1200px;
-    padding: 50px 0;
   }
   @include large {
     width: 1000px;
-    padding: 50px 0;
   }
   @include middle {
     width: 780px;
-    padding: 40px 0;
   }
   @include small {
     width: 95%;
-    padding: 20px 0;
   }
 }
 
 .page-container {
   flex: 1;
+  @include xlarge {
+    padding: 50px 0;
+  }
+  @include large {
+    padding: 50px 0;
+  }
+  @include middle {
+    padding: 40px 0;
+  }
+  @include small {
+    padding: 20px 0;
+  }
 }
 
 
@@ -96,7 +104,7 @@ a {
   color: $primary-color;
   text-decoration: none;
   &:hover {
-    color: $green;
+    color: $blue;
   }
 }
 
@@ -110,7 +118,7 @@ a {
 
 
 .color-text {
-  color: $green;
+  color: $blue;
 }
 
 .font-exo {
@@ -126,59 +134,71 @@ a {
 }
 
 .logo {
-  font-size: 2.4em;
   line-height: 1;
   font-weight: bolder;
   a,
   a.router-link-exact-active {
-    color: $primary-color;
+    color: #fff;
   }
   @include small {
     font-size: 1.8em;
   }
 }
 
+// .site-header {
+//   display: flex;
+//   -webkit-box-pack: justify;
+//   justify-content: space-between;
+//   -webkit-box-align: end;
+//   align-items: flex-end;
+//   margin-bottom: 3em;
+//   @include middle {
+//     display: block;
+//     .logo {
+//       margin-bottom: .6em;
+//     }
+//     .navbar {
+//       li {
+//         margin-left: 0;
+//         margin-right: 26px;
+//       }
+//     }
+//   }
+//   @include small {
+//     display: block;
+//     margin-bottom: 1em;
+//     .logo {
+//       margin-bottom: .6em;
+//     }
+//     .navbar {
+//       li {
+//         margin-left: 0;
+//         margin-right: 26px;
+//       }
+//     }
+//   }
+// }
+// .navbar {
+//   li {
+//     margin-left: 26px;
+//   }
+// }
 .site-header {
-  display: flex;
-  -webkit-box-pack: justify;
-  justify-content: space-between;
-  -webkit-box-align: end;
-  align-items: flex-end;
-  margin-bottom: 3em;
-  @include middle {
+  position: fixed;
+  background: #000;
+  top: 0;
+  left: 0;
+  height: 100%;
+  text-alignt: center;
+  padding: 0 22px;
+  a {
+    color: #fff;
+    writing-mode: vertical-rl;
     display: block;
-    .logo {
-      margin-bottom: .6em;
-    }
-
-    .navbar {
-
-      li {
-        margin-left: 0;
-        margin-right: 26px;
-      }
-    }
-  }
-  @include small {
-    display: block;
-    margin-bottom: 1em;
-    .logo {
-      margin-bottom: .6em;
-    }
-
-    .navbar {
-
-      li {
-        margin-left: 0;
-        margin-right: 26px;
-      }
-    }
-  }
-}
-
-.navbar {
-  li {
-    margin-left: 26px;
+    line-height: 1;
+    margin: 26px auto;
+    font-size: 18px;
+    font-weight: bold;
   }
 }
 
@@ -191,7 +211,7 @@ a {
     right: 0;
     width: 0;
     height: 100%;
-    border-bottom: 1px solid $green;
+    border-bottom: 1px solid $blue;
     transition: width .2s ease-in;
   }
   &:hover {
@@ -200,6 +220,27 @@ a {
       width: 100%;
       z-index: -1;
     }
+  }
+}
+
+.side-bar {
+  padding: 34px 26px;
+  position: fixed;
+  text-align: center;
+  width: 200px;
+  background: $blue;
+  color: #fff;
+  top: 0;
+  right: 0;
+  height: 100%;
+  a {
+    color: #fff;
+  }
+  .footer {
+    position: absolute;
+    bottom: 10px;
+    width: calc(100% - 52px);
+    font-size: 12px;
   }
 }
 
@@ -215,29 +256,35 @@ footer {
 
 .hero {
   user-select: none;
+  margin-top: 30px;
+  overflow: hidden;
   h3 {
-    color: $light;
-    margin-bottom: 1em;
+    margin-bottom: 2em;
     letter-spacing: 0px;
+    position: relative;
+    display: inline-block;
+    &:before {
+      position: absolute;
+      content: ' ';
+      height: 3px;
+      background: $blue;
+      width: 100vw;
+      left: 110%;
+      top: 50%;
+      transform: translateY(-50%);
+    }
   }
-
-  margin: .5em 0;
   h2 {
     font-size: 38px;
-    letter-spacing: 0px;
+    letter-spacing: 2px;
     margin-bottom: 1em;
   }
   b {
-    color: #000;
-    background: lighten($green, 65%);
-    padding-top: 5px;
-    padding-left: 3px;
-    padding-right: 3px;
+    color: $blue;
   }
   .date {
     padding: 1em 0;
-    font-style: italic;
-    border-bottom: 1px solid $lighter;
+    color: $green;
   }
 }
 
@@ -274,7 +321,7 @@ footer {
 }
 
 .router-link-exact-active {
-  color: $green;
+  color: $blue;
 }
 
 .muted {
@@ -362,7 +409,7 @@ footer {
 // }
 // .infoWindow {
 //   background: rgba(255, 255, 255, .96);
-//   border-left: 3px solid $green;
+//   border-left: 3px solid $blue;
 //   padding: 10px;
 //   box-shadow: $shadow;
 //   width: 320px;
@@ -388,7 +435,7 @@ footer {
 //     margin-bottom: 8px;
 //     &:hover {
 //       a {
-//         color: $green
+//         color: $blue
 //       }
 //     }
 //   }
@@ -413,7 +460,7 @@ footer {
   border-radius: 10px;
   text-align: center;
   line-height: 40px;
-  background: $green;
+  background: $blue;
   cursor: pointer;
   color: #fff;
   overflow: hidden;
@@ -481,7 +528,7 @@ footer {
 }
 
 .article {
-  margin-top: 3em;
+  margin-top: 1em;
   position: relative;
   .content {
     width: calc(100% - 200px);
@@ -500,7 +547,7 @@ footer {
     width:200px;
     float: right;
     .active {
-      color: $green;
+      color: $blue;
       font-style: italic;
     }
     li {
@@ -527,7 +574,23 @@ footer {
   clear: both;
   height: 0;
 }
-.clearfix { display: inline-block; }
+
+.clearfix {
+  display: inline-block;
+}
+
+
+
+
+
+
+
 /* start commented backslash hack \*/
-* html .clearfix { height: 1%; }
-.clearfix { display: block; }
+
+* html .clearfix {
+  height: 1%;
+}
+
+.clearfix {
+  display: block;
+}
