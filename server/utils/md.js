@@ -1,14 +1,8 @@
 const MarkdownIt = require('markdown-it')
+const uslug = require('uslug')
 const md = require('markdown-it')().use(require('markdown-it-anchor'), {
-  level: 2,
-  slugify: string => {
-    string = encodeURI(string)
-    string = string.replace(/\)/g, '')
-    string = string.replace(/\(/g, '')
-    string = string.replace(/\）/g, '')
-    string = string.replace(/\（/g, '')
-    return string
-  },
+  level: 1,
+  slugify: string => uslug(string),
 })
 const toc = require('markdown-toc');
 const mdHandler = (article) => {
