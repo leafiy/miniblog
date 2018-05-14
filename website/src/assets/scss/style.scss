@@ -75,9 +75,13 @@ body {
   }
   @include middle {
     padding: 40px 0;
+    padding-left:70px;
+    padding-right:60px;
   }
   @include small {
     padding: 20px 0;
+    padding-left:50px;
+    padding-right:20px;
   }
 }
 
@@ -191,6 +195,7 @@ a {
   height: 100%;
   text-alignt: center;
   padding: 0 22px;
+  z-index: 1000;
   a {
     color: #fff;
     writing-mode: vertical-rl;
@@ -199,6 +204,12 @@ a {
     margin: 26px auto;
     font-size: 18px;
     font-weight: bold;
+  }
+  @include small {
+    padding: 0 12px;
+    a {
+      font-size: 14px;
+    }
   }
 }
 
@@ -241,6 +252,26 @@ a {
     bottom: 10px;
     width: calc(100% - 52px);
     font-size: 12px;
+  }
+  @include middle{
+    position: static;
+    bottom: 0;
+    top: auto;
+    width: 100%;
+    .footer {
+      position: static;
+      width: auto;
+    }
+  }
+  @include small {
+    position: static;
+    bottom: 0;
+    top: auto;
+    width: 100%;
+    .footer {
+      position: static;
+      width: auto;
+    }
   }
 }
 
@@ -285,6 +316,18 @@ footer {
   .date {
     padding: 1em 0;
     color: $green;
+  }
+  @include middle{
+    padding-left:70px;
+    h2{
+      font-size:32px;
+    }
+  }
+  @include small {
+    padding-left: 50px;
+    h2 {
+      font-size: 26px;
+    }
   }
 }
 
@@ -344,7 +387,6 @@ footer {
   opacity: 0
 }
 
-.page-container {}
 
 
 
@@ -482,6 +524,11 @@ footer {
 .page-container {
   >.article-list {
     padding-top: 3em;
+    .title{
+      @include small{
+        font-size:14px;
+      }
+    }
   }
 }
 
@@ -578,6 +625,7 @@ footer {
 .clearfix {
   display: inline-block;
 }
+
 
 
 
