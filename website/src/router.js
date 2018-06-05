@@ -40,32 +40,32 @@ const routes = [{
     meta: { auth: false, keepAlive: true }
   }, {
     path: '/concepts',
-    name: 'Concept',
+    name: 'concepts',
     component: ArticleList,
     meta: { auth: false, keepAlive: true }
   },
   {
-    path: '/concept/:title',
+    path: '/concepts/:title',
     name: 'ConceptArticle',
     component: ArticlePage,
     meta: { auth: false, keepAlive: true }
   }, {
     path: '/methods',
-    name: 'Method',
+    name: 'methods',
     component: ArticleList,
     meta: { auth: false, keepAlive: true }
   }, {
-    path: '/method/:title',
+    path: '/methods/:title',
     name: 'MethodsArticle',
     component: ArticlePage,
     meta: { auth: false, keepAlive: true }
   }, {
     path: '/cases',
-    name: 'Case',
+    name: 'caseStudies',
     component: ArticleList,
     meta: { auth: false, keepAlive: true }
   }, {
-    path: '/case/:title',
+    path: '/caseStudies/:title',
     name: 'CaseArticle',
     component: ArticlePage,
     meta: { auth: false, keepAlive: true }
@@ -103,19 +103,19 @@ const routes = [{
         meta: { auth: true }
       },
       {
-        path: 'concept',
+        path: 'concepts',
         name: 'AdminConcept',
         component: ArticleManage,
         meta: { auth: true }
       },
       {
-        path: 'method',
+        path: 'methods',
         name: 'AdminMethod',
         component: ArticleManage,
         meta: { auth: true }
       },
       {
-        path: 'case',
+        path: 'caseStudies',
         name: 'AdminCase',
         component: ArticleManage,
         meta: { auth: true }

@@ -30,10 +30,10 @@ export default {
   components: {
     VueAffix
   },
-  activated() {
+  mounted() {
     let title = this.$route.params.title;
     api.getArticle(title).then(res => {
-
+      console.log(res.data)
       if (!res.data.article) {
         return this.$Toast({
           group: 'top-center',

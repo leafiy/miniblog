@@ -2,13 +2,13 @@
   <div class="page-container">
     <loader :show="!list.length"></loader>
     <div class="article-list" v-if="list.length">
-      <gmap-map v-if="category=='case' && loadMap" @dragover.prevent :center="center" :zoom="zoom" style="width: 100%; height: 320px" :options="{scrollwheel: scrollwheel,draggable: draggable,zoomControl: zoomControl,styles: styles}">
+<!--       <gmap-map v-if="category=='case' && loadMap" @dragover.prevent :center="center" :zoom="zoom" style="width: 100%; height: 320px" :options="{scrollwheel: scrollwheel,draggable: draggable,zoomControl: zoomControl,styles: styles}">
         <gmap-marker :key="index" v-for="(m, index) in markers" :position="m.position" :clickable="true" :draggable="true" @click="center=m.position" :icon="markerIcon"></gmap-marker>
-        <!-- <div>
+        <div>
           <gmap-info-window :key="item.infoText" v-for="item in markers" :content="item.content" :position="item.position" :options="item.options">{{item.infoText}}</gmap-info-window>
-        </div> -->
-      </gmap-map>
-      <h4 class="mb light" v-if="category=='tag'">Articles tagged by: <i>{{$route.params.tag}}</i></h4>
+        </div>
+      </gmap-map> -->
+
       <article-card @mouseover.native="mouseOver(item)" @mouseleave.native="mouseLeave(item)" :article="item" v-for="item of list" :key="item._id"></article-card>
     </div>
   </div>

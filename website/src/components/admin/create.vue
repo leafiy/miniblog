@@ -136,7 +136,7 @@ export default {
   },
   mounted() {
     this.category = this.$route.params.category
-    if (this.category === 'case') {
+    if (this.category === 'case studies') {
       this.showPlace = true;
     }
 
@@ -149,7 +149,7 @@ export default {
             tiClasses: ['valid']
           })
         })
-        if (this.article.category == 'project') {
+        if (this.article.category == 'case studies') {
           this.showPlace = true
         }
       }).catch(error => {

@@ -2,7 +2,7 @@
   <div>
     <uploader ref="uploader" @uploadSuccess="uploadSuccess" accept="application/pdf" :format="format" :tip="tip" :multiple="false"></uploader>
     <uploader ref="uploader" @uploadSuccess="uploadSuccess2" accept="application/pdf" :format="format" :tip="tip2" :multiple="false"></uploader>
-    <editor v-model="content"></editor>
+    <!-- <editor v-model="content"></editor> -->
     <UIButton type="primary" @click="save('about')" :loading="saveSpin">save
     </UIButton>
   </div>

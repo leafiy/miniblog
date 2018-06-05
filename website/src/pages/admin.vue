@@ -3,16 +3,13 @@
     <div class="admin-nav">
       <ul>
         <li>
-          <router-link to="/admin/about">管理About内容</router-link>
+          <router-link to="/admin/concepts">管理concept</router-link>
         </li>
         <li>
-          <router-link to="/admin/concept">管理concept</router-link>
+          <router-link to="/admin/methods">管理method</router-link>
         </li>
         <li>
-          <router-link to="/admin/method">管理method</router-link>
-        </li>
-        <li>
-          <router-link to="/admin/case">管理Case</router-link>
+          <router-link to="/admin/caseStudies">管理Case</router-link>
         </li>
       </ul>
     </div>

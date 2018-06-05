@@ -8,14 +8,14 @@ import 'normalize.css'
 import config from './config.js'
 Vue.config.productionTip = false
 import 'mavon-editor/dist/css/index.css'
-import * as VueGoogleMaps from 'vue2-google-maps'
-Vue.use(VueGoogleMaps, {
-  load: {
-    key: config[process.env.NODE_ENV].googleMapKey,
-    libraries: 'places',
-    language: 'en'
-  }
-})
+// import * as VueGoogleMaps from 'vue2-google-maps'
+// Vue.use(VueGoogleMaps, {
+//   load: {
+//     key: config[process.env.NODE_ENV].googleMapKey,
+//     libraries: 'places',
+//     language: 'en'
+//   }
+// })
 import {
   UIButton,
   Form,
