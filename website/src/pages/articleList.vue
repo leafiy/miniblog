@@ -1,7 +1,8 @@
 <template>
   <div class="page-container">
-    <loader :show="!list.length"></loader>
-    <div class="article-list" v-if="list.length">
+    <loader :show="!list || !list.length"></loader>
+
+    <div class="article-list" v-if="list && list.length">
 <!--       <gmap-map v-if="category=='case' && loadMap" @dragover.prevent :center="center" :zoom="zoom" style="width: 100%; height: 320px" :options="{scrollwheel: scrollwheel,draggable: draggable,zoomControl: zoomControl,styles: styles}">
         <gmap-marker :key="index" v-for="(m, index) in markers" :position="m.position" :clickable="true" :draggable="true" @click="center=m.position" :icon="markerIcon"></gmap-marker>
         <div>

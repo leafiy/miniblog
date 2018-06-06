@@ -8,10 +8,11 @@
         </div>
         <div class="title">
             <small v-if="content.isDraft" class="light">【草稿】</small>
-            <router-link :to="'/'+ content.category + '/' + content.shortName"><span class="strong">{{content.title}}</span></router-link>
+            <router-link :to="'article/'+ content.category + '/' + content.shortName"><span class="strong">{{content.title}}</span></router-link>
         </div>
+        <background :height="140" v-if="content.thumb" :src="content.thumb"></background>
         <div class="intro" v-if="content.intro">
-            <background :width="200" :height="140" v-if="content.thumb" :src="content.thumb"></background>
+
             <p>{{content.intro}}</p>
         </div>
         <div class="location" v-if="content.location"><small class="light">- {{content.location.formatted_address}}</small></div>
@@ -46,7 +47,6 @@ export default {
     mounted() {
         this.$nextTick(() => {
             this.content = this.article
-            console.log(this.article)
         })
     },
     activated() {

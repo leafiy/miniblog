@@ -45,8 +45,8 @@ const routes = [{
     meta: { auth: false, keepAlive: true }
   },
   {
-    path: '/concepts/:title',
-    name: 'ConceptArticle',
+    path: '/article/:category/:title',
+    name: 'Article',
     component: ArticlePage,
     meta: { auth: false, keepAlive: true }
   }, {
@@ -54,22 +54,25 @@ const routes = [{
     name: 'methods',
     component: ArticleList,
     meta: { auth: false, keepAlive: true }
-  }, {
-    path: '/methods/:title',
-    name: 'MethodsArticle',
-    component: ArticlePage,
-    meta: { auth: false, keepAlive: true }
-  }, {
+  },
+  // {
+  //   path: '/methods/:title',
+  //   name: 'MethodsArticle',
+  //   component: ArticlePage,
+  //   meta: { auth: false, keepAlive: true }
+  // },
+   {
     path: '/cases',
     name: 'caseStudies',
     component: ArticleList,
     meta: { auth: false, keepAlive: true }
-  }, {
-    path: '/caseStudies/:title',
-    name: 'CaseArticle',
-    component: ArticlePage,
-    meta: { auth: false, keepAlive: true }
   },
+  //  {
+  //   path: '/caseStudies/:title',
+  //   name: 'CaseStudiesArticle',
+  //   component: ArticlePage,
+  //   meta: { auth: false, keepAlive: true }
+  // },
   {
     path: '/tag/:tag',
     name: 'Tag',

@@ -670,29 +670,55 @@ footer {
     }
 }
 
-.index-case-list {
-    .background {
-        border: none;
-    }
-    @include xlarge {
-        width: 60%;
-        margin: 60px 0;
-    }
-    @include large {
-        width: 70%;
-        margin: 60px 0;
-    }
-    @include middle {
-        width: 80%;
-        margin: 40px 0;
-    }
-    @include small {
-        width: 100%;
-        margin: 20px 0;
+// .index-case-list {
+//     .background {
+//         border: none;
+//     }
+//     @include xlarge {
+//         width: 60%;
+//         margin: 60px 0;
+//     }
+//     @include large {
+//         width: 70%;
+//         margin: 60px 0;
+//     }
+//     @include middle {
+//         width: 80%;
+//         margin: 40px 0;
+//     }
+//     @include small {
+//         width: 100%;
+//         margin: 20px 0;
+//     }
+// }
+.page-article {
+    .site-header {
+        .page-container{
+            width:100%;
+        }
+        canvas{
+            display:none;
+        }
+        .hero{
+            color:$lighter;
+            text-align:left;
+            left:0;
+            right:auto;
+            position: absolute !important;
+            h1{
+                font-size:72px !important;
+            }
+        }
+        .label{
+            top:56px;
+            left:150px;
+            background:none;
+        }
+        .line-dashed{
+            top:82px;
+        }
     }
 }
-
-
 
 
 
@@ -707,7 +733,6 @@ footer {
 // .carousel {
 //     position: relative;
 // }
-
 // .carousel-indicator {
 //     position: absolute;
 //     bottom: 16px;
@@ -719,8 +744,6 @@ footer {
 //         font-weight: 400;
 //     }
 // }
-
-
 .background {
     border: 1px solid $lighter;
 }
@@ -840,33 +863,67 @@ footer {
     }
 }
 
-.article-list {
+.page-concepts {
+    .site-header {
+        h1 {
+            color: $blue-light;
+        }
+    }
     .article-card {
         &:nth-child(odd) {
-            border-left: 2px solid $blue;
+            border-left: 3px solid $blue;
+        }
+    }
+}
+
+.page-methods {
+    .site-header {
+        h1 {
+            color: $green-light;
+        }
+        canvas {
+            fill: $yellow-light;
+        }
+    }
+    .article-card {
+        &:nth-child(odd) {
+            border-left: 3px solid $green;
+        }
+    }
+}
+
+.page-casestudies {
+    .site-header {
+        h1 {
+            color: $brown-light;
+        }
+    }
+    .article-card {
+        &:nth-child(odd) {
+            border-left: 3px solid $brown;
         }
     }
 }
 
 .article-card {
-    margin-bottom: 3em;
-    padding-left: 3em;
+    font-family: 'Source Sans Pro';
+    margin-bottom: 40px;
+    padding-left: 20px;
+    .meta {
+        font-size: 12px;
+    }
     .title {
-        font-size: 1.6em;
-        margin-bottom: .6em;
+        font-size: 16px;
+        line-height: 35px;
     }
     .intro {
         white-space: pre-wrap;
         padding: 0;
         text-indent: 0;
         display: flex;
-        margin-bottom: 1em;
+        font-size: 13px;
         p {
             margin: 0;
-        }
-        .background {
-            flex: 0 0 auto;
-            margin-right: .6em;
         }
     }
     .location {}
@@ -881,8 +938,28 @@ footer {
 }
 
 .article {
-    margin-top: 1em;
+    margin-top: 60px;
     position: relative;
+    width:700px;
+    float:right;
+    .head{
+        h2{
+            font-size:20px;
+        }
+        padding-left:20px;
+        border-left:3px solid $light;
+        margin-left:-20px;
+        padding-bottom:40px;
+        margin-bottom:40px;
+        .intro{
+            color:#666666;
+        }
+    }
+    .date{
+        position: absolute;
+        top:-50px;
+        right:0;
+    }
     .content {
         width: calc(100% - 200px);
         float: left;
@@ -891,6 +968,12 @@ footer {
             width: 100%;
             padding-right: 0;
         }
+    }
+    blockquote{
+        background:$lighter;
+        margin-left:-50px;
+        padding:23px;
+        font-style:normal;
     }
     .toc {
         @include small {
@@ -918,6 +1001,11 @@ footer {
         }
     }
 }
+
+
+
+
+
 
 
 

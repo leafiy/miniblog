@@ -10,9 +10,11 @@ $xlarge-width:1400px;
 $yellow:#FDEB59;
 $yellow-light:#f8edd9;
 $yellow-bright:#feed49;
-$blue-light:#d0e6f1;
+$blue-light:#BDD0E7;
 $green:#4F9BA8;
+$green-light:#C1E2E8;
 $brown:#6F4D1F;
+$brown-light:#F1E5D0;
 
 @mixin middle {
     @media (min-width: #{$middle-width}) and (max-width: #{$large-width - 1px}) {

@@ -81,6 +81,11 @@ export default {
             return path
         }
     },
+    watch:{
+        fill(){
+            this.renderCanvas()
+        }
+    },
     methods: {
         renderCanvas() {
             let canvas = this.$refs['canvas']

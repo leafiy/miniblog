@@ -6,7 +6,7 @@
     <places v-if="showPlace" :location="article.location" @changeLocation="changeLocation" ref="placeInput"></places>
     </places>
     <el-input type="text" :maxlength="80" placeholder="文章标题" v-model="article.title" class="mb20"></el-input>
-    <el-checkbox v-model="article.showMenu">是否显示文章目录？</el-checkbox>
+    <!-- <el-checkbox v-model="article.showMenu">是否显示文章目录？</el-checkbox> -->
     <el-input type="textarea" :maxlength="600" placeholder="文章摘要" v-model="article.intro" :autosize="{ minRows: 4}" class="mb20"></el-input>
     <vue-tags-input v-model="tag" :tags="tags" @tags-changed="newTags => tags = newTags" />
     <editor v-model="article.content" class="mb20"></editor>

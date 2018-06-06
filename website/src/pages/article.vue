@@ -2,14 +2,18 @@
   <div class="page-container">
     <loader :show="!article"></loader>
     <div class="article" v-if="article">
-      <h2>{{article.title}}</h2>
-      <p><small class="light">Published at: {{article.dateObj.day}} {{article.dateObj.month}} {{article.dateObj.year}}</small></p>
+      <div class="head">
+              <h2>{{article.title}}</h2>
+              <p class="intro">{{article.intro}}</p>
+      </div>
+      <div class="date">{{article.dateObj.day}} {{article.dateObj.month}} {{article.dateObj.year}}</div>
+
       <div class="content markdown-body" id="content" v-html="article.html"></div>
-      <div class="toc" v-if="article.showMenu && article.toc">
+<!--       <div class="toc" v-if="article.showMenu && article.toc">
         <affix relative-element-selector="#content" style="width: 200px">
           <scrollactive ref="scrollactive" v-html="article.toc" active-class="active"></scrollactive>
         </affix>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -33,7 +37,6 @@ export default {
   mounted() {
     let title = this.$route.params.title;
     api.getArticle(title).then(res => {
-      console.log(res.data)
       if (!res.data.article) {
         return this.$Toast({
           group: 'top-center',
