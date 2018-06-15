@@ -1,7 +1,8 @@
 @import './var.scss';
 // @import url('https://fonts.googleapis.com/css?family=Seymour+One');
 @import './markdown.scss';
-
+$animationDuration: 1.5s;
+@import "../node_modules/vue2-animate/src/sass/vue2-animate.scss";
 ::selection {
     color: #fff;
     background-color: $blue;
@@ -25,8 +26,8 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: 'Avenir Next', 'Helvetica', 'Arial', 'sans-serif';
-    font-weight: 800;
+    font-family: 'Source Sans Pro', 'Helvetica', 'Arial', 'sans-serif';
+    font-weight: 700;
     margin: 0;
 }
 
@@ -47,7 +48,7 @@ p {
 }
 
 body {
-    font-family: 'Source Sans Pro', 'Helvetica Neue', 'Helvetica', -apple-system, BlinkMacSystemFont, '.SFNSText-Regular', Roboto, Arial, sans-serif;
+    font-family: 'Source Sans Pro', 'Helvetica Neue', 'Helvetica', -apple-system, BlinkMacSystemFont, Roboto, Arial, sans-serif;
     font-size: 16px;
     font-style: normal;
     line-height: 1.76;
@@ -97,10 +98,11 @@ a {
 .logo {
     line-height: 1;
     font-weight: bolder;
-    a,
-    a.router-link-exact-active {
-        color: #fff;
-    }
+    font-size: 20px;
+    color: $blue;
+    position: absolute;
+    top: 10px;
+    left: -140px;
     @include small {
         font-size: 1.8em;
     }
@@ -144,22 +146,6 @@ footer {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
-    margin-top: 80px;
-    @include xlarge {
-        width: 1200px;
-    }
-    @include large {
-        width: 1000px;
-    }
-    @include middle {
-        width: 780px;
-    }
-    @include small {
-        width: 95%;
-    }
-    >div {
-        flex: 1;
-    }
 }
 
 .m10 {
@@ -175,7 +161,7 @@ footer {
 }
 
 .strong {
-    font-weight: 800;
+    font-weight: 700;
 }
 
 .yellow {
@@ -259,264 +245,61 @@ footer {
     display: inline-block;
 }
 
-.page-container {
-    flex: 1;
-    position: relative;
+// .page-container {
+//     flex: 1;
+//     position: relative;
+//     min-height: 100vh;
+// }
+.index-container {
     min-height: 100vh;
-}
-
-.site-header {
-    width: 100%;
+    padding: 8% 33px 10% 33px;
     position: relative;
-    .hero {
-        text-align: right;
-        position: static;
-        margin-top: 30px;
+    @include xlarge {
+        margin-left: 300px;
     }
-    .line-dashed {
+    @include large {
+        margin-left: 200px;
+    }
+    @include middle {
+        margin-left: 120px;
+    }
+    @include small {
+        margin-left: 80px;
+    }
+    .typer-1 {
+        font-size: 18px;
+    }
+    .line {
+        width: 3px;
+        height: 100%;
+        background: $blue;
         position: absolute;
-        width: calc(100% - 160px);
-        top: 54px;
-        right: 0;
-        z-index: 35;
-    }
-    .page-container {
-        margin: 0 auto;
-        display: flex;
-        flex-direction: column;
-        @include xlarge {
-            width: 1200px;
-        }
-        @include large {
-            width: 1000px;
-        }
-        @include middle {
-            width: 780px;
-        }
-        @include small {
-            width: 95%;
-        }
-    }
-    margin-bottom:30px;
-    .site-nav {
-        position: absolute;
-        bottom: -60px;
-        right: 40px;
-
-        a {
-            font-size: 20px;
-            margin-left: 40px;
-            position: relative;
-            &:before {
-                content: ' ';
-                position: absolute;
-                width: 10px;
-                height: 10px;
-                border-radius: 100%;
-                background: $yellow-bright;
-                top: 8px;
-                left: -15px;
-                transition: all .3s linear;
-            }
-            &:hover {
-                &:before {
-                    transform: translateX(10px)
-                }
-            }
-        }
-    }
-    #header-oval {
-        position: absolute;
-        top: -100px;
-        left: -60px;
-    }
-    .label {
-        position: absolute;
-        z-index: 30;
-        top: 40px;
-        left: 50px;
-        width: 130px;
-        background: #fff;
-        padding: 1px 10px;
-        border-radius: 10px 0 0 10px;
-    }
-}
-
-
-.split {
-    width: 100%;
-    position: relative;
-    margin: 20px 0;
-    .oval {
-        position: absolute;
-        width: 30px;
-        height: 30px;
-        border-radius: 100%;
-        z-index: 5;
-    }
-    .border-wrap {
-        position: absolute;
-        width: calc(100% - 16px);
-        right: 0;
-        top: 15px;
-        height: 4px;
-        z-index: 10;
-        &:before {
-            content: ' ';
-            position: absolute;
-            height: 6px;
-            width: 30px;
-            background: #fff;
-            top: -3px;
-            left: -2px;
-            border-radius: 6px;
-        }
-    }
-    .border {
-        width: 100%;
-        height: 2px;
-        position: absolute;
-        top: -1px;
-        border-top-width: 2px;
-        border-bottom-width: 2px;
-    }
-    &.split-color-blue {
-        .oval {
-            background: $blue;
-        }
-        .border {
-            border-top-color: $blue;
-            border-bottom-color: $blue;
-        }
-    }
-    &.split-border-solid {
-        .border {
-            border-bottom-style: solid;
-        }
-    }
-    &.split-border-dotted {
-        .border {
-            border-bottom-style: dotted;
-        }
-    }
-    &.split-border-dashed {
-        .border {
-
-            border-bottom-style: dashed;
-        }
-    }
-}
-
-.page-index {
-    .site-nav {
-        //bottom: -20px;
-    }
-    .site-header {
-        .hero {
-            margin: 0;
-            padding-right: 40px;
-        }
-        .line-dashed {
-            width: 100% !important;
-            left: 0;
-            top: 61px;
-            .suffix {
-                right: 40px;
-                bottom: -30px;
-            }
-            .prefix {
-                bottom: 0;
-            }
-        }
-    }
-    .line-vertical {
-        top: -128px;
-        right: 0;
-        height: calc(100% - 200px);
-    }
-
-    .content {
-        float: right;
-        margin-top: 140px;
-        margin-right: 50px;
-    }
-    canvas#yellow-light {
-        position: absolute;
-        z-index: auto;
-        top: 30px;
-        right: -120px;
-    }
-
-    .page-container {
-        padding-bottom: 362px;
-    }
-}
-
-.index-desp {
-    position: relative;
-    padding-left: 80px;
-    padding-right: 160px;
-    margin-top: 60px;
-    .pie {
-        position: absolute;
+        top: 0;
         left: 0;
-        top: -70px;
+        z-index: 1;
     }
-    .black {
-        font-weight: 600;
+    .intro {
+        margin-top: 80px;
+    }
+    .hero {
+        position: relative;
+        z-index: 10;
+        h2 {
+            font-size: 48px;
+            text-align: right;
+        }
+        background:#fff;
+        float:left;
+        margin-left:-43px;
+        padding-left:43px;
+    }
+    .typer {
+        margin-bottom: 30px;
     }
 }
 
-.content {
-    .title {
-        position: relative;
-        z-index: 10;
-        font-size: 42px;
-        font-weight: 800;
-        line-height: 1;
-        display: inline-block;
-        cursor: pointer;
-        >span {
-            &:before {
-                content: ' ';
-                position: absolute;
-                width: 0;
-                height: 1px;
-                background: $blue;
-                transition: all .4s linear;
-                bottom: 0;
-                left: 0;
-            }
-        }
-    }
-    p {
-        font-size: 14px;
-        font-weight: 600;
-        z-index: 10;
-        position: relative;
-    }
-    .content-item {
-        text-align: right;
-        margin-bottom: 20px;
-        position: relative;
-        .oval {
-            position: absolute !important;
-            right: 0;
-            top: -2px;
-            z-index: 5;
-        }
 
-        &:hover {
-            .title {
-                >span {
-                    &:before {
-                        width: 100%;
-                    }
-                }
-            }
-        }
-    }
-}
+
 
 .oval {
     border-radius: 50%;
@@ -527,195 +310,32 @@ footer {
     background: $yellow;
 }
 
-.line {
-    position: absolute;
-    border-bottom: 2px solid $blue;
-    span {
-        color: $blue;
-        position: absolute;
-    }
-}
 
-.line-arrow-down {
-    &:after {
-        content: ' ';
-        position: absolute;
-        width: 0;
-        height: 0;
-        border-left: 6px solid transparent;
-        border-right: 6px solid transparent;
-        border-top: 9px solid $blue;
-        bottom: -6px;
-        left: -5px;
-    }
-}
-
-.line-arrow-left {
-    &:after {
-        content: ' ';
-        position: absolute;
-        width: 0;
-        height: 0;
-
-        border-top: 6px solid transparent;
-        border-bottom: 6px solid transparent;
-        border-right: 6px solid $blue;
-        bottom: -7px;
-        left: -1px;
-    }
-}
-
-.line-vertical {
-    height: 100%;
-    width: 2px;
-    background: $blue;
-    span {
-        writing-mode: tb-rl;
-    }
-}
-
-.line-dashed {
-    border-bottom: 2px dashed $blue;
-}
-
-.hero {
-    position: absolute;
-    color: $blue-light;
-    user-select: none;
-    width: 100%;
-    h1 {
-        margin: 0;
-        line-height: 1;
-        display: inline;
-    }
-}
-
-.about-me {
-    margin-top: 150px;
-    margin-right: 150px;
-    float: right;
-    position: relative;
-    canvas {
-        position: absolute;
-    }
-    #about-me-oval1 {
-        left: -200px;
-        top: -20px;
-        z-index: 20;
-    }
-    #about-me-oval2 {
-        z-index: 15;
-        left: -100px;
-        top: 70px;
-    }
-    >p {
-        position: relative;
-        z-index: 30;
-    }
-    .about-me-photo {
-        background: url('./assets/piggy.png') no-repeat;
-        width: 138px;
-        height: 137px;
-        position: absolute;
-        top: -2px;
-        left: -172px;
-        opacity: .8;
-        z-index: 30;
-    }
-}
-
-.about-me-oval {
-    width: 100%;
-    height: 362px;
-    position: absolute;
-    p {
-        position: absolute;
-        color: #fff;
-        top: 110px;
-        right: 66px;
-    }
-    #about-me-oval3 {
-        position: absolute;
-        right: -30px;
-    }
-    .hero2 {
-        bottom: -12px;
-        right: 0;
-        text-align: right;
-        z-index: 10;
-        h1 {
-            padding-right: 40px;
-        }
-    }
-    .line-bottom {
-        height: 2px;
-        width: calc(100% - 20px);
-        background: $blue;
-        bottom: 0;
-        left: 0;
-        .prefix {
-            position: absolute;
-            top: -26px;
-            left: 2px;
-        }
-    }
-    .white-cover {
-        position: absolute;
-        height: 138px;
-        width: 500px;
-        right: 0;
-        bottom: -138px;
-        z-index: 30;
-        background: #fff;
-    }
-}
-
-// .index-case-list {
-//     .background {
-//         border: none;
-//     }
-//     @include xlarge {
-//         width: 60%;
-//         margin: 60px 0;
-//     }
-//     @include large {
-//         width: 70%;
-//         margin: 60px 0;
-//     }
-//     @include middle {
-//         width: 80%;
-//         margin: 40px 0;
-//     }
-//     @include small {
-//         width: 100%;
-//         margin: 20px 0;
-//     }
-// }
 .page-article {
     .site-header {
-        .page-container{
-            width:100%;
+        .page-container {
+            width: 100%;
         }
-        canvas{
-            display:none;
+        canvas {
+            display: none;
         }
-        .hero{
-            color:$lighter;
-            text-align:left;
-            left:0;
-            right:auto;
+        .hero {
+            color: $lighter;
+            text-align: left;
+            left: 0;
+            right: auto;
             position: absolute !important;
-            h1{
-                font-size:72px !important;
+            h1 {
+                font-size: 72px !important;
             }
         }
-        .label{
-            top:56px;
-            left:150px;
-            background:none;
+        .label {
+            top: 56px;
+            left: 150px;
+            background: none;
         }
-        .line-dashed{
-            top:82px;
+        .line-dashed {
+            top: 82px;
         }
     }
 }
@@ -730,20 +350,7 @@ footer {
     transform: translate(-50%, -50%);
 }
 
-// .carousel {
-//     position: relative;
-// }
-// .carousel-indicator {
-//     position: absolute;
-//     bottom: 16px;
-//     right: 30px;
-//     user-select: none;
-//     span {
-//         margin: 0 14px;
-//         color: #fff;
-//         font-weight: 400;
-//     }
-// }
+
 .background {
     border: 1px solid $lighter;
 }
@@ -906,7 +513,6 @@ footer {
 }
 
 .article-card {
-    font-family: 'Source Sans Pro';
     margin-bottom: 40px;
     padding-left: 20px;
     .meta {
@@ -940,25 +546,25 @@ footer {
 .article {
     margin-top: 60px;
     position: relative;
-    width:700px;
-    float:right;
-    .head{
-        h2{
-            font-size:20px;
+    width: 700px;
+    float: right;
+    .head {
+        h2 {
+            font-size: 20px;
         }
         padding-left:20px;
         border-left:3px solid $light;
         margin-left:-20px;
         padding-bottom:40px;
         margin-bottom:40px;
-        .intro{
-            color:#666666;
+        .intro {
+            color: #666666;
         }
     }
-    .date{
+    .date {
         position: absolute;
-        top:-50px;
-        right:0;
+        top: -50px;
+        right: 0;
     }
     .content {
         width: calc(100% - 200px);
@@ -969,11 +575,11 @@ footer {
             padding-right: 0;
         }
     }
-    blockquote{
-        background:$lighter;
-        margin-left:-50px;
-        padding:23px;
-        font-style:normal;
+    blockquote {
+        background: $lighter;
+        margin-left: -50px;
+        padding: 23px;
+        font-style: normal;
     }
     .toc {
         @include small {
@@ -1061,6 +667,9 @@ footer {
 
 
 
+
+
+
 /* start commented backslash hack \*/
 
 * html .clearfix {
@@ -1069,4 +678,35 @@ footer {
 
 .clearfix {
     display: block;
+}
+
+
+
+.typed-cursor {
+    opacity: 1;
+    color: $blue-light;
+}
+
+.typed-cursor.typed-cursor--blink {
+    animation: typedjsBlink 0.7s infinite;
+    -webkit-animation: typedjsBlink 0.7s infinite;
+    animation: typedjsBlink 0.7s infinite;
+}
+
+@keyframes typedjsBlink {
+    50% {
+        opacity: 0.0;
+    }
+}
+
+@-webkit-keyframes typedjsBlink {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.0;
+    }
+    100% {
+        opacity: 1;
+    }
 }

@@ -5,12 +5,10 @@ const webpack = require('webpack')
 module.exports = {
   devServer: {
     open: false,
-    host: '0.0.0.0',
     port: 8040,
     https: false,
     hotOnly: false,
     bonjour: true,
-    public: "0.0.0.0",
     allowedHosts: ['qiansmile.local'],
     proxy: null, // string | Object
     before: app => {
