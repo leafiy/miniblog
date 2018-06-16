@@ -15,6 +15,7 @@ router.get('/getArticle/:title', expressJwt({ secret: config.session.secrets, cr
 router.get('/getContentById/:id', expressJwt({ secret: config.session.secrets, credentialsRequired: false }), controller.getContentById);
 router.get('/getArticleList/:category/:isDraft', expressJwt({ secret: config.session.secrets, credentialsRequired: false }), controller.getArticleList);
 router.get('/getArticleList/:category', expressJwt({ secret: config.session.secrets, credentialsRequired: false }), controller.getArticleList);
+router.get('/getArticleList', expressJwt({ secret: config.session.secrets, credentialsRequired: false }), controller.getArticleList);
 router.put('/updateContent', expressJwt({ secret: config.session.secrets, credentialsRequired: true }), controller.updateContent);
 router.put('/setAsDraft', expressJwt({ secret: config.session.secrets, credentialsRequired: true }), controller.setAsDraft);
 router.put('/cancleDraft', expressJwt({ secret: config.session.secrets, credentialsRequired: true }), controller.cancleDraft);

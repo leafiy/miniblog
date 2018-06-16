@@ -1,5 +1,4 @@
 @import './var.scss';
-// @import url('https://fonts.googleapis.com/css?family=Seymour+One');
 @import './markdown.scss';
 $animationDuration: 1.5s;
 @import "../node_modules/vue2-animate/src/sass/vue2-animate.scss";
@@ -7,6 +6,11 @@ $animationDuration: 1.5s;
     color: #fff;
     background-color: $blue;
     text-shadow: none;
+}
+
+@font-face {
+    font-family: 'AvenirNext';
+    src: url('/AvenirNext.ttf');
 }
 
 ul,
@@ -95,14 +99,24 @@ a {
     margin-bottom: 40px;
 }
 
+.current-project {
+    position: absolute;
+    top: 16px;
+    left: 232px;
+}
+
 .logo {
+    font-family: 'AvenirNext';
     line-height: 1;
-    font-weight: bolder;
-    font-size: 20px;
+    font-weight: heavy;
+    font-size: 24px;
     color: $blue;
     position: absolute;
-    top: 10px;
-    left: -140px;
+    top: 16px;
+    left: 46px;
+    a {
+        color: $blue;
+    }
     @include small {
         font-size: 1.8em;
     }
@@ -245,6 +259,19 @@ footer {
     display: inline-block;
 }
 
+.slide-out-enter,
+.slide-in-leave-active {
+    /*    opacity: 0;
+*/
+    transform: translate(-50px, 100%);
+}
+
+.slide-out-leave-active,
+.slide-in-enter {
+    /*opacity: 0;*/
+    transform: translate(50px, 100%);
+}
+
 // .page-container {
 //     flex: 1;
 //     position: relative;
@@ -264,33 +291,43 @@ footer {
         margin-left: 120px;
     }
     @include small {
-        margin-left: 80px;
+        margin-left: 40px;
+        .hero {
+            h2 {
+                font-size: 22px !important;
+            }
+        }
     }
     .typer-1 {
         font-size: 18px;
     }
     .line {
         width: 3px;
-        height: 100%;
+        height: calc(100% - 50px);
         background: $blue;
         position: absolute;
-        top: 0;
+        top: 50px;
         left: 0;
         z-index: 1;
     }
     .intro {
         margin-top: 80px;
+        b {
+            font-size: 22px;
+        }
     }
     .hero {
         position: relative;
         z-index: 10;
+        transition: all .2s linear;
         h2 {
             font-size: 48px;
             text-align: right;
+            cursor: pointer;
         }
-        background:#fff;
         float:left;
         margin-left:-43px;
+        background:#fff;
         padding-left:43px;
     }
     .typer {
@@ -299,6 +336,92 @@ footer {
 }
 
 
+.list-container {
+    position: fixed;
+    z-index: 100;
+    transition: all .8s cubic-bezier(.55, 0, .1, 1);
+    .list-content {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: 110;
+        background: $blue-light;
+        .desp {
+            padding: 40px;
+            p {
+                margin-bottom: 40px;
+            }
+        }
+    }
+    .content-visual_analysis {
+        background: $blue-light;
+    }
+    .content-urban_experience {
+        background: $green-light;
+    }
+    .content-social_media_data {
+        background: $yellow-light;
+    } // @include xlarge {
+    //     left: 300px;
+    //     width: calc(100% - 300px);
+    // }
+    // @include large {
+    //     left: 200px;
+    //     width: calc(100% - 200px);
+    // }
+    // @include middle {
+    //     left: 120px;
+    //     width: calc(100% - 120px);
+    // }
+    // @include small {
+    //     left: 40px;
+    //     width: calc(100% - 40px);
+    // }
+}
+
+.list-tab {
+    position: absolute;
+    top: 0;
+    z-index: 90;
+    .list-tab-item {
+        font-weight: 700;
+        height: 40px;
+        line-height: 40px;
+        padding-left: 5px;
+        cursor: pointer;
+        user-select: none;
+    }
+    .tab-visual_analysis {
+        background: $blue-light;
+        color: $blue;
+        // animation-delay: .1s;
+        // transition-delay: .1s;
+    }
+    .tab-urban_experience {
+        background: $green-light;
+        color: $green;
+        // animation-delay: .2s;
+        // transition-delay: .2s;
+    }
+    .tab-social_media_data {
+        background: $yellow-light;
+        color: #b5a58c;
+        // animation-delay: .3s;
+        // transition-delay: .3s;
+    }
+}
+
+
+.article-container {
+    transition: all .8s cubic-bezier(.55, 0, .1, 1);
+    position: fixed;
+    top: 40px;
+    min-height: calc(100% - 40px);
+    background: #fff;
+    z-index: 200;
+    left: 40px;
+    width: calc(100% - 40px);
+}
 
 
 .oval {
@@ -310,6 +433,12 @@ footer {
     background: $yellow;
 }
 
+.page-list {
+    // .list-container {
+    //     overflow-y: auto;
+    //     overflow-x:auto;
+    // }
+}
 
 .page-article {
     .site-header {
@@ -607,6 +736,15 @@ footer {
         }
     }
 }
+
+
+
+
+
+
+
+
+
 
 
 

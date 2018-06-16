@@ -2,176 +2,168 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 const Index = () =>
-  import ( /* webpackChunkName: "Web" */ './pages/index.vue')
+    import ( /* webpackChunkName: "Web" */ './pages/index.vue')
+const ListPage = () =>
+    import ( /* webpackChunkName: "Web" */ './pages/list.vue')
 const DefaultPage = () =>
-  import ( /* webpackChunkName: "Web" */ './pages/defaultPage.vue')
+    import ( /* webpackChunkName: "Web" */ './pages/defaultPage.vue')
 const ArticleList = () =>
-  import ( /* webpackChunkName: "Web" */ './pages/articleList.vue')
+    import ( /* webpackChunkName: "Web" */ './pages/articleList.vue')
 const ArticlePage = () =>
-  import ( /* webpackChunkName: "Web" */ './pages/article.vue')
+    import ( /* webpackChunkName: "Web" */ './pages/article.vue')
 const AboutPage = () =>
-  import ( /* webpackChunkName: "Web" */ './pages/about.vue')
+    import ( /* webpackChunkName: "Web" */ './pages/about.vue')
 const Admin = () =>
-  import ( /* webpackChunkName: "Admin" */ './pages/admin.vue')
+    import ( /* webpackChunkName: "Admin" */ './pages/admin.vue')
 const Login = () =>
-  import ( /* webpackChunkName: "Admin" */ './pages/login.vue')
+    import ( /* webpackChunkName: "Admin" */ './pages/login.vue')
 const Reg = () =>
-  import ( /* webpackChunkName: "Admin" */ './pages/reg.vue')
+    import ( /* webpackChunkName: "Admin" */ './pages/reg.vue')
 const Create = () =>
-  import ( /* webpackChunkName: "Admin" */ './components/admin/create.vue')
+    import ( /* webpackChunkName: "Admin" */ './components/admin/create.vue')
 const AdminHome = () =>
-  import ( /* webpackChunkName: "Admin" */ './components/admin/home.vue')
+    import ( /* webpackChunkName: "Admin" */ './components/admin/home.vue')
 const AdminAbout = () =>
-  import ( /* webpackChunkName: "Admin" */ './components/admin/about.vue')
+    import ( /* webpackChunkName: "Admin" */ './components/admin/about.vue')
 const ArticleManage = () =>
-  import ( /* webpackChunkName: "Admin" */ './components/admin/articleManage.vue')
-import addCopyText from './utils/addCopyText.js'
+    import ( /* webpackChunkName: "Admin" */ './components/admin/articleManage.vue')
+
 Vue.use(Router)
 
 const routes = [{
-    path: '/',
-    name: 'Index',
-    component: Index,
-    meta: { auth: false, keepAlive: true }
-  }, {
-    path: '/about',
-    name: 'About',
-    component: AboutPage,
-    meta: { auth: false, keepAlive: true }
-  }, {
-    path: '/concepts',
-    name: 'concepts',
-    component: ArticleList,
-    meta: { auth: false, keepAlive: true }
-  },
-  {
-    path: '/article/:category/:title',
-    name: 'Article',
-    component: ArticlePage,
-    meta: { auth: false, keepAlive: true }
-  }, {
-    path: '/methods',
-    name: 'methods',
-    component: ArticleList,
-    meta: { auth: false, keepAlive: true }
-  },
-  // {
-  //   path: '/methods/:title',
-  //   name: 'MethodsArticle',
-  //   component: ArticlePage,
-  //   meta: { auth: false, keepAlive: true }
-  // },
-   {
-    path: '/cases',
-    name: 'caseStudies',
-    component: ArticleList,
-    meta: { auth: false, keepAlive: true }
-  },
-  //  {
-  //   path: '/caseStudies/:title',
-  //   name: 'CaseStudiesArticle',
-  //   component: ArticlePage,
-  //   meta: { auth: false, keepAlive: true }
-  // },
-  {
-    path: '/tag/:tag',
-    name: 'Tag',
-    component: ArticleList,
-    meta: { auth: false, keepAlive: true }
-  }, {
-    path: '/login',
-    name: 'Login',
-    component: Login,
-    meta: { auth: false }
-  }, {
-    path: '/reg',
-    name: 'Reg',
-    component: Reg,
-    meta: { auth: false }
-  }, {
-    path: '/admin',
-    name: 'Admin',
-    component: Admin,
-    meta: { auth: true },
-    children: [{
-        path: '',
-        name: 'AdminAbout',
-        component: AdminAbout,
+        path: '/',
+        name: 'index',
+        component: Index,
+        meta: { auth: false, level: 0 },
+        children: [
+
+            {
+                path: '/project/:projectName',
+                name: 'list',
+                component: ListPage,
+                meta: { auth: false, level: 1 },
+                children: [{
+                    path: '/article/:title',
+                    name: 'article',
+                    component: ArticlePage,
+                    meta: { auth: false, level: 2 }
+                }, ]
+            },
+
+        ]
+    },
+
+    // , {
+    //     path: '/concepts',
+    //     name: 'concepts',
+    //     component: ArticleList,
+    //     meta: { auth: false }
+    // },
+    // {
+    //     path: '/article/:category/:title',
+    //     name: 'Article',
+    //     component: ArticlePage,
+    //     meta: { auth: false }
+    // }, {
+    //     path: '/methods',
+    //     name: 'methods',
+    //     component: ArticleList,
+    //     meta: { auth: false }
+    // },
+    // {
+    //   path: '/methods/:title',
+    //   name: 'MethodsArticle',
+    //   component: ArticlePage,
+    //   meta: { auth: false }
+    // },
+    // {
+    //     path: '/cases',
+    //     name: 'caseStudies',
+    //     component: ArticleList,
+    //     meta: { auth: false }
+    // },
+    //  {
+    //   path: '/caseStudies/:title',
+    //   name: 'CaseStudiesArticle',
+    //   component: ArticlePage,
+    //   meta: { auth: false }
+    // },
+    {
+        path: '/tag/:tag',
+        name: 'Tag',
+        component: ArticleList,
+        meta: { auth: false }
+    }, {
+        path: '/login',
+        name: 'Login',
+        component: Login,
+        meta: { auth: false }
+    }, {
+        path: '/reg',
+        name: 'Reg',
+        component: Reg,
+        meta: { auth: false }
+    }, {
+        path: '/admin',
+        name: 'Admin',
+        component: Admin,
+        meta: { auth: true },
+        children: [{
+                path: '',
+                name: 'AdminAbout',
+                component: AdminAbout,
+                meta: { auth: true }
+            },
+            {
+                path: 'about',
+                name: 'AdminAbout',
+                component: AdminAbout,
+                meta: { auth: true }
+            },
+            {
+                path: 'articles',
+                name: 'articles',
+                component: ArticleManage,
+                meta: { auth: true }
+            }
+        ]
+    }, {
+        path: '/admin/create/:category',
+        name: 'Create',
+        component: Create,
         meta: { auth: true }
-      },
-      {
-        path: 'about',
-        name: 'AdminAbout',
-        component: AdminAbout,
+    }, {
+        path: '/admin/articleEdit/:id',
+        name: 'ArticleEdit',
+        component: Create,
         meta: { auth: true }
-      },
-      {
-        path: 'concepts',
-        name: 'AdminConcept',
-        component: ArticleManage,
-        meta: { auth: true }
-      },
-      {
-        path: 'methods',
-        name: 'AdminMethod',
-        component: ArticleManage,
-        meta: { auth: true }
-      },
-      {
-        path: 'caseStudies',
-        name: 'AdminCase',
-        component: ArticleManage,
-        meta: { auth: true }
-      }
-    ]
-  }, {
-    path: '/admin/create/:category',
-    name: 'Create',
-    component: Create,
-    meta: { auth: true }
-  }, {
-    path: '/admin/articleEdit/:id',
-    name: 'ArticleEdit',
-    component: Create,
-    meta: { auth: true }
-  },
-  {
-    path: '*',
-    name: '404',
-    component: DefaultPage,
-    meta: { auth: false }
-  }
+    },
+    {
+        path: '*',
+        name: '404',
+        component: DefaultPage,
+        meta: { auth: false }
+    }
 ]
 
 const router = new Router({
-  mode: 'history',
-  saveScrollPosition: true,
-  routes,
+    mode: 'history',
+    saveScrollPosition: true,
+    routes,
 })
 
 
-let copyListened = false
 router.beforeEach(({ meta, path }, from, next) => {
-  let { auth = true } = meta;
-  let isLogin = !!localStorage.getItem('user');
-  if (isLogin && (path == '/login' || path == '/reg')) {
-    return next({ path: '/' })
-  }
-  if (auth && !isLogin) {
-    return next({ path: '/' })
-  }
-  if (path.indexOf('admin') == -1) {
-    if (!copyListened) {
-      document.addEventListener('copy', addCopyText);
-      copyListened = true
+    let { auth = true } = meta;
+    let isLogin = !!localStorage.getItem('user');
+    if (isLogin && (path == '/login' || path == '/reg')) {
+        return next({ path: '/' })
     }
-  } else {
-    if (copyListened) {
-      document.removeEventListener('copy', addCopyText);
-      copyListened = false
+    if (auth && !isLogin) {
+        return next({ path: '/' })
     }
-  }
-  next()
+
+    next()
 })
 
 router.afterEach((to, from, next) => {

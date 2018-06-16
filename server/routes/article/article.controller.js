@@ -184,12 +184,12 @@ exports.getContent = async function(req, res) {
   }
 }
 exports.getArticleList = async function(req, res) {
-  let category = req.params.category;
+  //let category = req.params.category;
   let isDraft = req.params.isDraft
-  category = category.toLowerCase();
+  //category = category.toLowerCase();
   let query = {
     articleType: 'article',
-    category: category
+   // category: category
   }
   if (!isDraft) {
     query.isDraft = false

@@ -14,7 +14,7 @@ export default {
   data() {
     return {
       showLoader: true,
-      category: '',
+      // category: '',
       list: []
     }
   },
@@ -24,7 +24,7 @@ export default {
     ArticleCard
   },
   mounted() {
-    this.category = this.$route.path.split('/')[2]
+    // this.category = this.$route.path.split('/')[2]
     api.getArticleList(this.category,true ).then(res => {
       if (res.data.articleList && res.data.articleList.length) {
         this.list = res.data.articleList

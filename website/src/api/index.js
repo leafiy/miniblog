@@ -78,14 +78,16 @@ export default {
   getContentByName(name) {
     return instance.get('/article/getContentByName/' + name, config())
   },
+
   getArticleList(category, isDraft = false) {
-    if (isDraft) {
-      return instance.get('/article/getArticleList/' + category + '/all', config())
+    // if (isDraft) {
+    //   return instance.get('/article/getArticleList/' + category + '/all', config())
 
-    } else {
-      return instance.get('/article/getArticleList/' + category, config())
+    // } else {
+    //   return instance.get('/article/getArticleList/' + category, config())
 
-    }
+    // }
+    return instance.get('/article/getArticleList/', config())
   },
   updateContent(data) {
     return instance.put('/article/updateContent/', data, config())

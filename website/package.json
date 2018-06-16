@@ -25,7 +25,6 @@
     "vue-affix": "^0.2.4",
     "vue-router": "^3.0.1",
     "vue-scrollactive": "git+https://github.com/leafiy/vue-scrollactive.git",
-    "vue2-animate": "^2.0.0",
     "vue2-google-maps": "^0.9.7",
     "vuex": "^3.0.1"
   },

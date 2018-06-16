@@ -17,6 +17,7 @@ var articleSchema = new Schema({
     type: String,
     default: ''
   },
+  project: String,
   category: {
     type: String,
     default: ''
@@ -26,10 +27,6 @@ var articleSchema = new Schema({
     default: {}
   },
   link: {
-    type: String,
-    default: ''
-  },
-  link2: {
     type: String,
     default: ''
   },
@@ -82,6 +79,7 @@ articleSchema
       articleType: this.articleType,
       shortName: this.shortName,
       category: this.category,
+      project:this.project,
       location: this.location,
       link: this.link,
       link2: this.link2,
