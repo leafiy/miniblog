@@ -25,7 +25,7 @@ export default {
   },
   mounted() {
     // this.category = this.$route.path.split('/')[2]
-    api.getArticleList(this.category,true ).then(res => {
+    api.getArticleListAll().then(res => {
       if (res.data.articleList && res.data.articleList.length) {
         this.list = res.data.articleList
         this.showLoader = false

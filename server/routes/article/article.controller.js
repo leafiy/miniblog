@@ -89,9 +89,9 @@ exports.updateArticle = async function(req, res) {
   article = Object.assign(article, newArticle)
   Article.find({ shortName: article.shortName, _id: { $ne: id } }).then(data => {
     article.saveAsync()
-      res.status(200).send({
-        content: article
-      })
+    res.status(200).send({
+      content: article
+    })
   })
 
 }
@@ -185,14 +185,15 @@ exports.getContent = async function(req, res) {
 }
 exports.getArticleList = async function(req, res) {
   //let category = req.params.category;
-  let isDraft = req.params.isDraft
+  let isDraft = req.originalUrl.indexOf('all') > -1 ? true : false
+
   //category = category.toLowerCase();
   let query = {
     articleType: 'article',
-   // category: category
+    // category: category
   }
   if (!isDraft) {
-    query.isDraft = false
+    query.isDraft = isDraft
   }
   try {
     let articleList = await Article.find(query).sort('-created');
