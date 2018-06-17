@@ -10,10 +10,6 @@ server {
     autoindex off;
   }
 
-  location /piblic/ {
-    alias /root/miniblog/server/public/;
-    autoindex on;
-  }
   location /api {
     proxy_pass http://localhost:8410;
     proxy_redirect off;

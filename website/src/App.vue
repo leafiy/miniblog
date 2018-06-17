@@ -39,6 +39,15 @@ export default {
         }).catch(_ => {
             this.show = true
         })
+    },
+    watch: {
+        $route(to) {
+            if (to.name == 'index' || to.name.toLowerCase().indexOf('admin') > -1) {
+                document.body.style.overflow = 'auto'
+            } else {
+                document.body.style.overflow = 'hidden'
+            }
+        }
     }
 
 }

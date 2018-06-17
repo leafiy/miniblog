@@ -8,12 +8,12 @@
         </div>
         <div class="title">
             <small v-if="content.isDraft" class="light">【草稿】</small>
-            <router-link :to="'article/'+ content.category + '/' + content.shortName"><span class="strong">{{content.title}}</span></router-link>
+            <router-link :to="'/article/'+ content.shortName"><span class="strong">{{content.title}}</span></router-link>
         </div>
-        <background :height="140" v-if="content.thumb" :src="content.thumb"></background>
+        <router-link :to="'/article/'+ content.shortName"><background :height="140" v-if="content.thumb" :src="content.thumb"></background></router-link>
         <div class="intro" v-if="content.intro">
 
-            <p>{{content.intro}}</p>
+            <p><router-link :to="'/article/'+ content.shortName">{{content.intro}}</router-link></p>
         </div>
         <div class="location" v-if="content.location"><small class="light">- {{content.location.formatted_address}}</small></div>
         <div class="action-bar" v-if="authInfo && $route.path.indexOf('admin') > -1">

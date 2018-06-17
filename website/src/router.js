@@ -122,19 +122,19 @@ const routes = [{
             },
             {
                 path: 'articles',
-                name: 'articles',
+                name: 'AdminArticles',
                 component: ArticleManage,
                 meta: { auth: true }
             }
         ]
     }, {
         path: '/admin/create/:category',
-        name: 'Create',
+        name: 'AdminCreate',
         component: Create,
         meta: { auth: true }
     }, {
         path: '/admin/articleEdit/:id',
-        name: 'ArticleEdit',
+        name: 'AdminArticleEdit',
         component: Create,
         meta: { auth: true }
     },

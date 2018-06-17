@@ -1,35 +1,41 @@
 <template>
     <div class="list-container" :style="styles">
-        <div class="list-tab" :style="{width:tabWidth+'px',left:-tabWidth+'px'}">
-            <transition-group name="fadeRight" tag="div">
-                <div class="list-tab-item" :class="'tab-' + item.tag" v-for="item of tabs" :key="item.name" @click="currentTag = item.tag">{{item.name}}</div>
+        <div class="list-tab" :style="{width:tabWidth+'px',left:-tabWidth+'px'}" v-if="tabWidth">
+            <transition-group name="fadeRight" tag="div" appear>
+                <div class="list-tab-item" :class="'tab-' + item.tag" v-for="item of tabs" :key="item.name" @click="updateTag(item.tag)">{{item.name}}</div>
             </transition-group>
         </div>
-        <transition name="fade" @afterEnter="">
+        <transition name="fade" @afterEnter="contentShowed" appear>
             <div class="list-content" v-if="showContent" :class="'content-'+currentTag">
-                <div class="desp" v-html="desp[currentTag]"></div>
-                <button @click="tabs.push({tag:'asdf',name:'asdfasdf'})">aaaa</button>
+                <VuePerfectScrollbar class="scroll-area" :settings="settings">
+                    <div class="desp" v-html="desp[currentTag]"></div>
+                    <article-list :category="currentTag" :project="$route.params.projectName"></article-list>
+                </VuePerfectScrollbar>
             </div>
         </transition>
-        <transition :name="transitionName" @beforeEnter="afterArticleEnter">
+        <transition :name="transitionName" appear @afterEnter="articleShowed">
             <router-view class="child-view"></router-view>
         </transition>
-
     </div>
 </template>
 <script>
 import api from '../api/index.js'
 import { mapGetters } from 'vuex'
+import VuePerfectScrollbar from 'vue-perfect-scrollbar'
+import ArticleList from '../components/articleList.vue'
 import ArticleCard from '../components/articleCard.vue'
 export default {
     data() {
         return {
+            settings: {
+                maxScrollbarLength: 60
+            },
             transitionName: '',
             tabWidth: '',
             showTabs: false,
             showContent: false,
             tabs: [],
-            list: {},
+            list: [],
             currentTag: 'visual_analysis',
             desp: {
                 'visual_analysis': `
@@ -54,10 +60,12 @@ Sharing photos & videos on <b>Social Networks</b> is no longer just a way of doc
         }
     },
     components: {
-        ArticleCard
+        ArticleCard,
+        ArticleList,
+        VuePerfectScrollbar
     },
     computed: {
-        ...mapGetters(['showTab', 'logoShowed', 'articleList']),
+        ...mapGetters(['showTab', 'logoShowed']),
         styles() {
             if (!this.logoShowed) {
                 return { display: 'none' }
@@ -68,13 +76,19 @@ Sharing photos & videos on <b>Social Networks</b> is no longer just a way of doc
         }
     },
     methods: {
+        scrollHanle(evt) {
+            console.log(evt)
+        },
+        updateTag(tag) {
+            this.currentTag = tag
+        },
         setPosition() {
             let p = document.getElementById('logo').getBoundingClientRect()
             let styles = {
                 left: `${p.x + p.width}px`,
                 width: `calc(100% - ${p.left+p.width}px)`,
                 top: `${p.y + p.height + 8}px`,
-                minHeight: `calc(100% - ${p.y + p.height}px)`
+                height: `calc(100% - ${p.y + p.height}px)`
             }
             this.tabWidth = p.width
             this.showContent = true
@@ -102,32 +116,29 @@ Sharing photos & videos on <b>Social Networks</b> is no longer just a way of doc
                     this.tabs.push(tab)
                 }, t * (index + 1))
             })
-
-            this.renderArticleList()
         },
-        afterArticleEnter() {
-
-        },
-        renderArticleList() {
-            this.tabs.map(item => {
-                this.list[item.tag] = this.articleList.filter(article => article.project == this.$route.params.projectName && article.category == item.tag)
-            })
+        articleShowed() {
+            this.tabs = []
         }
     },
     mounted() {
-        console.log('mounted')
-        this.showTabs = true;
-        this.$nextTick(() => {
-            this.contentShowed()
-        })
+
     },
     beforeRouteUpdate(to, from, next) {
         const toDepth = to.meta.level
         const fromDepth = from.meta.level
         this.transitionName = toDepth < fromDepth ? 'slide-out' : 'slide-in'
+        if (from.name == 'article') {
+            this.contentShowed()
+        }
         next()
 
     }
 
 }
 </script>
+<style>
+.scroll-area {
+    height: 100%;
+}
+</style>

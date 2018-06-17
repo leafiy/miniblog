@@ -71,7 +71,7 @@ export default {
         typer() {
             let typer1 = new Typed(this.$refs['typer1'], {
                 strings: [this.text],
-                typeSpeed: 3,
+                typeSpeed: 30,
                 loop: false,
                 onComplete: (self) => {
                     this.show = true

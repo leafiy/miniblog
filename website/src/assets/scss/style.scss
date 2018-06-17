@@ -394,20 +394,20 @@ footer {
     .tab-visual_analysis {
         background: $blue-light;
         color: $blue;
-        // animation-delay: .1s;
-        // transition-delay: .1s;
+        animation-delay: .1s;
+        transition-delay: .1s;
     }
     .tab-urban_experience {
         background: $green-light;
         color: $green;
-        // animation-delay: .2s;
-        // transition-delay: .2s;
+        animation-delay: .2s;
+        transition-delay: .2s;
     }
     .tab-social_media_data {
         background: $yellow-light;
         color: #b5a58c;
-        // animation-delay: .3s;
-        // transition-delay: .3s;
+        animation-delay: .3s;
+        transition-delay: .3s;
     }
 }
 
@@ -421,6 +421,14 @@ footer {
     z-index: 200;
     left: 40px;
     width: calc(100% - 40px);
+    padding: 40px 80px;
+    box-shadow: -3px 4px 10px rgba(0, 0, 0, .2);
+    .close{
+        position: absolute;
+        top:20px;
+        right:20px;
+        cursor: pointer;
+    }
 }
 
 
@@ -587,22 +595,11 @@ footer {
     }
 }
 
-.page-container {
-    >.article-list {
-        width: 700px;
-        float: right;
-        .title {
-            @include small {
-                font-size: 14px;
-            }
-        }
-    }
-}
-
-.page-concepts {
-    .site-header {
-        h1 {
-            color: $blue-light;
+.article-list {
+    padding: 40px;
+    .title {
+        @include small {
+            font-size: 14px;
         }
     }
     .article-card {
@@ -612,34 +609,8 @@ footer {
     }
 }
 
-.page-methods {
-    .site-header {
-        h1 {
-            color: $green-light;
-        }
-        canvas {
-            fill: $yellow-light;
-        }
-    }
-    .article-card {
-        &:nth-child(odd) {
-            border-left: 3px solid $green;
-        }
-    }
-}
 
-.page-casestudies {
-    .site-header {
-        h1 {
-            color: $brown-light;
-        }
-    }
-    .article-card {
-        &:nth-child(odd) {
-            border-left: 3px solid $brown;
-        }
-    }
-}
+
 
 .article-card {
     margin-bottom: 40px;
@@ -673,10 +644,10 @@ footer {
 }
 
 .article {
-    margin-top: 60px;
     position: relative;
-    width: 700px;
-    float: right;
+    .content {
+        padding-bottom: 40px;
+    }
     .head {
         h2 {
             font-size: 20px;
@@ -706,7 +677,7 @@ footer {
     }
     blockquote {
         background: $lighter;
-        margin-left: -50px;
+        margin-left: -30px;
         padding: 23px;
         font-style: normal;
     }
@@ -736,6 +707,8 @@ footer {
         }
     }
 }
+
+
 
 
 
