@@ -1,91 +1,134 @@
 .markdown-body {
-  a {
-    padding: 0 0.3em 0.1em 0.3em;
-    text-decoration: none;
-    color: lighten($green, 10%);
-    font-style:italic;
-  }
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-weight: 600;
-    margin-bottom: 1em;
-  }
-
-  h1 {
-    border-bottom: 1px solid lighten($lighter, 25%);
-  }
-
-  ol,
-  ul {
-    margin-right: 25px;
-    margin-bottom: 1em;
-  }
-
-  ul li {
-    list-style: none;
-    &:hover {
-      &:before {
-        transform: translateX(4px);
-      }
+    a {
+        padding: 0 0.3em 0.1em 0.3em;
+        text-decoration: none;
+        color: lighten($green, 10%);
+        font-style: italic;
     }
-  }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-weight: 600;
+        margin-bottom: 1em;
+    }
 
-  ul li:before {
-    content: '\2010';
-    display: block;
-    position: relative;
-    max-width: 0;
-    max-height: 0;
-    left: -1em;
-    top: -.1em;
-    color: $lighter;
-    transition: all .2s ease-in;
-    font-size: 1.2em;
-  }
+    h1 {
+        border-bottom: 1px solid lighten($lighter, 25%);
+    }
+
+    ol,
+    ul {
+        margin-right: 25px;
+        margin-bottom: 1em;
+    }
+
+    ul li {
+
+        &:hover {
+            &:before {
+                transform: translateX(4px);
+            }
+        }
+    }
+
+    ul li:before {
+        content: ' • ';
+        display: block;
+        position: relative;
+        max-width: 0;
+        max-height: 0;
+        left: -.8em;
+        top: -.1em;
+        color: $light;
+        transition: all .2s ease-in;
+        font-size: 1.2em;
+    }
 
 
 
-  li {
-    font-size: .9em;
-  }
+    li {
+        display: block;
+        font-size: .9em;
+    }
 
-  li p {
-    -webkit-margin-before: 0;
-    -webkit-margin-after: 0;
-  }
+    li p {
+        -webkit-margin-before: 0;
+        -webkit-margin-after: 0;
+    }
 
-  .footnote {
-    font-size: 50%;
-    vertical-align: super;
-  }
-  div.footnotes {
-    font-size: 80%;
-  }
-  pre,
-  code {
-    white-space: pre-wrap;
-  }
-  blockquote {
-    border-left: 3px solid lighten($lighter, 20%);
-    display: block;
-    padding: 0 1em;
-    font-style: italic;
-    color: $light;
-    -webkit-margin-before: 1em;
-    -webkit-margin-after: 1em;
-    -webkit-margin-start: 0;
-    -webkit-margin-end: 0;
-  }
+    ol {
+        list-style: decimal outside;
+        -webkit-padding-start: 0;
+        -webkit-margin-before: 0;
+        -webkit-margin-after: 0;
+    }
 
-  code {
-    font-family: Inconsolata, "Courier Prime", mono;
-    font-size: 80%;
-    padding: 2px;
-    color: rgb(20, 126, 73);
-    background: rgb(224, 232, 228);
-  }
+    .footnote {
+        font-size: 50%;
+        vertical-align: super;
+    }
+    div.footnotes {
+        font-size: 80%;
+    }
+    pre,
+    code {
+        white-space: pre-wrap;
+    }
+    blockquote {
+        border-left: 3px solid lighten($lighter, 20%);
+        display: block;
+        padding: 0 1em;
+        font-style: italic;
+        -webkit-margin-before: 1em;
+        -webkit-margin-after: 1em;
+        -webkit-margin-start: 0;
+        -webkit-margin-end: 0;
+    }
+
+    code {
+        font-family: Inconsolata, "Courier Prime", mono;
+        font-size: 80%;
+        padding: 2px;
+        color: rgb(20, 126, 73);
+        background: rgb(224, 232, 228);
+    }
+    img {
+        max-width: 90%;
+    }
+    table {
+        padding: 0;
+    }
+    table tr {
+        border-top: 1px solid $light;
+        background-color: white;
+        margin: 0;
+        padding: 0;
+    }
+    table tr:nth-child(2n) {
+        background-color: #f8f8f8;
+    }
+    table tr th {
+        font-weight: bold;
+        border: 1px solid $light;
+        text-align: left;
+        margin: 0;
+        padding: 6px 13px;
+    }
+    table tr td {
+        border: 1px solid $light;
+        text-align: left;
+        margin: 0;
+        padding: 6px 13px;
+    }
+    table tr th :first-child,
+    table tr td :first-child {
+        margin-top: 0;
+    }
+    table tr th :last-child,
+    table tr td :last-child {
+        margin-bottom: 0;
+    }
 }

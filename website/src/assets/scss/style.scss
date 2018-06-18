@@ -608,6 +608,11 @@ footer {
 .article-card {
     margin-bottom: 40px;
     padding-left: 20px;
+    .tags{
+        span{
+            margin-right:6px;
+        }
+    }
     .meta {
         font-size: 12px;
     }
@@ -668,8 +673,11 @@ footer {
         border-left:3px solid $light;
         margin-bottom:40px;
         .intro {
-            color: #666666;
+            color: #888;
+            font-weight:300;
             padding-right:20px;
+            font-size:14px;
+            white-space:pre-wrap;
         }
     }
     .date {
@@ -679,35 +687,35 @@ footer {
     }
     blockquote {
         background: $lighter;
-        margin-left: -30px;
+        margin-left: -43px;
         padding: 23px;
         font-style: normal;
     }
-    .toc {
-        @include small {
-            display: none;
-        }
-        font-size:90%;
-        width:200px;
-        float: right;
-        .active {
-            color: $blue;
-            font-style: italic;
-        }
-        li {
-            display: block;
-            margin-bottom: .2em;
-        }
-        ul {
+    // .toc {
+    //     @include small {
+    //         display: none;
+    //     }
+    //     font-size:90%;
+    //     width:200px;
+    //     float: right;
+    //     .active {
+    //         color: $blue;
+    //         font-style: italic;
+    //     }
+    //     li {
+    //         display: block;
+    //         margin-bottom: .2em;
+    //     }
+    //     ul {
 
-            >li {
-                >ul {
-                    padding-left: 1em;
-                    font-size: 90%;
-                }
-            }
-        }
-    }
+    //         >li {
+    //             >ul {
+    //                 padding-left: 1em;
+    //                 font-size: 90%;
+    //             }
+    //         }
+    //     }
+    // }
 }
 
 
