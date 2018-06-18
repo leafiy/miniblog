@@ -279,7 +279,7 @@ footer {
 // }
 .index-container {
     min-height: 100vh;
-    padding: 8% 33px 10% 33px;
+    padding: 8% 33px 4% 33px;
     position: relative;
     @include xlarge {
         margin-left: 300px;
@@ -311,10 +311,7 @@ footer {
         z-index: 1;
     }
     .intro {
-        margin-top: 80px;
-        b {
-            font-size: 22px;
-        }
+        margin-top: 60px;
     }
     .hero {
         position: relative;
@@ -332,6 +329,11 @@ footer {
     }
     .typer {
         margin-bottom: 30px;
+    }
+    .contact {
+        position: absolute;
+        bottom: 20px;
+        left: 33px;
     }
 }
 
@@ -392,44 +394,35 @@ footer {
         user-select: none;
     }
     .tab-visual_analysis {
-        background: $blue-light;
-        color: $blue;
-        animation-delay: .1s;
-        transition-delay: .1s;
+        background: $blue;
+        color: $blue-light; // animation-delay: .1s;
+        // transition-delay: .1s;
+        &.tab-active {
+            background: $blue-light;
+            color: $blue;
+        }
     }
     .tab-urban_experience {
-        background: $green-light;
-        color: $green;
-        animation-delay: .2s;
-        transition-delay: .2s;
+        background: $green;
+        color: $green-light; // animation-delay: .2s;
+        // transition-delay: .2s;
+        &.tab-active {
+            background: $green-light;
+            color: $green;
+        }
     }
     .tab-social_media_data {
-        background: $yellow-light;
-        color: #b5a58c;
-        animation-delay: .3s;
-        transition-delay: .3s;
+        background: darken($yellow-light,25%);
+        color: $yellow-light; // animation-delay: .3s;
+        // transition-delay: .3s;
+        &.tab-active {
+            background: $yellow-light;
+            color: darken($yellow-light,25%);
+        }
     }
 }
 
 
-.article-container {
-    transition: all .8s cubic-bezier(.55, 0, .1, 1);
-    position: fixed;
-    top: 40px;
-    min-height: calc(100% - 40px);
-    background: #fff;
-    z-index: 200;
-    left: 40px;
-    width: calc(100% - 40px);
-    padding: 40px 80px;
-    box-shadow: -3px 4px 10px rgba(0, 0, 0, .2);
-    .close{
-        position: absolute;
-        top:20px;
-        right:20px;
-        cursor: pointer;
-    }
-}
 
 
 .oval {
@@ -642,38 +635,47 @@ footer {
 .vue-map-container {
     margin-bottom: 2em;
 }
+.article-container {
+    transition: all .8s cubic-bezier(.55, 0, .1, 1);
+    position: fixed;
+    top: 40px;
+    min-height: calc(100% - 40px);
+    background: #fff;
+    z-index: 200;
+    left: 40px;
+    width: calc(100% - 40px);
+    padding: 40px 40px;
+    box-shadow: -3px 4px 10px rgba(0, 0, 0, .2);
+    .close {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        cursor: pointer;
+    }
+}
 
 .article {
     position: relative;
     .content {
+        padding:0 40px;
         padding-bottom: 40px;
     }
     .head {
         h2 {
             font-size: 20px;
         }
-        padding-left:20px;
+        padding-left:40px;
         border-left:3px solid $light;
-        margin-left:-20px;
-        padding-bottom:40px;
         margin-bottom:40px;
         .intro {
             color: #666666;
+            padding-right:20px;
         }
     }
     .date {
         position: absolute;
         top: -50px;
         right: 0;
-    }
-    .content {
-        width: calc(100% - 200px);
-        float: left;
-        padding-right: 20px;
-        @include small {
-            width: 100%;
-            padding-right: 0;
-        }
     }
     blockquote {
         background: $lighter;
@@ -707,6 +709,10 @@ footer {
         }
     }
 }
+
+
+
+
 
 
 

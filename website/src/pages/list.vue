@@ -2,7 +2,7 @@
     <div class="list-container" :style="styles">
         <div class="list-tab" :style="{width:tabWidth+'px',left:-tabWidth+'px'}" v-if="tabWidth">
             <transition-group name="fadeRight" tag="div" appear>
-                <div class="list-tab-item" :class="'tab-' + item.tag" v-for="item of tabs" :key="item.name" @click="updateTag(item.tag)">{{item.name}}</div>
+                <div class="list-tab-item" :class="['tab-' + item.tag,currentTag == item.tag ? 'tab-active' :'']" v-for="item of tabs" :key="item.name" @click="updateTag(item.tag)">{{item.name}}</div>
             </transition-group>
         </div>
         <transition name="fade" @afterEnter="contentShowed" appear>
