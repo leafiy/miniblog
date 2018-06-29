@@ -350,8 +350,9 @@ footer {
         background: $blue-light;
         .desp {
             padding: 40px;
+            padding-right:22%;
             p {
-                margin-bottom: 40px;
+                margin-bottom: 20px;
             }
         }
     }
@@ -661,9 +662,13 @@ footer {
 
 .article {
     position: relative;
+    padding-right:16%;
     .content {
         padding:0 40px;
         padding-bottom: 40px;
+        p{
+            margin-bottom:.875em;
+        }
     }
     .head {
         h2 {
@@ -673,9 +678,11 @@ footer {
         border-left:3px solid $light;
         margin-bottom:40px;
         .intro {
-            color: #888;
+            color: #808080;
             font-weight:300;
+            margin-top:15px;
             padding-right:20px;
+            padding-left:30px;
             font-size:14px;
             white-space:pre-wrap;
         }
